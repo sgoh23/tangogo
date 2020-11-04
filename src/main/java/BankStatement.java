@@ -1,17 +1,35 @@
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class BankStatement {
 
-//    public static void main(String[] args) {
-//        BankStatement bs = new BankStatement();
+ //  public static void main(String[] args) {
+
+   //    BankStatement bs = new BankStatement();
+    //   bs.setStatementPeriod(9,2020);
 //        bs.initialThisMonthStatement();
 //        bs.containsThisTxnAmount(232.00);
-//    }
+  // }
 
     ArrayList<Transaction> bankRecords = new ArrayList<>();
+    Calendar statementStartDate = Calendar.getInstance();
+    Calendar statementEndDate = Calendar.getInstance();
+    String statementPeriod = null;
 
     BankStatement(){
 
+    }
+
+    String setStatementPeriod(int mth, int year){
+
+        statementPeriod = mth + "-" + year;
+        statementStartDate.set(year,mth-1,01,0,0,0);
+        statementEndDate.set(year,mth-1,statementStartDate.getActualMaximum(Calendar.DATE),0,0,0);
+        System.out.println("Statement period is set starting "+ statementStartDate.getTime()+ " TO "+ statementEndDate.getTime());
+
+        return statementPeriod;
     }
 
     void initialThisMonthStatement(){
@@ -41,9 +59,4 @@ public class BankStatement {
 
     }
 
-    void clearThisMonthRecords(){
-
-        bankRecords.clear();
-
-    }
 }
