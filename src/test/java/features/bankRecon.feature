@@ -12,16 +12,16 @@
   Feature: Auto bank reconciliation
 
     Scenario Outline: Exact Amount Match on Bank's transaction against Company's transaction
-    Given User has a bank transaction with a <Bank Amount> and <Statement Date>
-      And User has company transaction with a <Transaction Amount> and <Transaction Date>
-      When the company transaction amount and transaction date match the bank amount and transaction date
-      Then the <Recon Status> is set
+    Given User received a bank statement
+      And User has a bank record with an <Bank Credit Amount>
+      And User has company transaction with a <Company Credit Amount>
+      When there is a matching credit amount
+      Then the transaction is considered <Reconciled> regardless of transaction date
 
       Examples:
-      | Bank Amount | Statement Date | Transaction Amount | Transaction Date | Recon Status |
-      | 232.00 | "01/09/2020" | 232.00 | "01/09/2020" | "Matched" |
-      #| 232.00 | "01/09/2020" | 300.00 | "01/09/2020" | Pending a match |
-      #| 232.00 | "01/09/2020" | 232.00 | "02/09/2020" | Pending a match |
+      | Bank Credit Amount | Company Credit Amount | Reconciled |
+      | 232.00             | 232.00                | Yes        |
+      #| 232.00 | 300.00 | No |
 
 
 

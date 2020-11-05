@@ -1,3 +1,4 @@
+
 import java.util.Arrays;
 
 public class Transaction {
@@ -17,7 +18,7 @@ public class Transaction {
         transactionDate = txnDate;
     }
 
-    Boolean checkIfAmountReportedInBankStatement (double bankAmt){
+    /*Boolean checkIfAmountReportedInBankStatement (double bankAmt){
 
         try
         {
@@ -32,7 +33,7 @@ public class Transaction {
             return false;
         }
 
-    }
+    }*/
 
 
 

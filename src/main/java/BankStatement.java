@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-public class BankStatement {
+public class BankStatement extends Transaction{
 
  //  public static void main(String[] args) {
 
@@ -14,6 +14,8 @@ public class BankStatement {
   // }
 
     ArrayList<Transaction> bankRecords = new ArrayList<>();
+    ArrayList<Transaction> reconciledRecords = new ArrayList<>();
+
     Calendar statementStartDate = Calendar.getInstance();
     Calendar statementEndDate = Calendar.getInstance();
     String statementPeriod = null;
@@ -45,18 +47,23 @@ public class BankStatement {
         System.out.println("Total records in Bank Statement Records:" + bankRecords.size());
 
     }
+    Boolean hasBankRecords(){
+        return bankRecords.size()>0;
+    }
 
-    Boolean containsThisTxnAmount(double bankAmt){
-        int countMatches = 0;
+    Boolean hasBankRecordWithAmt(double bankAmt){
+
         for (Transaction bankRecord : bankRecords) {
             if (bankRecord.transactionAmount == bankAmt) {
-                countMatches++;
+                reconciledRecords.add(new Transaction(bankAmt, bankRecord.transactionDate));
+                System.out.println("Reconciled record count:"+reconciledRecords.size());
                 System.out.println("Record date:"+bankRecord.transactionDate+ " with Amount:"+ bankRecord.transactionAmount);
             }
         }
 
-       return countMatches > 0;
+       return reconciledRecords.size()>0;
 
     }
+
 
 }
