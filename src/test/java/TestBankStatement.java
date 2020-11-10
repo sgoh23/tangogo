@@ -1,7 +1,4 @@
 import io.cucumber.java.After;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Calendar;
@@ -13,7 +10,6 @@ public class TestBankStatement {
     String period = "9-2020";
     BankStatement statement = new BankStatement(period);
     double testAmount1 = 232.00;
-    double testFalseAmount = 999999.00;
     String testDate = "01/09/2020";
 
 
@@ -26,7 +22,7 @@ public class TestBankStatement {
 
     @Test
     public void testExpectBankStatement_withoutRecordsBeforeInitialLoad() {
-        assertFalse(statement.getBankRecordsSize()==0);
+        assertNotEquals(0,statement.getBankRecordsSize());
     }
 
     @Test
@@ -65,7 +61,7 @@ public class TestBankStatement {
     }
 
     @Test
-    public void testExpectToFindRecordwithSameAmountToReconcile() {
+    public void testExpectToFindInRecordSameAmountToReconcile() {
        statement.initialThisMonthStatement(period);
        assertTrue(statement.findUnreconciledBankRecordWithAmt(testAmount1)>0);
 
