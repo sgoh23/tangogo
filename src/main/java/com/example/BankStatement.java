@@ -22,7 +22,7 @@ public class BankStatement extends Transaction{
 //           bs.printRecordList(bs.reconciledRecords,"Reconciled Records");
 //           bs.printRecordList(bs.unreconciledRecords,"UNReconciled Records");
 //
-//       int i = bs.findUnreconciledBankRecordWithAmt(232.00);
+//        bs.setReconcileRecord(bs.bankRecords.get(2));
 //        bs.printRecordList(bs.bankRecords,"Bank Records");
 //        bs.printRecordList(bs.reconciledRecords,"Reconciled Records");
 //        bs.printRecordList(bs.unreconciledRecords,"UNReconciled Records");
@@ -71,7 +71,7 @@ public class BankStatement extends Transaction{
         return bankRecords.size();
     }
 
-    public void initialUnreconciledRecords(){
+    public void initialUnreconciledRecords() throws ClassCastException{
         unreconciledRecords =  (ArrayList<Transaction>) bankRecords.clone();
 
     }
@@ -79,7 +79,6 @@ public class BankStatement extends Transaction{
     public int getUnreconciledRecordsSize(){
         return unreconciledRecords.size();
     }
-
     public int getReconciledRecordSize(){
         return reconciledRecords.size();
     }
@@ -87,16 +86,17 @@ public class BankStatement extends Transaction{
         return bankRecords.size();
     }
 
-    public int findUnreconciledBankRecordWithAmt(double bankAmt){
+    public Transaction getUnreconciledRecordWithAmt(double bankAmt){
 
         int recordIndex = 0;
 
         try{
             for (Transaction record : unreconciledRecords) {
                 if (record.transactionAmount == bankAmt) {
-                    System.out.println("Record:"+record+" Update recon For BankAmt: "+bankAmt+"...Found in record:"+unreconciledRecords.get(recordIndex).transactionAmount+" Dated: "+unreconciledRecords.get(recordIndex).transactionDate);
-                    setReconcileRecord(record);
-                    break;
+                    //System.out.println("Record:"+record+" Update recon For BankAmt: "+bankAmt+"...Found in record:"+unreconciledRecords.get(recordIndex).transactionAmount+" Dated: "+unreconciledRecords.get(recordIndex).transactionDate);
+                    //setReconcileRecord(record);
+                    return record;
+                   // break;
                 }
                 recordIndex++;
             }
@@ -105,19 +105,21 @@ public class BankStatement extends Transaction{
         }catch(Exception e){
             e.printStackTrace();
         }
-        return recordIndex;
+        return null;
 
     }
 
     public Boolean setReconcileRecord(Transaction txn){
+
         boolean recon = false;
 
-        reconciledRecords.add(txn);
+        recon = reconciledRecords.add(txn);
         recon = removeFromUnreconciledList(txn.transactionAmount);
 
-        if(unreconciledRecords.size() == bankRecords.size()-reconciledRecords.size()){
-            recon = true;
-        }
+        System.out.println("Record:"+txn+" Update recon For BankAmt: "+txn.transactionAmount+
+                "...Found in record:"+unreconciledRecords.get(reconciledRecords.indexOf(txn)).transactionAmount+
+                " Dated: "+unreconciledRecords.get(reconciledRecords.indexOf(txn)).transactionDate);
+
         return recon;
     }
 
@@ -148,10 +150,9 @@ public class BankStatement extends Transaction{
     public Boolean containTransactionInReconciledRecords(Transaction txn){
         return reconciledRecords.contains(txn);
     }
+    public Boolean containTransactionInUnreconciledRecords(Transaction txn){ return unreconciledRecords.contains(txn); }
+    public Boolean containTransactionInBankRecords(Transaction txn){ return bankRecords.contains(txn); }
 
-    public Boolean containTransactionInUnreconciledRecords(Transaction txn){
-        return unreconciledRecords.contains(txn);
-    }
 
     private void printRecordList(ArrayList<Transaction> records, String listname){
 

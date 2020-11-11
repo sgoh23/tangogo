@@ -60,26 +60,6 @@
                 <groupId>net.masterthought</groupId>
                 <artifactId>maven-cucumber-reporting</artifactId>
                 <version>5.4.0</version>
-                <executions>
-                    <execution>
-                        <id>execution</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <configuration>
-                            <projectName>CucumberWebGui</projectName>
-                            <outputDirectory>${project.build.directory}/site/cucumber-reports</outputDirectory>
-                            <inputDirectory>${project.build.directory}/cucumber.json</inputDirectory>
-                            <jsonFiles>
-                                <!-- supports wildcard or name pattern -->
-                                <param>**/*.json</param>
-                            </jsonFiles>
-                            <checkBuildResult>true</checkBuildResult>
-
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>

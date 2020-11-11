@@ -7,7 +7,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class bankReconStepDefinitions {
 
@@ -23,8 +23,8 @@ public class bankReconStepDefinitions {
 
     @Given("User has a bank record with an {double}")
     public void user_has_a_bank_record_with_an(Double amt) {
-        assertTrue(testStmt.findUnreconciledBankRecordWithAmt(amt)>0);
-        assertTrue(testStmt.getReconciledRecordSize()>0);
+        txn = testStmt.getUnreconciledRecordWithAmt(amt);
+        assertNotNull(txn);
     }
 
     @Given("User has company transaction with a {double}")
@@ -34,13 +34,14 @@ public class bankReconStepDefinitions {
 
     @When("there is a matching amount with this {double}")
     public void there_is_a_matching_amount(Double amt1) {
-        assertTrue(testStmt.findUnreconciledBankRecordWithAmt(amt1)>0);
+        assertTrue(testStmt.setReconcileRecord(txn));
+        assertTrue(testStmt.getReconciledRecordSize()>0);
     }
 
     @Then("the transaction with {double} is considered true regardless of transaction date")
     public void the_transaction_with_is_considered_true_regardless_of_transaction_date(Double amt) {
-        txn = new Transaction(amt);
-        assertTrue(testStmt.setReconcileRecord(txn));
         assertTrue(testStmt.containTransactionInReconciledRecords(txn));
+        assertFalse(testStmt.containTransactionInUnreconciledRecords(txn));
+        assertTrue(testStmt.containTransactionInBankRecords(txn));
     }
 }
