@@ -3,32 +3,65 @@ import java.util.ArrayList;
 
 public class CompanyBook {
 
-    ArrayList<Transaction> PaymentRecords = new ArrayList<>();
+    ArrayList<Transaction> paymentRecords = new ArrayList<>();
     ArrayList<Transaction> reconciledRecords = new ArrayList<>();
+    ArrayList<Transaction> unreconciledRecords = new ArrayList<>();
+
+    String chartOfAccount = null;
+
+    public CompanyBook() {
+        chartOfAccount = "Cash in OCBC";
+        setBeginningBalance();
+    }
 
     public void setBeginningBalance(){
-        PaymentRecords.add(new Transaction(232.00,"01/09/2020"));
+        paymentRecords.clear();
+        paymentRecords.add(new Transaction(232.00,"01/09/2020"));
+     //   paymentRecords.add(new Transaction(300.00,"01/09/2020"));
+      //  paymentRecords.add(new Transaction(300.00,"02/09/2020"));
+
+        initialUnreconciledRecords();
+    }
+
+    public void initialUnreconciledRecords() throws ClassCastException{
+        unreconciledRecords =  (ArrayList<Transaction>) paymentRecords.clone();
     }
 
     public ArrayList<Transaction> getPaymentRecords(){
-        return PaymentRecords;
+        return paymentRecords;
     }
 
     public int getPaymentRecordSize(){
-        return PaymentRecords.size();
+        return paymentRecords.size();
     }
 
-    public Boolean hasTransactionWithAmt(double amt){
-        setBeginningBalance();
-        for (Transaction paymentRecord : PaymentRecords) {
+    public Transaction getUnreconciledRecordWithAmt(double bankAmt){
 
-            if (paymentRecord.transactionAmount == amt) {
-                reconciledRecords.add(new Transaction(amt, paymentRecord.transactionDate));
-                System.out.println("Reconciled record count:"+reconciledRecords.size());
+        int recordIndex = 0;
+
+        try{
+            for (Transaction record : unreconciledRecords) {
+                if (record.transactionAmount == bankAmt) {
+                    //System.out.println("Record:"+record+" Update recon For BankAmt: "+bankAmt+"...Found in record:"+unreconciledRecords.get(recordIndex).transactionAmount+" Dated: "+unreconciledRecords.get(recordIndex).transactionDate);
+                    //setReconcileRecord(record);
+                    return record;
+                    // break;
+                }
+                recordIndex++;
             }
 
+
+        }catch(Exception e){
+            e.printStackTrace();
         }
-        return reconciledRecords.size()>0;
+
+        unreconciledRecords.add(new Transaction(bankAmt)); //add unrecon record if cannot find in COY acc
+        return unreconciledRecords.get(unreconciledRecords.size()-1);
+
     }
+
+    public Boolean containTransactionInUnreconciledRecords(Transaction txn){ return unreconciledRecords.contains(txn); }
+
+
 
 }

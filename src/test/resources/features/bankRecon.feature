@@ -15,13 +15,13 @@
     Given User received a bank statement for <Statement Period>
       And User has a bank record with an <Bank Credit Amount>
       And User has company transaction with a <Company Credit Amount>
-      When there is a matching amount with this <Company Credit Amount>
+      When there <is matching> amount with this <Company Credit Amount>
       Then the transaction with <Company Credit Amount> is considered <Reconciled> regardless of transaction date
 
       Examples:
-      | Statement Period | Bank Credit Amount | Company Credit Amount | Reconciled |
-      | "9-2020"           | 232.00             | 232.00              | true        |
-      #| 232.00 | 300.00 | No |
+      | Statement Period   | Bank Credit Amount | Company Credit Amount | is matching | Reconciled  |
+      | "9-2020"           | 232.00             | 232.00                | true        | true        |
+      | "9-2020"           | 232.00             | 300.00                | false       | false       |
 
 
 

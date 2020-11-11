@@ -93,10 +93,7 @@ public class BankStatement extends Transaction{
         try{
             for (Transaction record : unreconciledRecords) {
                 if (record.transactionAmount == bankAmt) {
-                    //System.out.println("Record:"+record+" Update recon For BankAmt: "+bankAmt+"...Found in record:"+unreconciledRecords.get(recordIndex).transactionAmount+" Dated: "+unreconciledRecords.get(recordIndex).transactionDate);
-                    //setReconcileRecord(record);
                     return record;
-                   // break;
                 }
                 recordIndex++;
             }
@@ -114,11 +111,14 @@ public class BankStatement extends Transaction{
         boolean recon = false;
 
         recon = reconciledRecords.add(txn);
+
+        System.out.println(" | Reconciliation Record:"+txn+" | BankAmt: "+txn.transactionAmount);
+        System.out.println(" | Found in record:"+ unreconciledRecords.get(unreconciledRecords.indexOf(txn)).toString()+
+                " | Amount: "+unreconciledRecords.get(unreconciledRecords.indexOf(txn)).transactionAmount+
+                " | Dated: "+unreconciledRecords.get(unreconciledRecords.indexOf(txn)).transactionDate);
+
         recon = removeFromUnreconciledList(txn.transactionAmount);
 
-        System.out.println("Record:"+txn+" Update recon For BankAmt: "+txn.transactionAmount+
-                "...Found in record:"+unreconciledRecords.get(reconciledRecords.indexOf(txn)).transactionAmount+
-                " Dated: "+unreconciledRecords.get(reconciledRecords.indexOf(txn)).transactionDate);
 
         return recon;
     }
