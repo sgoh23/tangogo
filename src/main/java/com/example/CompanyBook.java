@@ -1,3 +1,4 @@
+package com.example;
 import java.util.ArrayList;
 
 public class CompanyBook {
@@ -5,11 +6,19 @@ public class CompanyBook {
     ArrayList<Transaction> PaymentRecords = new ArrayList<>();
     ArrayList<Transaction> reconciledRecords = new ArrayList<>();
 
-    void setBeginningBalance(){
+    public void setBeginningBalance(){
         PaymentRecords.add(new Transaction(232.00,"01/09/2020"));
     }
 
-    Boolean hasTransactionWithAmt(double amt){
+    public ArrayList<Transaction> getPaymentRecords(){
+        return PaymentRecords;
+    }
+
+    public int getPaymentRecordSize(){
+        return PaymentRecords.size();
+    }
+
+    public Boolean hasTransactionWithAmt(double amt){
         setBeginningBalance();
         for (Transaction paymentRecord : PaymentRecords) {
 

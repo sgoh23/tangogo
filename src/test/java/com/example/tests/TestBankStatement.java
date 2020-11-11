@@ -1,4 +1,9 @@
+package com.example.tests;
+
+import com.example.BankStatement;
+import com.example.Transaction;
 import io.cucumber.java.After;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Calendar;
@@ -17,12 +22,14 @@ public class TestBankStatement {
 
     @Test
     public void testExpectBankStatementIsForACertainPeriod(){
-        assertEquals(period, new BankStatement(period).getStatementPeriod());
+        statement = new BankStatement();
+        Assertions.assertEquals(period, new BankStatement(period).getStatementPeriod());
     }
 
     @Test
     public void testExpectBankStatement_withoutRecordsBeforeInitialLoad() {
-        assertNotEquals(0,statement.getBankRecordsSize());
+        statement = new BankStatement(); //set bank statement without loading records
+        Assertions.assertEquals(0,statement.getBankRecordsSize());
     }
 
     @Test
@@ -32,14 +39,28 @@ public class TestBankStatement {
 
     @Test
     public void testExpectBankStatement_withRecordsAfterInitialLoad() {
+        statement.initialThisMonthStatement(period);
         assertTrue(statement.getBankRecordsSize()>0);
     }
 
     @Test
-    public void testExpectUnreconciledRecordsEqualsToInitialBankStatement() {
-        statement.initialThisMonthStatement(period);
+    public void testExpectBothReconAndUnReconRecordsEqualsToInitialBankStatement() {
         statement.setReconcileRecord(testTxn);
-        assertEquals(statement.getBankRecordsSize(), (statement.getUnreconciledRecordsSize()+statement.getReconciledRecordSize()));
+        Assertions.assertEquals(statement.getBankRecordsSize(), (statement.getUnreconciledRecordsSize()+statement.getReconciledRecordSize()));
+    }
+
+    @Test
+    public void testExpectReconciledRecordsAreNotFoundInUnreconciledRecords(){
+        statement.setReconcileRecord(testTxn);
+        Assertions.assertTrue(statement.containTransactionInReconciledRecords(testTxn));
+        Assertions.assertFalse(statement.containTransactionInUnreconciledRecords(testTxn));
+    }
+
+    @Test
+    public void testExpectBankRecordsStaySameAsInitialBankStatementLoad(){
+       // statement.initialThisMonthStatement(period);
+        statement.setReconcileRecord(testTxn);
+        Assertions.assertEquals(statement.getBankRecordsSize(),statement.initialThisMonthStatement(statement.statementPeriod));
     }
 
     @Test
@@ -54,29 +75,21 @@ public class TestBankStatement {
         assertEquals("9-2020", statement.setStatementPeriod(9, 2020));
         assertNotNull(statement.statementStartDate);
         assertNotNull(statement.statementEndDate);
-        //assertEquals(startDate,statement.statementStartDate);
-
-        // assertEquals(startDate.getTime(),statement.statementStartDate.getTime());
-        //assertEquals(endDate,statement.statementStartDate);
     }
 
     @Test
     public void testExpectToFindInRecordSameAmountToReconcile() {
-       statement.initialThisMonthStatement(period);
+      // statement.initialThisMonthStatement(period);
        assertTrue(statement.findUnreconciledBankRecordWithAmt(testAmount1)>0);
 
     }
 
     @Test
     public void testExpectUnreconciledRecordsPlusReconciledRecordsEqualsBankStatementRecords() {
-        statement.initialThisMonthStatement(period);
-        assertEquals(statement.getBankRecordsSize(), (statement.getUnreconciledRecordsSize() + statement.getReconciledRecordSize()));
+     //   statement.initialThisMonthStatement(period);
+        Assertions.assertEquals(statement.getBankRecordsSize(), (statement.getUnreconciledRecordsSize() + statement.getReconciledRecordSize()));
     }
 
-    @Test
-    public void testExpectBankRecordsStaySameAsInitialBankStatementLoad(){
-        assertEquals(statement.getBankRecordsSize(),statement.initialThisMonthStatement(statement.statementPeriod));
-    }
     @After
     public void tearDown() {
         statement = null;

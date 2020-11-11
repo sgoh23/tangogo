@@ -1,3 +1,8 @@
+package com.example.tests;
+
+
+import com.example.CompanyBook;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -8,14 +13,18 @@ public class TestCompanyBook {
 
     @Test
     public void ExpectToFindThisTransactionAmountInBooks() {
-        assertTrue(cashInBank.hasTransactionWithAmt(testAmount));
+        Assertions.assertTrue(cashInBank.hasTransactionWithAmt(testAmount));
 
     }
     @Test
     public void ExpectCompanyBookHasRecords(){
         cashInBank.setBeginningBalance();
-        assertNotNull(cashInBank.PaymentRecords);
-        assertTrue(cashInBank.PaymentRecords.size()>0);
+        assertTrue(cashInBank.getPaymentRecordSize()>0);
+    }
+
+    @Test
+    void ExpectCompanyBook_is_not_null(){
+        assertNotNull(cashInBank.getPaymentRecords());
     }
 
 
