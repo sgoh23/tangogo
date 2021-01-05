@@ -6,23 +6,21 @@ import java.util.Calendar;
 public class BankStatement extends Transaction{
 
     ArrayList<Transaction> bankRecords = new ArrayList<>();
-    ArrayList<Transaction> unreconciledRecords = new ArrayList<>();
-    ArrayList<Transaction> reconciledRecords = new ArrayList<>();
 
     public Calendar statementStartDate = Calendar.getInstance();
     public Calendar statementEndDate = Calendar.getInstance();
     public String statementPeriod = null;
     public Double statementClosingBalance = null;
 
-   public static void main(String[] args) {
-
-        BankStatement bs = new BankStatement("09-2020");
-        bs.initialThisMonthStatement(bs.statementPeriod);
-
-        CompanyBook atanBooks = new CompanyBook();
-        System.out.println("Atan has $"+atanBooks.coyCashinBankBalance+ " in Bank");
-
-    }
+//   public static void main(String[] args) {
+//
+//        BankStatement bs = new BankStatement("09-2020");
+//        bs.initialThisMonthStatement(bs.statementPeriod);
+//
+//        CompanyBook atanBooks = new CompanyBook();
+//        System.out.println("Atan has $"+atanBooks.coyCashinBankBalance+ " in Bank");
+//
+//    }
     public BankStatement(){
 
     }
@@ -34,6 +32,7 @@ public class BankStatement extends Transaction{
         statementPeriod = setStatementPeriod(month,year);
         initialThisMonthStatement(statementPeriod);
         System.out.println("Bank Statement ("+statementPeriod+") has Closing Balance of $"+statementClosingBalance);
+
     }
 
 
@@ -61,20 +60,10 @@ public class BankStatement extends Transaction{
         bankRecords.add(new Transaction(400.00,"02/09/2020"));
         bankRecords.add(new Transaction(-100.00,"02/09/2020"));
 
-     //   initialUnreconciledRecords();
         getBankRecordsBalance();
-
         return bankRecords.size();
     }
 
-
-
-    public int getUnreconciledRecordsSize(){
-        return unreconciledRecords.size();
-    }
-    public int getReconciledRecordSize(){
-        return reconciledRecords.size();
-    }
     public int getBankRecordsSize(){
         return bankRecords.size();
     }
@@ -82,71 +71,6 @@ public class BankStatement extends Transaction{
        return bankRecords;
     }
 
-    public Transaction getUnreconciledRecordWithAmt(double bankAmt){
-
-        int recordIndex = 0;
-
-        try{
-            for (Transaction record : unreconciledRecords) {
-                if (record.transactionAmount == bankAmt) {
-                    return record;
-                }
-                recordIndex++;
-            }
-
-
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        return null;
-
-    }
-
-    public Boolean setReconcileRecord(Transaction txn){
-
-        boolean recon = false;
-
-        recon = reconciledRecords.add(txn);
-
-        System.out.println(" | Reconciliation Record:"+txn+" | BankAmt: "+txn.transactionAmount);
-        System.out.println(" | Found in record:"+ unreconciledRecords.get(unreconciledRecords.indexOf(txn)).toString()+
-                " | Amount: "+unreconciledRecords.get(unreconciledRecords.indexOf(txn)).transactionAmount+
-                " | Dated: "+unreconciledRecords.get(unreconciledRecords.indexOf(txn)).transactionDate);
-
-        recon = removeFromUnreconciledList(txn.transactionAmount);
-
-
-        return recon;
-    }
-
-    public Boolean removeFromUnreconciledList(double amt) {
-        boolean removeRecord = false;
-
-        try {
-
-            int index = 0;
-
-            for (int i = 0; i < unreconciledRecords.size(); i++) {
-                if (unreconciledRecords.get(i).transactionAmount == amt) {
-                    index = i;
-                    removeRecord=true;
-                    break; //reconcile the first record
-                }
-            }
-
-            unreconciledRecords.remove(index);
-
-        } catch(Exception e){
-            e.printStackTrace();
-        }
-        return removeRecord;
-
-    }
-
-    public Boolean containTransactionInReconciledRecords(Transaction txn){
-        return reconciledRecords.contains(txn);
-    }
-    public Boolean containTransactionInUnreconciledRecords(Transaction txn){ return unreconciledRecords.contains(txn); }
     public Boolean containTransactionInBankRecords(Transaction txn){ return bankRecords.contains(txn); }
 
     public double getBankRecordsBalance(){
@@ -163,7 +87,5 @@ public class BankStatement extends Transaction{
 
         return statementClosingBalance;
     }
-
-
 
 }

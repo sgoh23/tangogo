@@ -2,19 +2,23 @@ package com.example.cucumber;
 
 import com.example.BankStatement;
 import com.example.CompanyBook;
+import com.example.ReconciliationTool;
 import com.example.Transaction;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class bankReconStepDefinitions {
 
     BankStatement testStmt = new BankStatement();
-    CompanyBook coyStmt = new CompanyBook();
-    Transaction txn = new Transaction();
-    Transaction coytxn = new Transaction();
+    CompanyBook atan = new CompanyBook();
+    ReconciliationTool reconKit = new ReconciliationTool(testStmt.getBankRecords(),atan.getCoyCashinBankRecords());
+    Transaction stmtRecord = new Transaction();
+    Transaction companyRecord = new Transaction();
 
     @Given("User received a bank statement for {string}")
     public void user_received_a_bank_statement(String period) {
@@ -22,57 +26,52 @@ public class bankReconStepDefinitions {
         assertTrue(testStmt.getBankRecordsSize()>0);
     }
 
-    @Given("User has a bank record with an {double}")
-    public void user_has_a_bank_record_with_an(Double amt) {
-        txn = testStmt.getUnreconciledRecordWithAmt(amt);
-        assertNotNull(txn);
+    @Given("the bank statement has a list of transactions")
+    public void the_bank_statement_has_a_list_of_transactions() {
+        ArrayList<Transaction> testStmtBankRecords = testStmt.getBankRecords();
+        assertNotEquals(0,testStmtBankRecords.size());
     }
 
-    @Given("User has company transaction with a {double}")
-    public void user_has_company_transaction_with_a(Double amt) {
-        coytxn = coyStmt.getUnreconciledRecordWithAmt(amt);
-        assertNotNull(coytxn);
+    @When("reconciling bank record with company record")
+    public void reconciling_bank_record_with_company_record() {
+        reconKit.runReconBasedOnArr1();
     }
 
-    @When("there true amount with this {double}")
-    public void there_true_amount_with_this(Double double1) {
-        txn = testStmt.getUnreconciledRecordWithAmt(double1);
-        assertNotNull(txn);
-        assertTrue(testStmt.setReconcileRecord(txn));
-        assertTrue(testStmt.getReconciledRecordSize() > 0);
-
+    @Then("the transaction is considered reconciled")
+    public void the_transaction_is_considered_reconciled() {
+        assertNotEquals(reconKit.array1.size(), reconKit.arr1_pendingReconRecords.size());
     }
 
-    @When("there false amount with this {double}")
-    public void there_false_amount_with_this(Double double1) {
-        txn = testStmt.getUnreconciledRecordWithAmt(double1);
-        coytxn = coyStmt.getUnreconciledRecordWithAmt(double1);
-        assertNull(txn);
+    @When("bank statement has an amount {double} record that is not in Company Books")
+    public void bank_statement_has_an_amount_record_that_is_not_in_company_books(Double double1) {
+
+        reconKit.initiateCheckList();
+        stmtRecord = reconKit.getArr1PendingReconTxn(double1);
+        assertNotNull(stmtRecord,"Bank statement has this amount: " + double1);
+
+        Transaction txn = reconKit.reconTransactionInArr2(double1,stmtRecord.toString());
+        assertNull(txn, "Company Books does not have this record amount nor transaction");
     }
 
-    @Then("the transaction with {double} is considered true regardless of transaction date")
-    public void the_transaction_with_is_considered_true_regardless_of_transaction_date(Double amt) {
-        assertTrue(testStmt.containTransactionInReconciledRecords(txn));
-        assertFalse(testStmt.containTransactionInUnreconciledRecords(txn));
-        assertTrue(testStmt.containTransactionInBankRecords(txn));
+    @Then("transaction is unreconciled in Bank statement")
+    public void transaction_is_unreconciled_in_bank_statement() {
+        assertFalse(stmtRecord.reconciled,"Transaction is marked as not reconciled");
     }
 
-    @Then("the transaction with {double} is considered false regardless of transaction date")
-    public void the_transaction_with_is_considered_false_regardless_of_transaction_date(Double double1) {
-        assertFalse(testStmt.containTransactionInReconciledRecords(txn));
-        assertFalse(testStmt.containTransactionInUnreconciledRecords(txn));
-        assertFalse(testStmt.containTransactionInBankRecords(txn));
-        assertTrue(coyStmt.containTransactionInUnreconciledRecords(coytxn));
+    @When("Company Book has an amount {double} recorded and not found in bank statement")
+    public void company_book_has_an_amount_recorded_and_not_found_in_bank_statement(Double double1) {
+        Transaction companyRecord = reconKit.reconTransactionInArr2(double1,"Test@Transaction");
+        assertNotNull(companyRecord,"Company has a record amount: "+double1);
+
+       Transaction txn = reconKit.getArr1PendingReconTxn(double1);
+       assertNull(txn, "Bank Statement does not have this record");
     }
 
-    @When("User has no record of {double} in Company books")
-    public void user_has_no_records_it_in_company_books(Double amt) {
-        coytxn = coyStmt.getUnreconciledRecordWithAmt(amt);
-        assertNotNull(coytxn);
+    @Then("transaction is unreconciled in Company book")
+    public void transaction_is_unreconciled_in_company_book() {
+        assertFalse(companyRecord.reconciled,"Transaction is marked as not reconciled in company books");
     }
 
-    @Then("Transaction is logged for User to record as unreconciled in Company books")
-    public void transaction_is_logged_for_user_to_record_as_unreconciled_in_company_books() {
-        assertTrue(coyStmt.containTransactionInUnreconciledRecords(coytxn));
-    }
+
+
 }

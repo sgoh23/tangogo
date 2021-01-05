@@ -3,17 +3,15 @@ package com.example;
 import java.util.ArrayList;
 
 public class ReconciliationTool {
-    public ArrayList<Transaction> array1 = new ArrayList<>();
-    public ArrayList<Transaction> array2 = new ArrayList<>();
+    public ArrayList<Transaction> array1;
+    public ArrayList<Transaction> array2;
 
     public ArrayList<Transaction> arr1_pendingReconRecords = new ArrayList<>();
     public ArrayList<Transaction> arr2_pendingReconRecords = new ArrayList<>();
-    ArrayList<Transaction> reconciledListOnArr2 = new ArrayList<>();
 
     double bal1;
     double bal2;
 
-    public ReconciliationTool(){ }
     public ReconciliationTool(ArrayList<Transaction> arr1, ArrayList<Transaction> arr2){
 
         array1 = arr1;
@@ -21,6 +19,8 @@ public class ReconciliationTool {
 
         bal1 = getArray1Balance();
         bal2 = getArray2Balance();
+
+        initiateCheckList();
     }
 
     public double getArray1Balance(){
@@ -44,9 +44,19 @@ public class ReconciliationTool {
     }
 
 
-    public void initiateArr1CheckList() {
+    public void initiateCheckList() {
         arr1_pendingReconRecords = (ArrayList<Transaction>) array1.clone();
         arr2_pendingReconRecords = (ArrayList<Transaction>) array2.clone();
+    }
+
+    public Transaction getArr1PendingReconTxn(double amt){
+
+        for (Transaction txn : arr1_pendingReconRecords){
+            if(txn.transactionAmount == amt){
+                return txn;
+            }
+        }
+        return null;
     }
 
 
@@ -80,10 +90,6 @@ public class ReconciliationTool {
             e.printStackTrace();
         }
         return null;
-    }
-
-    public ArrayList<Transaction> getArr1RecordsMissingOnArr2() {
-        return arr1_pendingReconRecords;
     }
 
     public void printRecords(ArrayList<Transaction> array, String listname){

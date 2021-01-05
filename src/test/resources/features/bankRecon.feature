@@ -11,27 +11,22 @@
 
   Feature: Bank account reconciliation
 
-    Scenario Outline: Exact Amount Match on Bank's transaction against Company's transaction
-    Given User received a bank statement for <Statement Period>
-      And User has a bank record with an <Bank Credit Amount>
-      And User has company transaction with a <Company Credit Amount>
-      When there <is matching> amount with this <Company Credit Amount>
-      Then the transaction with <Company Credit Amount> is considered <Reconciled> regardless of transaction date
-
-
-      Examples:
-      | Statement Period   | Bank Credit Amount | Company Credit Amount | is matching | Reconciled  |
-      | "9-2020"           | 230.00             | 230.00                | true        | true        |
-      | "9-2020"           | 230.00             | 230.00                | true        | true        |
-      | "9-2020"           | 360.00             |                       | false       | false       |
-      | "9-2020"           | 400.00             | 400.00                | true        | true        |
-      | "9-2020"           | -100.00            | -100.00                | true        | true        |
+    Scenario: Exact Amount Match on Bank's transaction against Company's transaction
+    Given User received a bank statement for "9-2020"
+      And the bank statement has a list of transactions
+      When reconciling bank record with company record
+      Then the transaction is considered reconciled
 
     Scenario: Bank transaction is not recorded in Company books
       Given User received a bank statement for "9-2020"
-      And User has a bank record with an 260.00
-      When User has no record of 260.00 in Company books
-      Then Transaction is logged for User to record as unreconciled in Company books
+      When bank statement has an amount 360.00 record that is not in Company Books
+      Then transaction is unreconciled in Bank statement
+
+    Scenario: Company transaction in that period not found in Bank statement
+      Given User received a bank statement for "9-2020"
+      When Company Book has an amount 220.00 recorded and not found in bank statement
+      Then transaction is unreconciled in Company book
+
 
 
 

@@ -41,7 +41,6 @@ public class TestReconciliationTool {
 
     @Test
     public void expect_able_to_tell_which_records_on_array1_unable_to_reconcile() {
-        reconKit.initiateArr1CheckList();
         reconKit.runReconBasedOnArr1();
         reconKit.printRecords(reconKit.arr1_pendingReconRecords, "BANK STATEMENT records not found in COMPANY BOOKS");
         reconKit.printRecords(reconKit.arr2_pendingReconRecords,"COMPANY BOOKS records not found in BANK STATEMENT");
