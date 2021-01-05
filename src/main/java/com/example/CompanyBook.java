@@ -1,38 +1,46 @@
 package com.example;
 import java.util.ArrayList;
 
+
 public class CompanyBook {
 
-    ArrayList<Transaction> paymentRecords = new ArrayList<>();
+    ArrayList<Transaction> coyCashinBankRecords = new ArrayList<>();
     ArrayList<Transaction> reconciledRecords = new ArrayList<>();
     ArrayList<Transaction> unreconciledRecords = new ArrayList<>();
 
-    String chartOfAccount = null;
+    double coyCashinBankBalance;
 
     public CompanyBook() {
-        chartOfAccount = "Cash in OCBC";
-        setBeginningBalance();
+        initiateCoyCashinBankRecords();
     }
 
-    public void setBeginningBalance(){
-        paymentRecords.clear();
-        paymentRecords.add(new Transaction(232.00,"01/09/2020"));
-     //   paymentRecords.add(new Transaction(300.00,"01/09/2020"));
-      //  paymentRecords.add(new Transaction(300.00,"02/09/2020"));
+  //  private double getAccAsOf(){
 
-        initialUnreconciledRecords();
+   // }
+
+    public void initiateCoyCashinBankRecords(){
+        coyCashinBankRecords.clear();
+        coyCashinBankRecords.add(new Transaction(220.00,"01/09/2020"));
+        coyCashinBankRecords.add(new Transaction(230.00,"01/09/2020"));
+        coyCashinBankRecords.add(new Transaction(230.00,"02/09/2020"));
+        coyCashinBankRecords.add(new Transaction(400.00,"02/09/2020"));
+        coyCashinBankRecords.add(new Transaction(-100.00,"02/09/2020"));
+
+        initiateCoyRecords();
+        getCoyRecordsTally();
+
     }
 
-    public void initialUnreconciledRecords() throws ClassCastException{
-        unreconciledRecords =  (ArrayList<Transaction>) paymentRecords.clone();
+    public void initiateCoyRecords() throws ClassCastException{
+        unreconciledRecords =  (ArrayList<Transaction>) coyCashinBankRecords.clone();
     }
 
-    public ArrayList<Transaction> getPaymentRecords(){
-        return paymentRecords;
+    public ArrayList<Transaction> getCoyCashinBankRecords(){
+        return coyCashinBankRecords;
     }
 
     public int getPaymentRecordSize(){
-        return paymentRecords.size();
+        return coyCashinBankRecords.size();
     }
 
     public Transaction getUnreconciledRecordWithAmt(double bankAmt){
@@ -42,10 +50,7 @@ public class CompanyBook {
         try{
             for (Transaction record : unreconciledRecords) {
                 if (record.transactionAmount == bankAmt) {
-                    //System.out.println("Record:"+record+" Update recon For BankAmt: "+bankAmt+"...Found in record:"+unreconciledRecords.get(recordIndex).transactionAmount+" Dated: "+unreconciledRecords.get(recordIndex).transactionDate);
-                    //setReconcileRecord(record);
                     return record;
-                    // break;
                 }
                 recordIndex++;
             }
@@ -55,13 +60,31 @@ public class CompanyBook {
             e.printStackTrace();
         }
 
-        unreconciledRecords.add(new Transaction(bankAmt)); //add unrecon record if cannot find in COY acc
-        return unreconciledRecords.get(unreconciledRecords.size()-1);
+        Transaction unrecordedTxn = new Transaction(bankAmt);
+        unreconciledRecords.add(unrecordedTxn); //add unrecon record if cannot find in COY acc
+        return unrecordedTxn;
 
     }
 
     public Boolean containTransactionInUnreconciledRecords(Transaction txn){ return unreconciledRecords.contains(txn); }
+    public void printRecords(){
+        Print.theseRecords(unreconciledRecords,"Unreconciled records");
+    }
 
+    public double getCoyRecordsTally(){
+
+        coyCashinBankBalance = 0.00;
+        try{
+            for (Transaction record : coyCashinBankRecords) {
+                coyCashinBankBalance += record.transactionAmount;
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return coyCashinBankBalance;
+    }
 
 
 }

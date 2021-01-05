@@ -20,6 +20,11 @@ public class TestBankStatement {
     Transaction testTxn = statement.getUnreconciledRecordWithAmt(testAmount1);
 
     @Test
+    public void test_Expect_BankStatement_is_notNull(){
+        assertNotNull(statement);
+    }
+
+    @Test
     public void testExpectBankStatementIsForACertainPeriod(){
         statement = new BankStatement();
         assertEquals(period, new BankStatement(period).getStatementPeriod());

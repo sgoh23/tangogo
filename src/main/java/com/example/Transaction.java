@@ -2,13 +2,12 @@ package com.example;
 
 public class Transaction {
 
-    double transactionAmount = 0.00;
-    String transactionDate = "";
-    String transactionType = "";
-    String transactionID = "";
+    public double transactionAmount = 0.00;
+    public String transactionDate = "";
+    public boolean reconciled = false;
+    public String reconciledTxnRefID;
 
     public Transaction(){
-
     }
 
     public Transaction(double txnAmt){
@@ -20,7 +19,6 @@ public class Transaction {
         transactionAmount = txnAmt;
         transactionDate = txnDate;
     }
-
 
 
 }

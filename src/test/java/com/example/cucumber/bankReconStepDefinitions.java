@@ -64,4 +64,15 @@ public class bankReconStepDefinitions {
         assertFalse(testStmt.containTransactionInBankRecords(txn));
         assertTrue(coyStmt.containTransactionInUnreconciledRecords(coytxn));
     }
+
+    @When("User has no record of {double} in Company books")
+    public void user_has_no_records_it_in_company_books(Double amt) {
+        coytxn = coyStmt.getUnreconciledRecordWithAmt(amt);
+        assertNotNull(coytxn);
+    }
+
+    @Then("Transaction is logged for User to record as unreconciled in Company books")
+    public void transaction_is_logged_for_user_to_record_as_unreconciled_in_company_books() {
+        assertTrue(coyStmt.containTransactionInUnreconciledRecords(coytxn));
+    }
 }

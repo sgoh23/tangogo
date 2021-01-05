@@ -1,39 +1,49 @@
 package com.example.tests;
 
 
+import com.example.BankStatement;
 import com.example.CompanyBook;
 import com.example.Transaction;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestCompanyBook {
     CompanyBook coyCashInBank = new CompanyBook();
-    Transaction coytxn = null;
-    double testAmount = 232.00;
-    double testAmount1 = 300.00;
+    BankStatement bankStatement = new BankStatement();
+    Transaction bankTxn = new Transaction();
+    Transaction coytxn = new Transaction();
+    double testValidAmount = 232.00;
+    double testAbsentAmount1 = 300.00;
 
     @Test
-    public void ExpectToFindThisTransactionAmountInBooks() {
-        coytxn = coyCashInBank.getUnreconciledRecordWithAmt(testAmount);
+    public void Expect_Company_CashInBank_isNotNull(){
+        assertNotNull(coyCashInBank);
+    }
+
+
+    @Test
+    public void Expect_ToFind_ThisTransactionAmount_InBooks() {
+        coytxn = coyCashInBank.getUnreconciledRecordWithAmt(testAbsentAmount1);
         assertNotNull(coytxn);
     }
     @Test
-    public void ExpectToFindThisTransactionAsUnreconciledIfNotFoundinCompanyBook(){
-        coytxn = coyCashInBank.getUnreconciledRecordWithAmt(testAmount1);
+    public void Expect_ToFind_ThisTransaction_As_Unreconciled_If_NotFound_in_CompanyBook(){
+        coytxn = coyCashInBank.getUnreconciledRecordWithAmt(testAbsentAmount1);
         assertNotNull(coytxn);
+        assertEquals(testAbsentAmount1,coytxn.transactionAmount);
+        coyCashInBank.printRecords();
     }
 
     @Test
     public void ExpectCompanyBookHasRecords(){
-        coyCashInBank.setBeginningBalance();
+        coyCashInBank.initiateCoyCashinBankRecords();
         assertTrue(coyCashInBank.getPaymentRecordSize()>0);
     }
 
     @Test
     void ExpectCompanyBook_is_not_null(){
-        assertNotNull(coyCashInBank.getPaymentRecords());
+        assertNotNull(coyCashInBank.getCoyCashinBankRecords());
     }
 
 

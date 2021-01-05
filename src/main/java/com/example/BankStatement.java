@@ -12,22 +12,17 @@ public class BankStatement extends Transaction{
     public Calendar statementStartDate = Calendar.getInstance();
     public Calendar statementEndDate = Calendar.getInstance();
     public String statementPeriod = null;
+    public Double statementClosingBalance = null;
 
-//   public static void main(String[] args) {
-//
-//        BankStatement bs = new BankStatement();
-//        bs.setStatementPeriod(9,2020);
-//        bs.initialThisMonthStatement(bs.statementPeriod);
-//           bs.printRecordList(bs.bankRecords,"Bank Records");
-//           bs.printRecordList(bs.reconciledRecords,"Reconciled Records");
-//           bs.printRecordList(bs.unreconciledRecords,"UNReconciled Records");
-//
-//        bs.setReconcileRecord(bs.bankRecords.get(2));
-//        bs.printRecordList(bs.bankRecords,"Bank Records");
-//        bs.printRecordList(bs.reconciledRecords,"Reconciled Records");
-//        bs.printRecordList(bs.unreconciledRecords,"UNReconciled Records");
-//
-//    }
+   public static void main(String[] args) {
+
+        BankStatement bs = new BankStatement("09-2020");
+        bs.initialThisMonthStatement(bs.statementPeriod);
+
+        CompanyBook atanBooks = new CompanyBook();
+        System.out.println("Atan has $"+atanBooks.coyCashinBankBalance+ " in Bank");
+
+    }
     public BankStatement(){
 
     }
@@ -38,6 +33,7 @@ public class BankStatement extends Transaction{
         int year = Integer.parseInt(period.substring(period.indexOf("-")+1)); //to get year and convert to int;
         statementPeriod = setStatementPeriod(month,year);
         initialThisMonthStatement(statementPeriod);
+        System.out.println("Bank Statement ("+statementPeriod+") has Closing Balance of $"+statementClosingBalance);
     }
 
 
@@ -46,7 +42,6 @@ public class BankStatement extends Transaction{
         statementPeriod = mth + "-" + year;
         statementStartDate.set(year,mth-1,1,0,0,0);
         statementEndDate.set(year,mth-1,statementStartDate.getActualMaximum(Calendar.DATE),0,0,0);
-   //     System.out.println("Statement period is set starting "+ statementStartDate.getTime()+ " TO "+ statementEndDate.getTime());
 
         return statementPeriod;
     }
@@ -60,21 +55,19 @@ public class BankStatement extends Transaction{
         //hard upload first, implement the excel reading later
         // bankRecords.put("DD/MM/YYYY",0.00);
         bankRecords.clear();
-        bankRecords.add(new Transaction(260.00,"01/09/2020"));
-        bankRecords.add(new Transaction(232.00,"01/09/2020"));
-        bankRecords.add(new Transaction(232.00,"02/09/2020"));
-        bankRecords.add(new Transaction(200.00,"01/09/2020"));
-        bankRecords.add(new Transaction(814.45,"01/09/2020"));
+        bankRecords.add(new Transaction(230.00,"01/09/2020"));
+        bankRecords.add(new Transaction(230.00,"02/09/2020"));
+        bankRecords.add(new Transaction(360.00,"02/09/2020"));
+        bankRecords.add(new Transaction(400.00,"02/09/2020"));
+        bankRecords.add(new Transaction(-100.00,"02/09/2020"));
 
-        initialUnreconciledRecords();
+     //   initialUnreconciledRecords();
+        getBankRecordsBalance();
 
         return bankRecords.size();
     }
 
-    public void initialUnreconciledRecords() throws ClassCastException{
-        unreconciledRecords =  (ArrayList<Transaction>) bankRecords.clone();
 
-    }
 
     public int getUnreconciledRecordsSize(){
         return unreconciledRecords.size();
@@ -84,6 +77,9 @@ public class BankStatement extends Transaction{
     }
     public int getBankRecordsSize(){
         return bankRecords.size();
+    }
+    public ArrayList<Transaction> getBankRecords(){
+       return bankRecords;
     }
 
     public Transaction getUnreconciledRecordWithAmt(double bankAmt){
@@ -153,16 +149,21 @@ public class BankStatement extends Transaction{
     public Boolean containTransactionInUnreconciledRecords(Transaction txn){ return unreconciledRecords.contains(txn); }
     public Boolean containTransactionInBankRecords(Transaction txn){ return bankRecords.contains(txn); }
 
+    public double getBankRecordsBalance(){
 
-    private void printRecordList(ArrayList<Transaction> records, String listname){
+        statementClosingBalance = 0.00;
+        try{
+            for (Transaction record : bankRecords) {
+                statementClosingBalance += record.transactionAmount;
+            }
 
-       System.out.println("||||||||| PRINTING RECORDS ||||||||| :::"+listname+" Record Count: ("+records.size()+")");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
 
-       for (int i = 0; i < records.size(); i++) {
-           System.out.println(records.get(i).toString()+" | "+records.get(i).transactionAmount);
-       }
-        System.out.println(records);
-
+        return statementClosingBalance;
     }
+
+
 
 }
