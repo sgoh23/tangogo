@@ -1,0 +1,6 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+tangogo,com.example,ReconciliationTool,24,158,4,14,7,41,3,14,1,7
+tangogo,com.example,BankStatement,9,196,0,2,3,34,1,9,1,8
+tangogo,com.example,CompanyBook,29,66,2,0,8,13,2,4,1,4
+tangogo,com.example,Transaction,15,30,0,0,3,9,1,2,1,2
+tangogo,com.example,Print,3,43,0,2,1,11,1,2,1,1

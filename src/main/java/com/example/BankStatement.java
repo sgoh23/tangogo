@@ -12,15 +12,7 @@ public class BankStatement extends Transaction{
     public String statementPeriod = null;
     public Double statementClosingBalance = null;
 
-//   public static void main(String[] args) {
-//
-//        BankStatement bs = new BankStatement("09-2020");
-//        bs.initialThisMonthStatement(bs.statementPeriod);
-//
-//        CompanyBook atanBooks = new CompanyBook();
-//        System.out.println("Atan has $"+atanBooks.coyCashinBankBalance+ " in Bank");
-//
-//    }
+
     public BankStatement(){
 
     }
@@ -31,8 +23,6 @@ public class BankStatement extends Transaction{
         int year = Integer.parseInt(period.substring(period.indexOf("-")+1)); //to get year and convert to int;
         statementPeriod = setStatementPeriod(month,year);
         initialThisMonthStatement(statementPeriod);
-        System.out.println("Bank Statement ("+statementPeriod+") has Closing Balance of $"+statementClosingBalance);
-
     }
 
 

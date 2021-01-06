@@ -21,20 +21,6 @@ public class TestCompanyBook {
         assertNotNull(coyCashInBank);
     }
 
-
-    @Test
-    public void Expect_ToFind_ThisTransactionAmount_InBooks() {
-        coytxn = coyCashInBank.getUnreconciledRecordWithAmt(testAbsentAmount1);
-        assertNotNull(coytxn);
-    }
-    @Test
-    public void Expect_ToFind_ThisTransaction_As_Unreconciled_If_NotFound_in_CompanyBook(){
-        coytxn = coyCashInBank.getUnreconciledRecordWithAmt(testAbsentAmount1);
-        assertNotNull(coytxn);
-        assertEquals(testAbsentAmount1,coytxn.transactionAmount);
-        coyCashInBank.printRecords();
-    }
-
     @Test
     public void ExpectCompanyBookHasRecords(){
         coyCashInBank.initiateCoyCashinBankRecords();

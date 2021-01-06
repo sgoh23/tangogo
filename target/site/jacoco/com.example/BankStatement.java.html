@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BankStatement.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tangogo</a> &gt; <a href="index.source.html" class="el_package">com.example</a> &gt; <span class="el_source">BankStatement.java</span></div><h1>BankStatement.java</h1><pre class="source lang-java linenums">package com.example;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+
+public class BankStatement extends Transaction{
+
+<span class="fc" id="L8">    ArrayList&lt;Transaction&gt; bankRecords = new ArrayList&lt;&gt;();</span>
+
+<span class="fc" id="L10">    public Calendar statementStartDate = Calendar.getInstance();</span>
+<span class="fc" id="L11">    public Calendar statementEndDate = Calendar.getInstance();</span>
+<span class="fc" id="L12">    public String statementPeriod = null;</span>
+<span class="fc" id="L13">    public Double statementClosingBalance = null;</span>
+
+
+<span class="fc" id="L16">    public BankStatement(){</span>
+
+<span class="fc" id="L18">    }</span>
+
+<span class="fc" id="L20">    public BankStatement(String period){</span>
+
+<span class="fc" id="L22">        int month = Integer.parseInt(period.substring(0,period.indexOf(&quot;-&quot;))); //to get month and convert to int;</span>
+<span class="fc" id="L23">        int year = Integer.parseInt(period.substring(period.indexOf(&quot;-&quot;)+1)); //to get year and convert to int;</span>
+<span class="fc" id="L24">        statementPeriod = setStatementPeriod(month,year);</span>
+<span class="fc" id="L25">        initialThisMonthStatement(statementPeriod);</span>
+<span class="fc" id="L26">    }</span>
+
+
+    public String setStatementPeriod(int mth, int year){
+
+<span class="fc" id="L31">        statementPeriod = mth + &quot;-&quot; + year;</span>
+<span class="fc" id="L32">        statementStartDate.set(year,mth-1,1,0,0,0);</span>
+<span class="fc" id="L33">        statementEndDate.set(year,mth-1,statementStartDate.getActualMaximum(Calendar.DATE),0,0,0);</span>
+
+<span class="fc" id="L35">        return statementPeriod;</span>
+    }
+
+    public String getStatementPeriod(){
+<span class="fc" id="L39">        return statementPeriod;</span>
+    }
+
+    public int initialThisMonthStatement(String period){
+
+        //hard upload first, implement the excel reading later
+        // bankRecords.put(&quot;DD/MM/YYYY&quot;,0.00);
+<span class="fc" id="L46">        bankRecords.clear();</span>
+<span class="fc" id="L47">        bankRecords.add(new Transaction(230.00,&quot;01/09/2020&quot;));</span>
+<span class="fc" id="L48">        bankRecords.add(new Transaction(230.00,&quot;02/09/2020&quot;));</span>
+<span class="fc" id="L49">        bankRecords.add(new Transaction(360.00,&quot;02/09/2020&quot;));</span>
+<span class="fc" id="L50">        bankRecords.add(new Transaction(400.00,&quot;02/09/2020&quot;));</span>
+<span class="fc" id="L51">        bankRecords.add(new Transaction(-100.00,&quot;02/09/2020&quot;));</span>
+
+<span class="fc" id="L53">        getBankRecordsBalance();</span>
+<span class="fc" id="L54">        return bankRecords.size();</span>
+    }
+
+    public int getBankRecordsSize(){
+<span class="fc" id="L58">        return bankRecords.size();</span>
+    }
+    public ArrayList&lt;Transaction&gt; getBankRecords(){
+<span class="fc" id="L61">       return bankRecords;</span>
+    }
+
+<span class="nc" id="L64">    public Boolean containTransactionInBankRecords(Transaction txn){ return bankRecords.contains(txn); }</span>
+
+    public double getBankRecordsBalance(){
+
+<span class="fc" id="L68">        statementClosingBalance = 0.00;</span>
+        try{
+<span class="fc bfc" id="L70" title="All 2 branches covered.">            for (Transaction record : bankRecords) {</span>
+<span class="fc" id="L71">                statementClosingBalance += record.transactionAmount;</span>
+<span class="fc" id="L72">            }</span>
+
+<span class="nc" id="L74">        }catch(Exception e){</span>
+<span class="nc" id="L75">            e.printStackTrace();</span>
+<span class="fc" id="L76">        }</span>
+
+<span class="fc" id="L78">        return statementClosingBalance;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
