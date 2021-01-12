@@ -1,7 +1,7 @@
 package com.example.cucumber;
 
 import com.example.BankStatement;
-import com.example.CompanyBook;
+import com.example.CompanyBankAccount;
 import com.example.ReconciliationTool;
 import com.example.Transaction;
 import io.cucumber.java.en.Given;
@@ -15,14 +15,14 @@ import static org.junit.jupiter.api.Assertions.*;
 public class bankReconStepDefinitions {
 
     BankStatement testStmt = new BankStatement();
-    CompanyBook atan = new CompanyBook();
+    CompanyBankAccount atan = new CompanyBankAccount();
     ReconciliationTool reconKit = new ReconciliationTool(testStmt.getBankRecords(),atan.getCoyCashinBankRecords());
     Transaction stmtRecord = new Transaction();
     Transaction companyRecord = new Transaction();
 
     @Given("User received a bank statement for {string}")
     public void user_received_a_bank_statement(String period) {
-        testStmt.initialThisMonthStatement(period);
+        testStmt.initiateThisMonthStatement(period);
         assertTrue(testStmt.getBankRecordsSize()>0);
     }
 
@@ -42,14 +42,14 @@ public class bankReconStepDefinitions {
         assertNotEquals(reconKit.array1.size(), reconKit.arr1_pendingReconRecords.size());
     }
 
-    @When("bank statement has an amount {double} record that is not in Company Books")
-    public void bank_statement_has_an_amount_record_that_is_not_in_company_books(Double double1) {
+    @When("bank statement has an amount {double} record on {string} that is not in Company Books")
+    public void bank_statement_has_an_amount_record_that_is_not_in_company_books(Double double1, String date) {
 
         reconKit.initiateCheckList();
-        stmtRecord = reconKit.getArr1PendingReconTxn(double1);
+        stmtRecord = reconKit.getArr1PendingReconTxn(double1,date);
         assertNotNull(stmtRecord,"Bank statement has this amount: " + double1);
 
-        Transaction txn = reconKit.reconTransactionInArr2(double1,stmtRecord.toString());
+        Transaction txn = reconKit.reconTransactionInArr2_withGoodMatches(double1,date, stmtRecord.toString());
         assertNull(txn, "Company Books does not have this record amount nor transaction");
     }
 
@@ -58,12 +58,12 @@ public class bankReconStepDefinitions {
         assertFalse(stmtRecord.reconciled,"Transaction is marked as not reconciled");
     }
 
-    @When("Company Book has an amount {double} recorded and not found in bank statement")
-    public void company_book_has_an_amount_recorded_and_not_found_in_bank_statement(Double double1) {
-        Transaction companyRecord = reconKit.reconTransactionInArr2(double1,"Test@Transaction");
-        assertNotNull(companyRecord,"Company has a record amount: "+double1);
+    @When("Company Book has an amount {double} recorded on {string} and not found in bank statement")
+    public void company_book_has_an_amount_recorded_and_not_found_in_bank_statement(Double double1, String date) {
+        Transaction companyRecord = reconKit.reconTransactionInArr2_withGoodMatches(double1, date, "Test@Transaction");
+        assertNotNull(companyRecord,"Company has a record amount: "+double1+ " on "+date);
 
-       Transaction txn = reconKit.getArr1PendingReconTxn(double1);
+       Transaction txn = reconKit.getArr1PendingReconTxn(double1,date);
        assertNull(txn, "Bank Statement does not have this record");
     }
 
@@ -73,5 +73,8 @@ public class bankReconStepDefinitions {
     }
 
 
-
+    @Given("User received a bank statement from OCBC for {string}")
+    public void userReceivedABankStatementFromOCBCFor(String arg0) {
+        testStmt.initiateThisMonthStatement(arg0);
+    }
 }

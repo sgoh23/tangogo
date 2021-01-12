@@ -4,21 +4,42 @@ import java.util.ArrayList;
 
 public class Print {
 
-    static void theseRecords(ArrayList<Transaction> records, String listname){
+    static String ANSI_BG_CYAN   = "\u001B[46m";
+    static String ANSI_RESET  = "\u001B[0m";
+    static String ANSI_CYAN   = "\u001B[36m";
 
-        final String ANSI_BG_CYAN   = "\u001B[46m";
-        final String ANSI_RESET  = "\u001B[0m";
-        final String ANSI_CYAN   = "\u001B[36m";
+    static void theseRecords(ArrayList<Transaction> records, String listname){
 
         System.out.println(ANSI_CYAN + " ||||||||| PRINTING RECORDS ||||||||| :::"+listname+
                 " Record Count: ("+records.size()+")");
         System.out.println(" | Record Ref ID | Transaction Amount | Transaction Date | "+
-                "Reconciled? | Reconciled with Txn Ref ID | " );
+                "Reconciled? | Reconciled with Txn Ref ID | Transaction Description | " );
 
         for (Transaction record : records) {
             System.out.println(" | " + record.toString() + " | " + record.transactionAmount + " | " +
-                    record.transactionDate + " | "+record.reconciled + " | "+record.reconciledTxnRefID + " | " );
+                    record.transactionDate + " | "+record.reconciled + " | "+record.reconciledTxnRefID + " | " + record.transactionDesc + " | " );
         }
         System.out.println(ANSI_RESET);
+
     }
+
+    public static void summarizeRecords(ArrayList<Transaction> records, ArrayList<Transaction> baseRecords,  String listname) {
+
+        int percentDone = 0;
+
+        if(records != null && baseRecords != null){
+            double basecount = baseRecords.size();
+            percentDone = (int) ((basecount-records.size())/basecount*100);
+
+        }
+
+        System.out.println();
+        System.out.print(ANSI_BG_CYAN + " ||||||||| SUMMARY OF RECORDS ||||||||| :::" +listname+
+                " Count:"+records.size()+" of "+baseRecords.size() +
+                " | Reconciled: " + percentDone + "%");
+        System.out.print(ANSI_RESET);
+        System.out.println();
+
+    }
+
 }

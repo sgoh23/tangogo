@@ -4,22 +4,43 @@ import java.util.ArrayList;
 
 <span class="nc" id="L5">public class Print {</span>
 
-    static void theseRecords(ArrayList&lt;Transaction&gt; records, String listname){
+<span class="fc" id="L7">    static String ANSI_BG_CYAN   = &quot;\u001B[46m&quot;;</span>
+<span class="fc" id="L8">    static String ANSI_RESET  = &quot;\u001B[0m&quot;;</span>
+<span class="fc" id="L9">    static String ANSI_CYAN   = &quot;\u001B[36m&quot;;</span>
 
-<span class="fc" id="L9">        final String ANSI_BG_CYAN   = &quot;\u001B[46m&quot;;</span>
-<span class="fc" id="L10">        final String ANSI_RESET  = &quot;\u001B[0m&quot;;</span>
-<span class="fc" id="L11">        final String ANSI_CYAN   = &quot;\u001B[36m&quot;;</span>
+    static void theseRecords(ArrayList&lt;Transaction&gt; records, String listname){
 
 <span class="fc" id="L13">        System.out.println(ANSI_CYAN + &quot; ||||||||| PRINTING RECORDS ||||||||| :::&quot;+listname+</span>
 <span class="fc" id="L14">                &quot; Record Count: (&quot;+records.size()+&quot;)&quot;);</span>
 <span class="fc" id="L15">        System.out.println(&quot; | Record Ref ID | Transaction Amount | Transaction Date | &quot;+</span>
-                &quot;Reconciled? | Reconciled with Txn Ref ID | &quot; );
+                &quot;Reconciled? | Reconciled with Txn Ref ID | Transaction Description | &quot; );
 
 <span class="fc bfc" id="L18" title="All 2 branches covered.">        for (Transaction record : records) {</span>
 <span class="fc" id="L19">            System.out.println(&quot; | &quot; + record.toString() + &quot; | &quot; + record.transactionAmount + &quot; | &quot; +</span>
-                    record.transactionDate + &quot; | &quot;+record.reconciled + &quot; | &quot;+record.reconciledTxnRefID + &quot; | &quot; );
+                    record.transactionDate + &quot; | &quot;+record.reconciled + &quot; | &quot;+record.reconciledTxnRefID + &quot; | &quot; + record.transactionDesc + &quot; | &quot; );
 <span class="fc" id="L21">        }</span>
 <span class="fc" id="L22">        System.out.println(ANSI_RESET);</span>
-<span class="fc" id="L23">    }</span>
+
+<span class="fc" id="L24">    }</span>
+
+    public static void summarizeRecords(ArrayList&lt;Transaction&gt; records, ArrayList&lt;Transaction&gt; baseRecords,  String listname) {
+
+<span class="fc" id="L28">        int percentDone = 0;</span>
+
+<span class="pc bpc" id="L30" title="2 of 4 branches missed.">        if(records != null &amp;&amp; baseRecords != null){</span>
+<span class="fc" id="L31">            double basecount = baseRecords.size();</span>
+<span class="fc" id="L32">            percentDone = (int) ((basecount-records.size())/basecount*100);</span>
+
+        }
+
+<span class="fc" id="L36">        System.out.println();</span>
+<span class="fc" id="L37">        System.out.print(ANSI_BG_CYAN + &quot; ||||||||| SUMMARY OF RECORDS ||||||||| :::&quot; +listname+</span>
+<span class="fc" id="L38">                &quot; Count:&quot;+records.size()+&quot; of &quot;+baseRecords.size() +</span>
+                &quot; | %Reconciled: &quot; + percentDone + &quot;%&quot;);
+<span class="fc" id="L40">        System.out.print(ANSI_RESET);</span>
+<span class="fc" id="L41">        System.out.println();</span>
+
+<span class="fc" id="L43">    }</span>
+
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

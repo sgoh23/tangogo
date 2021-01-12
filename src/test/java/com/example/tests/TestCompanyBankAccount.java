@@ -2,14 +2,14 @@ package com.example.tests;
 
 
 import com.example.BankStatement;
-import com.example.CompanyBook;
+import com.example.CompanyBankAccount;
 import com.example.Transaction;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TestCompanyBook {
-    CompanyBook coyCashInBank = new CompanyBook();
+public class TestCompanyBankAccount {
+    CompanyBankAccount coyCashInBank = new CompanyBankAccount();
     BankStatement bankStatement = new BankStatement();
     Transaction bankTxn = new Transaction();
     Transaction coytxn = new Transaction();
@@ -24,7 +24,7 @@ public class TestCompanyBook {
     @Test
     public void ExpectCompanyBookHasRecords(){
         coyCashInBank.initiateCoyCashinBankRecords();
-        assertTrue(coyCashInBank.getPaymentRecordSize()>0);
+        assertTrue(coyCashInBank.getRecordSize()>0);
     }
 
     @Test

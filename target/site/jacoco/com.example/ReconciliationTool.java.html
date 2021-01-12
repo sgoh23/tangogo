@@ -49,10 +49,10 @@ public class ReconciliationTool {
 <span class="fc" id="L49">        arr2_pendingReconRecords = (ArrayList&lt;Transaction&gt;) array2.clone();</span>
 <span class="fc" id="L50">    }</span>
 
-    public Transaction getArr1PendingReconTxn(double amt){
+    public Transaction getArr1PendingReconTxn(double amt, String date){
 
 <span class="nc bnc" id="L54" title="All 2 branches missed.">        for (Transaction txn : arr1_pendingReconRecords){</span>
-<span class="nc bnc" id="L55" title="All 2 branches missed.">            if(txn.transactionAmount == amt){</span>
+<span class="nc bnc" id="L55" title="All 4 branches missed.">            if(txn.transactionAmount == amt &amp;&amp; txn.transactionDate.equals(date)){</span>
 <span class="nc" id="L56">                return txn;</span>
             }
 <span class="nc" id="L58">        }</span>
@@ -63,7 +63,7 @@ public class ReconciliationTool {
     public void runReconBasedOnArr1() {
 
 <span class="fc bfc" id="L65" title="All 2 branches covered.">        for (Transaction txn : array1) {</span>
-<span class="fc" id="L66">            Transaction matchedTxn = reconTransactionInArr2(txn.transactionAmount,txn.toString());</span>
+<span class="fc" id="L66">            Transaction matchedTxn = reconTransactionInArr2_withGoodMatches(txn.transactionAmount,txn.transactionDate,txn.toString());</span>
 <span class="fc bfc" id="L67" title="All 2 branches covered.">            if(matchedTxn != null) {</span>
 <span class="fc" id="L68">                txn.reconciled = true;</span>
 <span class="fc" id="L69">                txn.reconciledTxnRefID = matchedTxn.toString();</span>
@@ -73,12 +73,12 @@ public class ReconciliationTool {
 
 <span class="fc" id="L74">    }</span>
 
-    public Transaction reconTransactionInArr2(double txnAmt, String arr1TxnRefID){
+    public Transaction reconTransactionInArr2_withGoodMatches(double txnAmt, String txnDate, String arr1TxnRefID){
 
         try{
 
 <span class="fc bfc" id="L80" title="All 2 branches covered.">            for (Transaction record : array2) {</span>
-<span class="fc bfc" id="L81" title="All 4 branches covered.">                if (record.transactionAmount == txnAmt &amp;&amp; !record.reconciled) {</span>
+<span class="fc bfc" id="L81" title="All 6 branches covered.">                if (record.transactionAmount == txnAmt &amp;&amp; record.transactionDate.equals(txnDate) &amp;&amp; !record.reconciled) {</span>
 <span class="fc" id="L82">                    record.reconciled = true;</span>
 <span class="fc" id="L83">                    record.reconciledTxnRefID = arr1TxnRefID;</span>
 <span class="fc" id="L84">                    arr2_pendingReconRecords.remove(record);</span>
@@ -96,5 +96,22 @@ public class ReconciliationTool {
 <span class="fc" id="L96">        Print.theseRecords(array,listname);</span>
 <span class="fc" id="L97">    }</span>
 
+    public Transaction getTransactionFromArray2(String txnRefID) {
+
+<span class="fc" id="L101">        Transaction txnFound = null;</span>
+<span class="fc bfc" id="L102" title="All 2 branches covered.">        for(Transaction txn : array2){</span>
+
+<span class="fc bfc" id="L104" title="All 2 branches covered.">            if(txn.getTransactionRefIDString().equals(txnRefID)){</span>
+<span class="fc" id="L105">                txnFound = txn;</span>
+            }
+<span class="fc" id="L107">        }</span>
+<span class="fc" id="L108">        return txnFound;</span>
+    }
+
+    public void printRecordsSummary() {
+
+<span class="fc" id="L113">        Print.summarizeRecords(arr1_pendingReconRecords,array1,&quot;Bank Records Pending Recon&quot;);</span>
+<span class="fc" id="L114">        Print.summarizeRecords(arr2_pendingReconRecords,array2,&quot;Company Records Pending Recon&quot;);</span>
+<span class="fc" id="L115">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

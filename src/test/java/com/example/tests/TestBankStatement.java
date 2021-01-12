@@ -34,12 +34,12 @@ public class TestBankStatement {
 
     @Test
     public void testExpectBankStatementInitialLoadSuccessful(){
-        assertTrue(statement.initialThisMonthStatement(period) > 0);
+        assertTrue(statement.initiateThisMonthStatement(period) > 0);
     }
 
     @Test
     public void testExpectBankStatement_withRecordsAfterInitialLoad() {
-        statement.initialThisMonthStatement(period);
+        statement.initiateThisMonthStatement(period);
         assertTrue(statement.getBankRecordsSize()>0);
     }
 
