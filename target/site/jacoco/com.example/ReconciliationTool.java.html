@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ReconciliationTool.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tangogo</a> &gt; <a href="index.source.html" class="el_package">com.example</a> &gt; <span class="el_source">ReconciliationTool.java</span></div><h1>ReconciliationTool.java</h1><pre class="source lang-java linenums">package com.example;
+
+import java.util.ArrayList;
+
+public class ReconciliationTool {
+    public ArrayList&lt;Transaction&gt; array1;
+    public ArrayList&lt;Transaction&gt; array2;
+
+<span class="fc" id="L9">    public ArrayList&lt;Transaction&gt; arr1_pendingReconRecords = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L10">    public ArrayList&lt;Transaction&gt; arr2_pendingReconRecords = new ArrayList&lt;&gt;();</span>
+
+    double bal1;
+    double bal2;
+
+<span class="fc" id="L15">    public ReconciliationTool(ArrayList&lt;Transaction&gt; arr1, ArrayList&lt;Transaction&gt; arr2){</span>
+
+<span class="fc" id="L17">        array1 = arr1;</span>
+<span class="fc" id="L18">        array2 = arr2;</span>
+
+<span class="fc" id="L20">        bal1 = getArray1Balance();</span>
+<span class="fc" id="L21">        bal2 = getArray2Balance();</span>
+
+<span class="fc" id="L23">        initiateCheckList();</span>
+<span class="fc" id="L24">    }</span>
+
+    public double getArray1Balance(){
+
+<span class="fc" id="L28">        double balance = 0.00;</span>
+
+<span class="fc bfc" id="L30" title="All 2 branches covered.">        for (Transaction txn : array1){</span>
+<span class="fc" id="L31">                balance += txn.transactionAmount;</span>
+<span class="fc" id="L32">        }</span>
+<span class="fc" id="L33">        return balance;</span>
+    }
+
+    public double getArray2Balance(){
+
+<span class="fc" id="L38">        double balance = 0.00;</span>
+
+<span class="fc bfc" id="L40" title="All 2 branches covered.">        for (Transaction txn : array2){</span>
+<span class="fc" id="L41">            balance += txn.transactionAmount;</span>
+<span class="fc" id="L42">        }</span>
+<span class="fc" id="L43">        return balance;</span>
+    }
+
+
+    public void initiateCheckList() {
+<span class="fc" id="L48">        arr1_pendingReconRecords = (ArrayList&lt;Transaction&gt;) array1.clone();</span>
+<span class="fc" id="L49">        arr2_pendingReconRecords = (ArrayList&lt;Transaction&gt;) array2.clone();</span>
+<span class="fc" id="L50">    }</span>
+
+    public Transaction getArr1PendingReconTxn(double amt, String date){
+
+<span class="nc bnc" id="L54" title="All 2 branches missed.">        for (Transaction txn : arr1_pendingReconRecords){</span>
+<span class="nc bnc" id="L55" title="All 4 branches missed.">            if(txn.transactionAmount == amt &amp;&amp; txn.transactionDate.equals(date)){</span>
+<span class="nc" id="L56">                return txn;</span>
+            }
+<span class="nc" id="L58">        }</span>
+<span class="nc" id="L59">        return null;</span>
+    }
+
+
+    public void runReconBasedOnArr1() {
+
+<span class="fc bfc" id="L65" title="All 2 branches covered.">        for (Transaction txn : array1) {</span>
+<span class="fc" id="L66">            Transaction matchedTxn = reconTransactionInArr2_withGoodMatches(txn.transactionAmount,txn.transactionDate,txn.toString());</span>
+<span class="fc bfc" id="L67" title="All 2 branches covered.">            if(matchedTxn != null) {</span>
+<span class="fc" id="L68">                txn.reconciled = true;</span>
+<span class="fc" id="L69">                txn.reconciledTxnRefID = matchedTxn.toString();</span>
+<span class="fc" id="L70">                arr1_pendingReconRecords.remove(txn);</span>
+            }
+<span class="fc" id="L72">        }</span>
+
+<span class="fc" id="L74">    }</span>
+
+    public Transaction reconTransactionInArr2_withGoodMatches(double txnAmt, String txnDate, String arr1TxnRefID){
+
+        try{
+
+<span class="fc bfc" id="L80" title="All 2 branches covered.">            for (Transaction record : array2) {</span>
+<span class="fc bfc" id="L81" title="All 6 branches covered.">                if (record.transactionAmount == txnAmt &amp;&amp; record.transactionDate.equals(txnDate) &amp;&amp; !record.reconciled) {</span>
+<span class="fc" id="L82">                    record.reconciled = true;</span>
+<span class="fc" id="L83">                    record.reconciledTxnRefID = arr1TxnRefID;</span>
+<span class="fc" id="L84">                    arr2_pendingReconRecords.remove(record);</span>
+<span class="fc" id="L85">                    return record;</span>
+                }
+<span class="fc" id="L87">            }</span>
+
+<span class="nc" id="L89">        }catch(Exception e){</span>
+<span class="nc" id="L90">            e.printStackTrace();</span>
+<span class="fc" id="L91">        }</span>
+<span class="fc" id="L92">        return null;</span>
+    }
+
+    public void printRecords(ArrayList&lt;Transaction&gt; array, String listname){
+<span class="fc" id="L96">        Print.theseRecords(array,listname);</span>
+<span class="fc" id="L97">    }</span>
+
+    public Transaction getTransactionFromArray2(String txnRefID) {
+
+<span class="fc" id="L101">        Transaction txnFound = null;</span>
+<span class="fc bfc" id="L102" title="All 2 branches covered.">        for(Transaction txn : array2){</span>
+
+<span class="fc bfc" id="L104" title="All 2 branches covered.">            if(txn.getTransactionRefIDString().equals(txnRefID)){</span>
+<span class="fc" id="L105">                txnFound = txn;</span>
+            }
+<span class="fc" id="L107">        }</span>
+<span class="fc" id="L108">        return txnFound;</span>
+    }
+
+    public void printRecordsSummary() {
+
+<span class="fc" id="L113">        Print.summarizeRecords(arr1_pendingReconRecords,array1,&quot;Bank Records Pending Recon&quot;);</span>
+<span class="fc" id="L114">        Print.summarizeRecords(arr2_pendingReconRecords,array2,&quot;Company Records Pending Recon&quot;);</span>
+<span class="fc" id="L115">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

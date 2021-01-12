@@ -1,17 +1,17 @@
 package com.example.tests;
 
 import com.example.BankStatement;
-import com.example.CompanyBook;
+import com.example.CompanyBankAccount;
 import com.example.ReconciliationTool;
+import com.example.Transaction;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestReconciliationTool {
 
     BankStatement statement = new BankStatement("09-2020");
-    CompanyBook atan = new CompanyBook();
+    CompanyBankAccount atan = new CompanyBankAccount();
     ReconciliationTool reconKit = new ReconciliationTool(statement.getBankRecords(),atan.getCoyCashinBankRecords());
 
     @Test
@@ -42,9 +42,28 @@ public class TestReconciliationTool {
     @Test
     public void expect_able_to_tell_which_records_on_array1_unable_to_reconcile() {
         reconKit.runReconBasedOnArr1();
+
+        reconKit.printRecordsSummary();
+
         reconKit.printRecords(reconKit.arr1_pendingReconRecords, "BANK STATEMENT records not found in COMPANY BOOKS");
         reconKit.printRecords(reconKit.arr2_pendingReconRecords,"COMPANY BOOKS records not found in BANK STATEMENT");
+
+
     }
 
+    @Test
+    public void expect_reconciled_records_transaction_dates_are_the_same() {
+
+        reconKit.runReconBasedOnArr1();
+
+        for(Transaction txn : reconKit.array1){
+            if(txn.reconciled){
+                Transaction txnFound = reconKit.getTransactionFromArray2(txn.reconciledTxnRefID);
+                assertNotNull(txnFound);
+                assertEquals(txn.transactionDate,txnFound.transactionDate);
+               // System.out.println(txnFound + " | " + txnFound.transactionDate + " | " +txnFound.transactionAmount);
+            }
+        }
+    }
 
 }

@@ -49,10 +49,10 @@ public class ReconciliationTool {
         arr2_pendingReconRecords = (ArrayList<Transaction>) array2.clone();
     }
 
-    public Transaction getArr1PendingReconTxn(double amt){
+    public Transaction getArr1PendingReconTxn(double amt, String date){
 
         for (Transaction txn : arr1_pendingReconRecords){
-            if(txn.transactionAmount == amt){
+            if(txn.transactionAmount == amt && txn.transactionDate.equals(date)){
                 return txn;
             }
         }
@@ -63,7 +63,7 @@ public class ReconciliationTool {
     public void runReconBasedOnArr1() {
 
         for (Transaction txn : array1) {
-            Transaction matchedTxn = reconTransactionInArr2(txn.transactionAmount,txn.toString());
+            Transaction matchedTxn = reconTransactionInArr2_withGoodMatches(txn.transactionAmount,txn.transactionDate,txn.toString());
             if(matchedTxn != null) {
                 txn.reconciled = true;
                 txn.reconciledTxnRefID = matchedTxn.toString();
@@ -73,12 +73,12 @@ public class ReconciliationTool {
 
     }
 
-    public Transaction reconTransactionInArr2(double txnAmt, String arr1TxnRefID){
+    public Transaction reconTransactionInArr2_withGoodMatches(double txnAmt, String txnDate, String arr1TxnRefID){
 
         try{
 
             for (Transaction record : array2) {
-                if (record.transactionAmount == txnAmt && !record.reconciled) {
+                if (record.transactionAmount == txnAmt && record.transactionDate.equals(txnDate) && !record.reconciled) {
                     record.reconciled = true;
                     record.reconciledTxnRefID = arr1TxnRefID;
                     arr2_pendingReconRecords.remove(record);
@@ -96,4 +96,21 @@ public class ReconciliationTool {
         Print.theseRecords(array,listname);
     }
 
+    public Transaction getTransactionFromArray2(String txnRefID) {
+
+        Transaction txnFound = null;
+        for(Transaction txn : array2){
+
+            if(txn.getTransactionRefIDString().equals(txnRefID)){
+                txnFound = txn;
+            }
+        }
+        return txnFound;
+    }
+
+    public void printRecordsSummary() {
+
+        Print.summarizeRecords(arr1_pendingReconRecords,array1,"Bank Records Pending Recon");
+        Print.summarizeRecords(arr2_pendingReconRecords,array2,"Company Records Pending Recon");
+    }
 }
