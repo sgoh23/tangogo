@@ -7,39 +7,55 @@ public class Transaction {
     public String transactionDesc;
 <span class="pc" id="L8">    public boolean reconciled = false;</span>
     public String reconciledTxnRefID;
+    public String chequeNo;
+    public String refdate;
 
 
     public double creditAmount;                 // Sample:  42.80
     public double debitAmount;                  // Sample : 20000.00
     public String transactionTypeCode;          // Sample: &quot;NTRF&quot;
-    public String notes_refForAccOwner;         // Sample: &quot;from MUHAMMAD ZUHAI&quot;
+<span class="pc" id="L17">    public String notes_refForAccOwner = &quot;&quot;;         // Sample: &quot;from MUHAMMAD ZUHAI&quot;</span>
     public String notes_statementDetailsInfo;   // Sample: &quot;OTHR - Other FUND TRANSFER&quot; or &quot;PAYMENT/TRANSFER OTHR S$ SUHAIRY BIN FADLILA via PayNow: FBR3022Z&quot;
     public String notes_ourRef;                 // Sample: &quot;OTHR S$&quot;
-    public String notes_supplementaryDetails;   // Sample: &quot;PAYMENT/TRANSFER&quot;
+<span class="pc" id="L20">    public String notes_supplementaryDetails = &quot;&quot;;   // Sample: &quot;PAYMENT/TRANSFER&quot;</span>
 
-<span class="fc" id="L20">    public Transaction(){</span>
-<span class="fc" id="L21">    }</span>
+    final static String CHEQUE = &quot;CHEQUE&quot;;
+    final static String GIRO_PAYMENT = &quot;GIRO PAYMENT&quot;;
+    final static String LTA = &quot;LTA&quot;;
 
-<span class="nc" id="L23">    public Transaction(double txnAmt, String txnDate){</span>
-<span class="nc" id="L24">        transactionAmount = txnAmt;</span>
-<span class="nc" id="L25">        transactionDate = txnDate;</span>
-<span class="nc" id="L26">    }</span>
+<span class="fc" id="L26">    public Transaction(){</span>
+<span class="fc" id="L27">    }</span>
 
-<span class="fc" id="L28">    public Transaction(double txnAmt, String txnDate, String txnDesc){</span>
-<span class="fc" id="L29">        transactionAmount = txnAmt;</span>
-<span class="fc" id="L30">        transactionDate = txnDate;</span>
-<span class="fc" id="L31">        transactionDesc = txnDesc;</span>
-<span class="fc" id="L32">    }</span>
-<span class="fc" id="L33">    public Transaction(double txnAmt, String txnDate, String txnDesc1, String txnDesc2){</span>
-<span class="fc" id="L34">        transactionAmount = txnAmt;</span>
-<span class="fc" id="L35">        transactionDate = txnDate;</span>
-<span class="fc" id="L36">        transactionDesc = txnDesc1;</span>
-<span class="fc" id="L37">        notes_supplementaryDetails = txnDesc2;</span>
+<span class="nc" id="L29">    public Transaction(double txnAmt, String txnDate){</span>
+<span class="nc" id="L30">        transactionAmount = txnAmt;</span>
+<span class="nc" id="L31">        transactionDate = txnDate;</span>
+<span class="nc" id="L32">    }</span>
+
+<span class="fc" id="L34">    public Transaction(double txnAmt, String txnDate, String txnDesc){</span>
+<span class="fc" id="L35">        transactionAmount = txnAmt;</span>
+<span class="fc" id="L36">        transactionDate = txnDate;</span>
+<span class="fc" id="L37">        transactionDesc = txnDesc;</span>
 <span class="fc" id="L38">    }</span>
+<span class="fc" id="L39">    public Transaction(double txnAmt, String txnDate, String txnDesc1, String txnDesc2, String txnDesc3){</span>
+<span class="fc" id="L40">        transactionAmount = txnAmt;</span>
+<span class="fc" id="L41">        transactionDate = txnDate;</span>
+<span class="fc" id="L42">        transactionDesc = txnDesc1;</span>
+<span class="fc" id="L43">        notes_refForAccOwner = txnDesc2;</span>
+<span class="fc" id="L44">        notes_supplementaryDetails = txnDesc3;</span>
 
+<span class="pc bpc" id="L46" title="1 of 6 branches missed.">        if(!notes_supplementaryDetails.isEmpty() &amp;&amp; (notes_supplementaryDetails.contains(CHEQUE) || notes_supplementaryDetails.contains(GIRO_PAYMENT))){</span>
+<span class="fc" id="L47">            chequeNo = notes_refForAccOwner;</span>
+        }
+
+<span class="pc bpc" id="L50" title="1 of 4 branches missed.">        if(!transactionDesc.isEmpty() &amp;&amp; (transactionDesc.contains(LTA))){</span>
+<span class="fc" id="L51">            refdate = notes_refForAccOwner;</span>
+        }
+
+
+<span class="fc" id="L55">    }</span>
 
     public String getTransactionRefIDString(){
-<span class="fc" id="L42">        return this.toString();</span>
+<span class="fc" id="L58">        return this.toString();</span>
     }
 
 }

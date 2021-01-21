@@ -60,58 +60,99 @@ public class ReconciliationTool {
     }
 
 
-    public void runReconBasedOnArr1() {
+    public void runRecon() {
 
-<span class="fc bfc" id="L65" title="All 2 branches covered.">        for (Transaction txn : array1) {</span>
-<span class="fc" id="L66">            Transaction matchedTxn = reconTransactionInArr2_withGoodMatches(txn.transactionAmount,txn.transactionDate,txn.toString());</span>
-<span class="fc bfc" id="L67" title="All 2 branches covered.">            if(matchedTxn != null) {</span>
-<span class="fc" id="L68">                txn.reconciled = true;</span>
-<span class="fc" id="L69">                txn.reconciledTxnRefID = matchedTxn.toString();</span>
-<span class="fc" id="L70">                arr1_pendingReconRecords.remove(txn);</span>
+        Transaction matchedTxn;
+
+<span class="fc bfc" id="L67" title="All 2 branches covered.">        for (Transaction txn : array1) {</span>
+
+<span class="fc bfc" id="L69" title="All 2 branches covered.">            if(txn.chequeNo != null){</span>
+<span class="fc" id="L70">                matchedTxn = reconTransactionInArr2_forCheques(txn.chequeNo,txn.transactionAmount, txn.getTransactionRefIDString());</span>
             }
-<span class="fc" id="L72">        }</span>
+            else {
+<span class="fc" id="L73">                matchedTxn = reconTransactionInArr2_withGoodMatches(txn.transactionAmount, txn.transactionDate, txn.toString());</span>
+<span class="fc bfc" id="L74" title="All 2 branches covered.">            } if(matchedTxn == null){</span>
 
-<span class="fc" id="L74">    }</span>
+                //LTA Transactions based on reference date (refdate)
+<span class="fc" id="L77">                matchedTxn = reconTransactionInArr2_forLTA(txn.refdate,txn.transactionAmount,txn.getTransactionRefIDString());</span>
+            }
+
+<span class="fc bfc" id="L80" title="All 2 branches covered.">            if(matchedTxn != null) {</span>
+<span class="fc" id="L81">                txn.reconciled = true;</span>
+<span class="fc" id="L82">                txn.reconciledTxnRefID = matchedTxn.toString();</span>
+<span class="fc" id="L83">                arr1_pendingReconRecords.remove(txn);</span>
+<span class="fc" id="L84">                arr2_pendingReconRecords.remove(matchedTxn);</span>
+            }
+<span class="fc" id="L86">        }</span>
+
+<span class="fc" id="L88">    }</span>
+
+    public Transaction reconTransactionInArr2_forCheques(String chq, double txnAmt, String arr1TxnRefID){
+<span class="fc bfc" id="L91" title="All 2 branches covered.">        for (Transaction record : array2) {</span>
+<span class="fc bfc" id="L92" title="All 4 branches covered.">            if(record.transactionDesc.contains(chq) &amp;&amp; record.transactionAmount == txnAmt){</span>
+               // System.out.println(chq);
+<span class="fc" id="L94">                record.reconciled = true;</span>
+<span class="fc" id="L95">                record.reconciledTxnRefID = arr1TxnRefID;</span>
+<span class="fc" id="L96">                return record;</span>
+            }
+<span class="fc" id="L98">        }</span>
+<span class="fc" id="L99">        return null;</span>
+    }
+
+    public Transaction reconTransactionInArr2_forLTA(String refDate, double txnAmt, String arr1TxnRefID){
+
+<span class="fc bfc" id="L104" title="All 2 branches covered.">        for (Transaction record : array2) {</span>
+
+<span class="fc bfc" id="L106" title="All 4 branches covered.">            if(record.transactionDate.equals(refDate) &amp;&amp; record.transactionAmount == txnAmt){</span>
+               // System.out.println(record.transactionDate+&quot;|&quot;+record.transactionDesc + &quot;|&quot; + record.transactionAmount);
+<span class="fc" id="L108">                record.reconciled = true;</span>
+<span class="fc" id="L109">                record.reconciledTxnRefID = arr1TxnRefID;</span>
+<span class="fc" id="L110">                return record;</span>
+            }
+<span class="fc" id="L112">        }</span>
+<span class="fc" id="L113">        return null;</span>
+    }
 
     public Transaction reconTransactionInArr2_withGoodMatches(double txnAmt, String txnDate, String arr1TxnRefID){
 
         try{
 
-<span class="fc bfc" id="L80" title="All 2 branches covered.">            for (Transaction record : array2) {</span>
-<span class="fc bfc" id="L81" title="All 6 branches covered.">                if (record.transactionAmount == txnAmt &amp;&amp; record.transactionDate.equals(txnDate) &amp;&amp; !record.reconciled) {</span>
-<span class="fc" id="L82">                    record.reconciled = true;</span>
-<span class="fc" id="L83">                    record.reconciledTxnRefID = arr1TxnRefID;</span>
-<span class="fc" id="L84">                    arr2_pendingReconRecords.remove(record);</span>
-<span class="fc" id="L85">                    return record;</span>
+<span class="fc bfc" id="L120" title="All 2 branches covered.">            for (Transaction record : array2) {</span>
+<span class="fc bfc" id="L121" title="All 6 branches covered.">                if (record.transactionAmount == txnAmt &amp;&amp; record.transactionDate.equals(txnDate) &amp;&amp; !record.reconciled) {</span>
+<span class="fc" id="L122">                    record.reconciled = true;</span>
+<span class="fc" id="L123">                    record.reconciledTxnRefID = arr1TxnRefID;</span>
+<span class="fc" id="L124">                    arr2_pendingReconRecords.remove(record);</span>
+<span class="fc" id="L125">                    return record;</span>
                 }
-<span class="fc" id="L87">            }</span>
+<span class="fc" id="L127">            }</span>
 
-<span class="nc" id="L89">        }catch(Exception e){</span>
-<span class="nc" id="L90">            e.printStackTrace();</span>
-<span class="fc" id="L91">        }</span>
-<span class="fc" id="L92">        return null;</span>
+<span class="nc" id="L129">        }catch(Exception e){</span>
+<span class="nc" id="L130">            e.printStackTrace();</span>
+<span class="fc" id="L131">        }</span>
+<span class="fc" id="L132">        return null;</span>
     }
 
     public void printRecords(ArrayList&lt;Transaction&gt; array, String listname){
-<span class="fc" id="L96">        Print.theseRecords(array,listname);</span>
-<span class="fc" id="L97">    }</span>
+<span class="fc" id="L136">        Print.theseRecords(array,listname);</span>
+<span class="fc" id="L137">    }</span>
 
     public Transaction getTransactionFromArray2(String txnRefID) {
 
-<span class="fc" id="L101">        Transaction txnFound = null;</span>
-<span class="fc bfc" id="L102" title="All 2 branches covered.">        for(Transaction txn : array2){</span>
+<span class="fc" id="L141">        Transaction txnFound = null;</span>
+<span class="fc bfc" id="L142" title="All 2 branches covered.">        for(Transaction txn : array2){</span>
 
-<span class="fc bfc" id="L104" title="All 2 branches covered.">            if(txn.getTransactionRefIDString().equals(txnRefID)){</span>
-<span class="fc" id="L105">                txnFound = txn;</span>
+<span class="fc bfc" id="L144" title="All 2 branches covered.">            if(txn.getTransactionRefIDString().equals(txnRefID)){</span>
+<span class="fc" id="L145">                txnFound = txn;</span>
             }
-<span class="fc" id="L107">        }</span>
-<span class="fc" id="L108">        return txnFound;</span>
+<span class="fc" id="L147">        }</span>
+<span class="fc" id="L148">        return txnFound;</span>
     }
+
 
     public void printRecordsSummary() {
 
-<span class="fc" id="L113">        Print.summarizeRecords(arr1_pendingReconRecords,array1,&quot;Bank Records Pending Recon&quot;);</span>
-<span class="fc" id="L114">        Print.summarizeRecords(arr2_pendingReconRecords,array2,&quot;Company Records Pending Recon&quot;);</span>
-<span class="fc" id="L115">    }</span>
+<span class="fc" id="L154">        Print.summarizeRecords(arr1_pendingReconRecords,array1,&quot;Bank Records Pending Recon&quot;);</span>
+<span class="fc" id="L155">        Print.summarizeRecords(arr2_pendingReconRecords,array2,&quot;Company Records Pending Recon&quot;);</span>
+<span class="fc" id="L156">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

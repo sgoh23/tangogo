@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.example.tests.TestReconciliationTool" time="0.525" tests="5" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.example.tests.TestReconciliationTool" time="0.47" tests="7" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="15"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -13,7 +13,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="SG"/>
     <property name="sun.boot.library.path" value="/usr/local/Cellar/openjdk/15.0.1/libexec/openjdk.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/serenagoh/IdeaProjects/tangogo/target/surefire/surefirebooter17799655944936785807.jar /Users/serenagoh/IdeaProjects/tangogo/target/surefire 2021-01-11T22-27-56_729-jvmRun1 surefire94085689269583372tmp surefire_0101497024956029056tmp"/>
+    <property name="sun.java.command" value="/Users/serenagoh/IdeaProjects/tangogo/target/surefire/surefirebooter17149458935905726520.jar /Users/serenagoh/IdeaProjects/tangogo/target/surefire 2021-01-21T21-38-50_996-jvmRun1 surefire14054784730673063898tmp surefire_04514758646466276945tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/Users/serenagoh/IdeaProjects/tangogo/target/test-classes:/Users/serenagoh/IdeaProjects/tangogo/target/classes:/Users/serenagoh/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.5.2/junit-jupiter-engine-5.5.2.jar:/Users/serenagoh/.m2/repository/org/apiguardian/apiguardian-api/1.1.0/apiguardian-api-1.1.0.jar:/Users/serenagoh/.m2/repository/org/junit/platform/junit-platform-engine/1.5.2/junit-platform-engine-1.5.2.jar:/Users/serenagoh/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/Users/serenagoh/.m2/repository/org/junit/platform/junit-platform-commons/1.5.2/junit-platform-commons-1.5.2.jar:/Users/serenagoh/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.5.2/junit-jupiter-api-5.5.2.jar:/Users/serenagoh/.m2/repository/io/cucumber/cucumber-core/6.8.1/cucumber-core-6.8.1.jar:/Users/serenagoh/.m2/repository/io/cucumber/cucumber-gherkin/6.8.1/cucumber-gherkin-6.8.1.jar:/Users/serenagoh/.m2/repository/io/cucumber/cucumber-gherkin-messages/6.8.1/cucumber-gherkin-messages-6.8.1.jar:/Users/serenagoh/.m2/repository/io/cucumber/messages/13.1.0/messages-13.1.0.jar:/Users/serenagoh/.m2/repository/io/cucumber/tag-expressions/3.0.0/tag-expressions-3.0.0.jar:/Users/serenagoh/.m2/repository/io/cucumber/cucumber-expressions/10.3.0/cucumber-expressions-10.3.0.jar:/Users/serenagoh/.m2/repository/io/cucumber/datatable/3.5.0/datatable-3.5.0.jar:/Users/serenagoh/.m2/repository/io/cucumber/cucumber-plugin/6.8.1/cucumber-plugin-6.8.1.jar:/Users/serenagoh/.m2/repository/io/cucumber/docstring/6.8.1/docstring-6.8.1.jar:/Users/serenagoh/.m2/repository/io/cucumber/html-formatter/9.0.0/html-formatter-9.0.0.jar:/Users/serenagoh/.m2/repository/io/cucumber/create-meta/2.0.2/create-meta-2.0.2.jar:/Users/serenagoh/.m2/repository/io/cucumber/cucumber-junit/3.0.2/cucumber-junit-3.0.2.jar:/Users/serenagoh/.m2/repository/junit/junit/4.12/junit-4.12.jar:/Users/serenagoh/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/Users/serenagoh/.m2/repository/io/cucumber/cucumber-java/6.8.1/cucumber-java-6.8.1.jar:/Users/serenagoh/.m2/repository/info/cukes/cucumber-java/1.2.5/cucumber-java-1.2.5.jar:/Users/serenagoh/.m2/repository/info/cukes/cucumber-core/1.2.5/cucumber-core-1.2.5.jar:/Users/serenagoh/.m2/repository/info/cukes/cucumber-html/0.2.3/cucumber-html-0.2.3.jar:/Users/serenagoh/.m2/repository/info/cukes/cucumber-jvm-deps/1.0.5/cucumber-jvm-deps-1.0.5.jar:/Users/serenagoh/.m2/repository/info/cukes/gherkin/2.12.2/gherkin-2.12.2.jar:/Users/serenagoh/.m2/repository/info/cukes/cucumber-junit/1.2.5/cucumber-junit-1.2.5.jar:/Users/serenagoh/.m2/repository/net/masterthought/cucumber-reporting/4.0.0/cucumber-reporting-4.0.0.jar:/Users/serenagoh/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.9.6/jackson-databind-2.9.6.jar:/Users/serenagoh/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.9.0/jackson-annotations-2.9.0.jar:/Users/serenagoh/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.9.6/jackson-core-2.9.6.jar:/Users/serenagoh/.m2/repository/org/apache/velocity/velocity/1.7/velocity-1.7.jar:/Users/serenagoh/.m2/repository/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar:/Users/serenagoh/.m2/repository/commons-lang/commons-lang/2.4/commons-lang-2.4.jar:/Users/serenagoh/.m2/repository/velocity-tools/velocity-tools/1.4/velocity-tools-1.4.jar:/Users/serenagoh/.m2/repository/joda-time/joda-time/2.10/joda-time-2.10.jar:/Users/serenagoh/.m2/repository/org/apache/commons/commons-lang3/3.7/commons-lang3-3.7.jar:/Users/serenagoh/.m2/repository/commons-io/commons-io/2.6/commons-io-2.6.jar:/Users/serenagoh/.m2/repository/net/lingala/zip4j/zip4j/1.3.2/zip4j-1.3.2.jar:/Users/serenagoh/.m2/repository/org/codehaus/plexus/plexus-utils/3.1.0/plexus-utils-3.1.0.jar:/Users/serenagoh/.m2/repository/org/jsoup/jsoup/1.11.3/jsoup-1.11.3.jar:/Users/serenagoh/.m2/repository/com/googlecode/owasp-java-html-sanitizer/owasp-java-html-sanitizer/20180219.1/owasp-java-html-sanitizer-20180219.1.jar:/Users/serenagoh/.m2/repository/com/google/guava/guava/19.0/guava-19.0.jar:/Users/serenagoh/.m2/repository/commons-configuration/commons-configuration/1.10/commons-configuration-1.10.jar:/Users/serenagoh/.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar:"/>
@@ -29,7 +29,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
-    <property name="surefire.real.class.path" value="/Users/serenagoh/IdeaProjects/tangogo/target/surefire/surefirebooter17799655944936785807.jar"/>
+    <property name="surefire.real.class.path" value="/Users/serenagoh/IdeaProjects/tangogo/target/surefire/surefirebooter17149458935905726520.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.runtime.version" value="15.0.1+9"/>
@@ -54,438 +54,362 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="59.0"/>
   </properties>
-  <testcase name="expect_able_to_compare_balance_of_two_set_of_records" classname="com.example.tests.TestReconciliationTool" time="0.064">
+  <testcase name="expect_to_reconcile_cheque_transaction_by_cheque_no" classname="com.example.tests.TestReconciliationTool" time="0.038">
     <system-out><![CDATA[Bank Statement Balance Computed: 322555.06
 ]]></system-out>
   </testcase>
-  <testcase name="expect_able_to_tell_which_records_on_array1_unable_to_reconcile" classname="com.example.tests.TestReconciliationTool" time="0.108">
+  <testcase name="expect_reconciled_records_transaction_dates_are_the_same_for_goodmatches" classname="com.example.tests.TestReconciliationTool" time="0.169">
+    <system-out><![CDATA[Bank Statement Balance Computed: 322555.06
+]]></system-out>
+  </testcase>
+  <testcase name="expect_able_to_compare_balance_of_two_set_of_records" classname="com.example.tests.TestReconciliationTool" time="0.004">
+    <system-out><![CDATA[Bank Statement Balance Computed: 322555.06
+]]></system-out>
+  </testcase>
+  <testcase name="expect_to_reconcile_LTA_transaction_by_user_reference_date" classname="com.example.tests.TestReconciliationTool" time="0.032">
+    <system-out><![CDATA[Bank Statement Balance Computed: 322555.06
+]]></system-out>
+  </testcase>
+  <testcase name="expect_able_to_tell_which_records_on_array1_unable_to_reconcile" classname="com.example.tests.TestReconciliationTool" time="0.133">
     <system-out><![CDATA[Bank Statement Balance Computed: 322555.06
 
-&amp#27;[46m ||||||||| SUMMARY OF RECORDS ||||||||| :::Bank Records Pending Recon Count:170 of 570 | %Reconciled: 70%&amp#27;[0m
+&amp#27;[46m ||||||||| SUMMARY OF RECORDS ||||||||| :::Bank Records Pending Recon Count:124 of 570 | Reconciled: 78%&amp#27;[0m
 
-&amp#27;[46m ||||||||| SUMMARY OF RECORDS ||||||||| :::Company Records Pending Recon Count:235 of 635 | %Reconciled: 62%&amp#27;[0m
-&amp#27;[36m ||||||||| PRINTING RECORDS ||||||||| :::BANK STATEMENT records not found in COMPANY BOOKS Record Count: (170)
+&amp#27;[46m ||||||||| SUMMARY OF RECORDS ||||||||| :::Company Records Pending Recon Count:197 of 634 | Reconciled: 68%&amp#27;[0m
+&amp#27;[36m ||||||||| PRINTING RECORDS ||||||||| :::BANK STATEMENT records not found in COMPANY BOOKS Record Count: (124)
  | Record Ref ID | Transaction Amount | Transaction Date | Reconciled? | Reconciled with Txn Ref ID | Transaction Description | 
- | com.example.Transaction@6b7906b3 | 260.0 | 01/09/2020 | false | null | from MUHAMMAD ZUHAI | OTHR - Other FUND TRANSFER | via PayNow-UEN | FUND TRANSFER | 
- | com.example.Transaction@52d239ba | 814.45 | 01/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44074 | POS SETTLEMENT | 
- | com.example.Transaction@5a411614 | 500.0 | 01/09/2020 | false | null | CHAN CHEE HONG | PAYMENT/TRANSFER LOAN CHAN CHEE HONG FBR2603D | LOAN | PAYMENT/TRANSFER | 
- | com.example.Transaction@b70da4c | -7753.0 | 01/09/2020 | false | null | 186290 | CHQ186290 CHEQUE |  | CHEQUE | 
- | com.example.Transaction@4a11eb84 | -7753.0 | 01/09/2020 | false | null | 186291 | CHQ186291 CHEQUE |  | CHEQUE | 
- | com.example.Transaction@4e858e0a | 218.0 | 02/09/2020 | false | null | MOHD RAZALI BIN MOH | PAYMENT/TRANSFER OTHR MOHD RAZALI BIN MOH FBQ4745U 83210310 | OTHR | PAYMENT/TRANSFER | 
- | com.example.Transaction@435fb7b5 | 251.0 | 02/09/2020 | false | null | from FBL3296G FARID | OTHR - Other FUND TRANSFER |  | FUND TRANSFER | 
- | com.example.Transaction@4e70a728 | 438.0 | 02/09/2020 | false | null | HO CHI WING | PAYMENT/TRANSFER OTHR HO CHI WING FBG0332G | OTHR | PAYMENT/TRANSFER | 
- | com.example.Transaction@b7838a9 | 200.0 | 02/09/2020 | false | null | MOHAMED AJMEL BIN M | PAYMENT/TRANSFER OTHR MOHAMED AJMEL BIN M Ajmel fba2060j | OTHR | PAYMENT/TRANSFER | 
- | com.example.Transaction@696f0212 | 160.0 | 02/09/2020 | false | null | HELMI HUSAINI BIN S | PAYMENT/TRANSFER OTHR S$ HELMI HUSAINI BIN S via PayNow: FBK7313U | OTHR S$ | PAYMENT/TRANSFER | 
- | com.example.Transaction@56c698e3 | 340.0 | 02/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44075 | POS SETTLEMENT | 
- | com.example.Transaction@47a86fbb | -25.0 | 02/09/2020 | false | null | 44072 | xx-7992 LTA E-SERVICE VRLS     SIN DEBIT PURCHASE |  | DEBIT PURCHASE | 
- | com.example.Transaction@25bc0606 | -10683.0 | 02/09/2020 | false | null | 186289 | CHQ186289 CHEQUE |  | CHEQUE | 
- | com.example.Transaction@1951b871 | 611.71 | 03/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44076 | POS SETTLEMENT | 
- | com.example.Transaction@5c18016b | -25.0 | 03/09/2020 | false | null | 44074 | xx-7992 LTA E-SERVICE VRLS     SIN DEBIT PURCHASE |  | DEBIT PURCHASE | 
- | com.example.Transaction@33aeca0b | -25.0 | 03/09/2020 | false | null | 44074 | xx-7992 LTA E-SERVICE VRLS     SIN DEBIT PURCHASE |  | DEBIT PURCHASE | 
- | com.example.Transaction@1d0d6318 | 2026.0 | 03/09/2020 | false | null | 682618 | SCB (SG) CHQ682618 CHEQUE DEPOSIT |  | CHEQUE DEPOSIT | 
- | com.example.Transaction@5c153b9e | 244.0 | 04/09/2020 | false | null | SHER WENYONG BENJAM | PAYMENT/TRANSFER OTHR SHER WENYONG BENJAM FBL9839B | OTHR | PAYMENT/TRANSFER | 
- | com.example.Transaction@5644dc81 | -25.0 | 04/09/2020 | false | null | 44075 | xx-7992 LTA E-SERVICE VRLS     SIN DEBIT PURCHASE |  | DEBIT PURCHASE | 
- | com.example.Transaction@246f8b8b | -17.1 | 04/09/2020 | false | null | 44075 | xx-8024 LTA E-SERVICE VRLS     SIN DEBIT PURCHASE |  | DEBIT PURCHASE | 
- | com.example.Transaction@278bb07e | 389.55 | 04/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44077 | POS SETTLEMENT | 
- | com.example.Transaction@3542162a | -42.1 | 04/09/2020 | false | null | LTA | LTAFBC2384P IBG GIRO | PADD 051108800008 | IBG GIRO | 
- | com.example.Transaction@5d2a4eed | 273.7 | 05/09/2020 | false | null | MUHD HADI BIN HALI | PAYMENT/TRANSFER OTHR S$ MUHD HADI BIN HALI via PayNow: FBL193P | OTHR S$ | PAYMENT/TRANSFER | 
- | com.example.Transaction@6941827a | 352.0 | 07/09/2020 | false | null | VILLAFUERTE ARIEL D | PAYMENT/TRANSFER COLL VILLAFUERTE ARIEL D FBR1665G SEPT2020 | COLL | PAYMENT/TRANSFER | 
- | com.example.Transaction@5a7005d | 240.0 | 07/09/2020 | false | null | ARHAB SADEED | PAYMENT/TRANSFER OTHR S$ ARHAB SADEED via PayNow: FBJ8075E | OTHR S$ | PAYMENT/TRANSFER | 
- | com.example.Transaction@5bc9ba1d | 322.0 | 07/09/2020 | false | null | MUHAMMAD AMIRUL HAK | PAYMENT/TRANSFER OTHR S$ MUHAMMAD AMIRUL HAK via PayNow: 198903552W | OTHR S$ | PAYMENT/TRANSFER | 
- | com.example.Transaction@1021f6c9 | 217.0 | 07/09/2020 | false | null | from FBQ8185J HARUN | OTHR - FBQ8185J FUND TRANSFER |  | FUND TRANSFER | 
- | com.example.Transaction@7516e4e5 | 484.0 | 07/09/2020 | false | null | INDRA SUKMA BIN BUH | PAYMENT/TRANSFER IHRP INDRA SUKMA BIN BUH FBP6139L- SEPTEMBER 2020 | IHRP | PAYMENT/TRANSFER | 
- | com.example.Transaction@488eb7f2 | 3220.9 | 07/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44078 | POS SETTLEMENT | 
- | com.example.Transaction@5e81e5ac | 90.85 | 07/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44079 | POS SETTLEMENT | 
- | com.example.Transaction@4189d70b | -842.09 | 07/09/2020 | false | null | P200909 | GIRO PAYMENT |  | GIRO PAYMENT | 
- | com.example.Transaction@3fa2213 | -1697.5 | 07/09/2020 | false | null | P200908 | GIRO PAYMENT |  | GIRO PAYMENT | 
- | com.example.Transaction@3e7634b9 | -757.56 | 07/09/2020 | false | null | P200905 | GIRO PAYMENT |  | GIRO PAYMENT | 
- | com.example.Transaction@6f0b0a5e | -0.2 | 07/09/2020 | false | null | P200909 | GIRO CHARGES |  | GIRO CHARGES | 
- | com.example.Transaction@6035b93b | -0.2 | 07/09/2020 | false | null | P200908 | GIRO CHARGES |  | GIRO CHARGES | 
- | com.example.Transaction@320de594 | -0.2 | 07/09/2020 | false | null | P200905 | GIRO CHARGES |  | GIRO CHARGES | 
- | com.example.Transaction@6cfcd46d | 261.0 | 08/09/2020 | false | null | ABDULLAH KHALESH KA | PAYMENT/TRANSFER OTHR S$ ABDULLAH KHALESH KA via PayNow: FBP 8163 C | OTHR S$ | PAYMENT/TRANSFER | 
- | com.example.Transaction@5c8eee0f | 397.0 | 08/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44081 | POS SETTLEMENT | 
- | com.example.Transaction@73163d48 | -0.2 | 08/09/2020 | false | null | P200902 | GIRO CHARGES |  | GIRO CHARGES | 
- | com.example.Transaction@1698ee84 | 203.0 | 09/09/2020 | false | null | FARHANI SHEREEN BTE | PAYMENT/TRANSFER OTHR FARHANI SHEREEN BTE FBP1309X | OTHR | PAYMENT/TRANSFER | 
- | com.example.Transaction@10c626be | 254.0 | 09/09/2020 | false | null | ISMAIL BIN MOHD JAI | PAYMENT/TRANSFER IHRP ISMAIL BIN MOHD JAI FBP2944E Ismail Mohd Jai | IHRP | PAYMENT/TRANSFER | 
- | com.example.Transaction@2fc0cc3 | 350.0 | 09/09/2020 | false | null | SZE WEI KIAT | PAYMENT/TRANSFER OTHR S$ SZE WEI KIAT via PayNow: FW9186X | OTHR S$ | PAYMENT/TRANSFER | 
- | com.example.Transaction@328cf0e1 | 158.0 | 09/09/2020 | false | null | HANNAN HUZAIFI BIN | PAYMENT/TRANSFER OTHR S$ HANNAN HUZAIFI BIN via PayNow: Fbk7253j | OTHR S$ | PAYMENT/TRANSFER | 
- | com.example.Transaction@63b1d4fa | 820.8 | 09/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44082 | POS SETTLEMENT | 
- | com.example.Transaction@42e3ede4 | -0.2 | 09/09/2020 | false | null | P200910 | GIRO CHARGES |  | GIRO CHARGES | 
- | com.example.Transaction@201b6b6f | -1960.0 | 09/09/2020 | false | null | P200910 | GIRO PAYMENT |  | GIRO PAYMENT | 
- | com.example.Transaction@cb191ca | -33444.86 | 09/09/2020 | false | null | 186294 | CHQ186294 CHEQUE |  | CHEQUE | 
- | com.example.Transaction@6821ea29 | 650.5 | 10/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44083 | POS SETTLEMENT | 
- | com.example.Transaction@758c83d8 | -25.0 | 10/09/2020 | false | null | 44081 | xx-7992 LTA E-SERVICE VRLS     SIN DEBIT PURCHASE |  | DEBIT PURCHASE | 
- | com.example.Transaction@129b4fe2 | -64.0 | 10/09/2020 | false | null | 44081 | xx-8024 LTA E-SERVICE VRLS     SIN DEBIT PURCHASE |  | DEBIT PURCHASE | 
- | com.example.Transaction@5af3a0f | -32.0 | 10/09/2020 | false | null | 44081 | xx-8024 LTA E-SERVICE VRLS     SIN DEBIT PURCHASE |  | DEBIT PURCHASE | 
- | com.example.Transaction@5f031ebd | 700.0 | 10/09/2020 | false | null | MUHAMMAD RAQIB BIN | PAYMENT/TRANSFER OTHR MUHAMMAD RAQIB BIN FBP1371P | OTHR | PAYMENT/TRANSFER | 
- | com.example.Transaction@4ee37ca3 | 2.4 | 10/09/2020 | false | null | MUHAMMAD RAQIB BIN | PAYMENT/TRANSFER OTHR MUHAMMAD RAQIB BIN fbp1371p | OTHR | PAYMENT/TRANSFER | 
- | com.example.Transaction@7c2b6087 | -1350.0 | 10/09/2020 | false | null | HONG LEONG FINANCE | HLF-030 DUE 20200910 IBG GIRO | IHRP 38316717005680 | IBG GIRO | 
- | com.example.Transaction@502f1f4c | -3.75 | 10/09/2020 | false | null | 186292 | CHQ186292 CHEQUE |  | CHEQUE | 
- | com.example.Transaction@4fbda97b | 3659.55 | 11/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44084 | POS SETTLEMENT | 
- | com.example.Transaction@75f5fd58 | -25.0 | 11/09/2020 | false | null | 44082 | xx-7992 LTA E-SERVICE VRLS     SIN DEBIT PURCHASE |  | DEBIT PURCHASE | 
- | com.example.Transaction@37b70343 | -25.0 | 11/09/2020 | false | null | 44082 | xx-7992 LTA E-SERVICE VRLS     SIN DEBIT PURCHASE |  | DEBIT PURCHASE | 
- | com.example.Transaction@306851c7 | -32.0 | 11/09/2020 | false | null | 44082 | xx-7992 LTA E-SERVICE VRLS     SIN DEBIT PURCHASE |  | DEBIT PURCHASE | 
- | com.example.Transaction@2fea7088 | 2660.0 | 11/09/2020 | false | null | 287685 | OCBC CHQ287685 CHEQUE DEPOSIT |  | CHEQUE DEPOSIT | 
- | com.example.Transaction@30d4b288 | -994.55 | 11/09/2020 | false | null | 186371 | CHQ186371 CHEQUE |  | CHEQUE | 
- | com.example.Transaction@4cc6fa2a | -1428.7 | 11/09/2020 | false | null | 186293 | CHQ186293 CHEQUE |  | CHEQUE | 
- | com.example.Transaction@40f1be1b | -11901.33 | 11/09/2020 | false | null | 186196 | CHQ186196 CHEQUE |  | CHEQUE | 
- | com.example.Transaction@75ed9710 | -25.0 | 12/09/2020 | false | null | 44083 | xx-7992 LTA E-SERVICE VRLS     SIN DEBIT PURCHASE |  | DEBIT PURCHASE | 
- | com.example.Transaction@27953a83 | -904.15 | 12/09/2020 | false | null | P200907 | FUND TRANSFER Fund Transfer to account 601265671001 SGD 904.15@1 Atan Motoring Supply Pte Ltd - Aug 2020 | CT0019530884 | FUND TRANSFER | 
- | com.example.Transaction@4a3329b9 | 226.0 | 12/09/2020 | false | null | RADIWATI BTE MOHAME | PAYMENT/TRANSFER OTHR RADIWATI BTE MOHAME FBR1534B | OTHR | PAYMENT/TRANSFER | 
- | com.example.Transaction@13e3c1c7 | 193.0 | 14/09/2020 | false | null | FOREST CHILD CADRE | PAYMENT/TRANSFER ALLW FOREST CHILD CADRE EBGPP00912760247 | ALLW | PAYMENT/TRANSFER | 
- | com.example.Transaction@6c6c5427 | -82.0 | 14/09/2020 | false | null | 44084 | xx-8024 LTA E-SERVICE VRLS     SIN DEBIT PURCHASE |  | DEBIT PURCHASE | 
- | com.example.Transaction@618c5d94 | 246.0 | 14/09/2020 | false | null | from FBK5286C SHARE | OTHR - Other FUND TRANSFER |  | FUND TRANSFER | 
- | com.example.Transaction@1d8062d2 | 9950.0 | 14/09/2020 | false | null |  | CASH DEPOSIT     CDM |  | CASH DEPOSIT     CDM | 
- | com.example.Transaction@1e63ec0b | 10000.0 | 14/09/2020 | false | null |  | CASH DEPOSIT     CDM |  | CASH DEPOSIT     CDM | 
- | com.example.Transaction@3b956878 | 5850.0 | 14/09/2020 | false | null |  | CASH DEPOSIT     CDM |  | CASH DEPOSIT     CDM | 
- | com.example.Transaction@36546a22 | 360.0 | 14/09/2020 | false | null | RAZALI BIN JOHARI | PAYMENT/TRANSFER OTHR RAZALI BIN JOHARI Transfer | OTHR | PAYMENT/TRANSFER | 
- | com.example.Transaction@285c08c8 | 270.0 | 14/09/2020 | false | null | from FBD7182L MUHAM | OTHR - FBP1782L FUND TRANSFER |  | FUND TRANSFER | 
- | com.example.Transaction@295eaa7c | 202.0 | 14/09/2020 | false | null | NURHIDAYAH BTE MOLI | PAYMENT/TRANSFER OTHR S$ NURHIDAYAH BTE MOLI via PayNow: FBL6182G | OTHR S$ | PAYMENT/TRANSFER | 
- | com.example.Transaction@3918c187 | 267.0 | 14/09/2020 | false | null | MUHAMMAD AFIQ BIN A | PAYMENT/TRANSFER OTHR S$ MUHAMMAD AFIQ BIN A via PayNow: FBP1376B | OTHR S$ | PAYMENT/TRANSFER | 
- | com.example.Transaction@2c88b9fc | 216.0 | 14/09/2020 | false | null | MUHAMMAD ANDIKA BIN | PAYMENT/TRANSFER OTHR MUHAMMAD ANDIKA BIN FBP4314K | OTHR | PAYMENT/TRANSFER | 
- | com.example.Transaction@64dafeed | 260.0 | 14/09/2020 | false | null | MUHAMMAD ZUHAIDI BI | PAYMENT/TRANSFER OTHR S$ MUHAMMAD ZUHAIDI BI via PayNow: 198903552W | OTHR S$ | PAYMENT/TRANSFER | 
- | com.example.Transaction@2ece4966 | 707.05 | 14/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44085 | POS SETTLEMENT | 
- | com.example.Transaction@1dd0e7c4 | 2216.0 | 14/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44086 | POS SETTLEMENT | 
- | com.example.Transaction@7894f09b | -0.2 | 14/09/2020 | false | null | P200912 | GIRO CHARGES |  | GIRO CHARGES | 
- | com.example.Transaction@4bff1903 | 202.0 | 14/09/2020 | false | null | WAHAB BIN MOHD ISA | SI               FBP2238K IBG GIRO | OTHR | IBG GIRO | 
- | com.example.Transaction@650eab8 | 258.0 | 15/09/2020 | false | null | NUR MUHAMMAD FIRDAU | PAYMENT/TRANSFER OTHR S$ NUR MUHAMMAD FIRDAU via PayNow: Transfer - UEN | OTHR S$ | PAYMENT/TRANSFER | 
- | com.example.Transaction@30f5a68a | 234.0 | 15/09/2020 | false | null | MOHAMMAD RIDZUAN BI | PAYMENT/TRANSFER OTHR S$ MOHAMMAD RIDZUAN BI via PayNow: FBM8055Y | OTHR S$ | PAYMENT/TRANSFER | 
- | com.example.Transaction@4e28bdd1 | 260.65 | 15/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44088 | POS SETTLEMENT | 
- | com.example.Transaction@53f48368 | -0.2 | 15/09/2020 | false | null | P200903 | GIRO CHARGES |  | GIRO CHARGES | 
- | com.example.Transaction@150ab4ed | 203.0 | 15/09/2020 | false | null | SRI NUR ASMA-UL-HUS | PAYMENT/TRANSFER OTHR S$ SRI NUR ASMA-UL-HUS via PayNow: Fbq2362d | OTHR S$ | PAYMENT/TRANSFER | 
- | com.example.Transaction@30990c1b | 100.0 | 16/09/2020 | false | null | MOHAMED AJMEL BIN M | PAYMENT/TRANSFER OTHR MOHAMED AJMEL BIN M fba 2060j ajmel | OTHR | PAYMENT/TRANSFER | 
- | com.example.Transaction@2453f95d | 244.0 | 16/09/2020 | false | null | THANIUS BIN MUSNI | PAYMENT/TRANSFER OTHR THANIUS BIN MUSNI INSTALLMENT NO 41 FOR BIKE FBL8716 | OTHR | PAYMENT/TRANSFER | 
- | com.example.Transaction@44828f6b | 1052.85 | 16/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44089 | POS SETTLEMENT | 
- | com.example.Transaction@2dbe250d | -2796.0 | 16/09/2020 | false | null | P200914 | GIRO PAYMENT |  | GIRO PAYMENT | 
- | com.example.Transaction@553f1d75 | -0.2 | 16/09/2020 | false | null | P200914 | GIRO CHARGES |  | GIRO CHARGES | 
- | com.example.Transaction@6e1d8f9e | 258.0 | 16/09/2020 | false | null | G200916 | GIRO COLLECTION |  | GIRO COLLECTION | 
- | com.example.Transaction@3e34ace1 | -0.2 | 16/09/2020 | false | null | G200916 | GIRO CHARGES |  | GIRO CHARGES | 
- | com.example.Transaction@33e01298 | 25791.88 | 16/09/2020 | false | null | B01 23838 | TRANSFER Fund Transfer from SINGAPURA FINANCE LTD SGD 25 791.88 B01 23838 | CT0019562633 | TRANSFER | 
- | com.example.Transaction@4b3c354a | -4500.0 | 16/09/2020 | false | null | 186298 | CHQ186298 CHEQUE |  | CHEQUE | 
- | com.example.Transaction@21aa6d6c | 403.95 | 17/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44090 | POS SETTLEMENT | 
- | com.example.Transaction@6b5894c8 | -25.0 | 17/09/2020 | false | null | 44088 | xx-7992 LTA E-SERVICE VRLS     SIN DEBIT PURCHASE |  | DEBIT PURCHASE | 
- | com.example.Transaction@20b5f2ac | -507.5 | 17/09/2020 | false | null | 186297 | CHQ186297 CHEQUE |  | CHEQUE | 
- | com.example.Transaction@7b64240d | 789.1 | 18/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44091 | POS SETTLEMENT | 
- | com.example.Transaction@2756c0a7 | 0.43 | 19/09/2020 | false | null |  | CASH REBATE CASH REBATE |  | CASH REBATE | 
- | com.example.Transaction@350ec41e | 0.07 | 19/09/2020 | false | null |  | CASH REBATE CASH REBATE |  | CASH REBATE | 
- | com.example.Transaction@165b2f7f | -57.0 | 21/09/2020 | false | null | 44091 | xx-7992 LTA E-SERVICE VRLS     SIN DEBIT PURCHASE |  | DEBIT PURCHASE | 
- | com.example.Transaction@6c8bca63 | 264.0 | 21/09/2020 | false | null | MUHAMMAD IZZAN BIN | PAYMENT/TRANSFER OTHR MUHAMMAD IZZAN BIN Transfer | OTHR | PAYMENT/TRANSFER | 
- | com.example.Transaction@2364305a | 9950.0 | 21/09/2020 | false | null |  | CASH DEPOSIT     CDM |  | CASH DEPOSIT     CDM | 
- | com.example.Transaction@470a696f | 12750.0 | 21/09/2020 | false | null |  | CASH DEPOSIT     CDM |  | CASH DEPOSIT     CDM | 
- | com.example.Transaction@1bc715b8 | 120.0 | 21/09/2020 | false | null | FADIL BIN ABD RAHIM | PAYMENT/TRANSFER OTHR FADIL BIN ABD RAHIM Transfer | OTHR | PAYMENT/TRANSFER | 
- | com.example.Transaction@5ddabb18 | -0.2 | 21/09/2020 | false | null | G200951 | GIRO CHARGES |  | GIRO CHARGES | 
- | com.example.Transaction@3e8f7922 | 234.35 | 21/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44092 | POS SETTLEMENT | 
- | com.example.Transaction@63192798 | 5471.85 | 21/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44093 | POS SETTLEMENT | 
- | com.example.Transaction@50eca7c6 | -64.0 | 21/09/2020 | false | null | 44092 | xx-8024 LTA E-SERVICE VRLS     SIN DEBIT PURCHASE |  | DEBIT PURCHASE | 
- | com.example.Transaction@4e517165 | -170.0 | 21/09/2020 | false | null | 186370 | CHQ186370 CHEQUE |  | CHEQUE | 
- | com.example.Transaction@44e3760b | -193.29 | 21/09/2020 | false | null | 186299 | CHQ186299 CHEQUE |  | CHEQUE | 
- | com.example.Transaction@6a66a204 | 354.0 | 22/09/2020 | false | null | MOHAMED HASHIM BIN | PAYMENT/TRANSFER IHRP MOHAMED HASHIM BIN Irfan - FBM7628B | IHRP | PAYMENT/TRANSFER | 
- | com.example.Transaction@5860f3d7 | 189.0 | 22/09/2020 | false | null | SAIFUL BAHRI BIN MD | PAYMENT/TRANSFER IHRP SAIFUL BAHRI BIN MD FBQ8326U | IHRP | PAYMENT/TRANSFER | 
- | com.example.Transaction@1d7f7be7 | 310.95 | 22/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44095 | POS SETTLEMENT | 
- | com.example.Transaction@42f3156d | -0.2 | 22/09/2020 | false | null | P200904 | GIRO CHARGES |  | GIRO CHARGES | 
- | com.example.Transaction@10650953 | -25.0 | 23/09/2020 | false | null | 44093 | xx-7992 LTA E-SERVICE VRLS     SIN DEBIT PURCHASE |  | DEBIT PURCHASE | 
- | com.example.Transaction@659eef7 | -25.0 | 23/09/2020 | false | null | 44093 | xx-7992 LTA E-SERVICE VRLS     SIN DEBIT PURCHASE |  | DEBIT PURCHASE | 
- | com.example.Transaction@162be91c | -25.0 | 23/09/2020 | false | null | 44093 | xx-7992 LTA E-SERVICE VRLS     SIN DEBIT PURCHASE |  | DEBIT PURCHASE | 
- | com.example.Transaction@2488b073 | 48.2 | 23/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44096 | POS SETTLEMENT | 
- | com.example.Transaction@6722db6e | 260.0 | 23/09/2020 | false | null | 676534 | UOB BANK CHQ676534 CHEQUE DEPOSIT |  | CHEQUE DEPOSIT | 
- | com.example.Transaction@3a94964 | -64.2 | 23/09/2020 | false | null | 186300 | CHQ186300 CHEQUE |  | CHEQUE | 
- | com.example.Transaction@5049d8b2 | 463.37 | 24/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44097 | POS SETTLEMENT | 
- | com.example.Transaction@6d0b5baf | -0.2 | 24/09/2020 | false | null | P200916 | GIRO CHARGES |  | GIRO CHARGES | 
- | com.example.Transaction@631e06ab | -0.2 | 24/09/2020 | false | null | P200917 | GIRO CHARGES |  | GIRO CHARGES | 
- | com.example.Transaction@2a3591c5 | -353.1 | 24/09/2020 | false | null | P200916 | GIRO PAYMENT |  | GIRO PAYMENT | 
- | com.example.Transaction@34a75079 | -3405.51 | 24/09/2020 | false | null | P200917 | GIRO PAYMENT |  | GIRO PAYMENT | 
- | com.example.Transaction@1643d68f | -85.99 | 24/09/2020 | false | null | 44096 | xx-8024 NTUC FAIRPRICE           S DEBIT PURCHASE |  | DEBIT PURCHASE | 
- | com.example.Transaction@76ba13c | 1014.5 | 25/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44098 | POS SETTLEMENT | 
- | com.example.Transaction@eb6449b | -0.2 | 25/09/2020 | false | null | P200918 | GIRO CHARGES |  | GIRO CHARGES | 
- | com.example.Transaction@4ebea12c | -72.4 | 25/09/2020 | false | null | SP SERVICES LTD | GIRO Collection 8903495888 IBG GIRO | COLL 8903495888 | IBG GIRO | 
- | com.example.Transaction@2a1edad4 | -36.88 | 25/09/2020 | false | null | SP SERVICES LTD | GIRO Collection 8902370199 IBG GIRO | COLL 8902370199 | IBG GIRO | 
- | com.example.Transaction@4c168660 | 295.0 | 25/09/2020 | false | null | 252473 | RHB BANK BHD CHQ252473 CHEQUE DEPOSIT |  | CHEQUE DEPOSIT | 
- | com.example.Transaction@52b56a3e | -7383.0 | 25/09/2020 | false | null | 186301 | CHQ186301 CHEQUE |  | CHEQUE | 
- | com.example.Transaction@1a1da881 | 117.0 | 28/09/2020 | false | null | from S8422453G NORJ | OTHR - FBQ1405X FUND TRANSFER |  | FUND TRANSFER | 
- | com.example.Transaction@5b970f7 | 217.0 | 28/09/2020 | false | null | from S8422453G NORJ | OTHR - FBQ2241U FUND TRANSFER |  | FUND TRANSFER | 
- | com.example.Transaction@6175619b | -64.0 | 28/09/2020 | false | null | 44098 | xx-8024 LTA E-SERVICE VRLS     SIN DEBIT PURCHASE |  | DEBIT PURCHASE | 
- | com.example.Transaction@2f058b8a | 281.0 | 28/09/2020 | false | null | MOHAMED NOH BIN BAS | PAYMENT/TRANSFER IHRP MOHAMED NOH BIN BAS FBM2040D | IHRP | PAYMENT/TRANSFER | 
- | com.example.Transaction@756cf158 | 210.0 | 28/09/2020 | false | null | MUHAMMAD AL-HAFIZ B | PAYMENT/TRANSFER OTHR S$ MUHAMMAD AL-HAFIZ B via PayNow: Fx 35 c | OTHR S$ | PAYMENT/TRANSFER | 
- | com.example.Transaction@3f2ef586 | 391.0 | 28/09/2020 | false | null | RAJA ZULFIKAAR ABDU | PAYMENT/TRANSFER OTHR S$ RAJA ZULFIKAAR ABDU via PayNow: FBQ8355K | OTHR S$ | PAYMENT/TRANSFER | 
- | com.example.Transaction@751d3241 | 458.0 | 28/09/2020 | false | null | MOHAMED AJMEL BIN M | PAYMENT/TRANSFER OTHR MOHAMED AJMEL BIN M fba 2060j outstanding is cleared | OTHR | PAYMENT/TRANSFER | 
- | com.example.Transaction@76c7beb3 | 230.0 | 28/09/2020 | false | null | MUHAMMAD FAIZ TAJUD | PAYMENT/TRANSFER OTHR S$ MUHAMMAD FAIZ TAJUD via PayNow: FBP3638L | OTHR S$ | PAYMENT/TRANSFER | 
- | com.example.Transaction@30ea8c23 | 355.0 | 28/09/2020 | false | null | OW YONG HOA LEON | PAYMENT/TRANSFER OTHR OW YONG HOA LEON Transfer | OTHR | PAYMENT/TRANSFER | 
- | com.example.Transaction@53e211ee | -64.0 | 28/09/2020 | false | null | 44099 | xx-8024 LTA E-SERVICE VRLS     SIN DEBIT PURCHASE |  | DEBIT PURCHASE | 
- | com.example.Transaction@41a90fa8 | 50.25 | 28/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44099 | POS SETTLEMENT | 
- | com.example.Transaction@3d8bbcdc | 2832.85 | 28/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44100 | POS SETTLEMENT | 
- | com.example.Transaction@52500920 | -1.8 | 28/09/2020 | false | null | P200915 | GIRO CHARGES |  | GIRO CHARGES | 
- | com.example.Transaction@117e0fe5 | -0.2 | 28/09/2020 | false | null | P200919 | GIRO CHARGES |  | GIRO CHARGES | 
- | com.example.Transaction@18a3962d | -0.2 | 28/09/2020 | false | null | P200920 | GIRO CHARGES |  | GIRO CHARGES | 
- | com.example.Transaction@4b85880b | -2264.5 | 28/09/2020 | false | null | P200919 | GIRO PAYMENT |  | GIRO PAYMENT | 
- | com.example.Transaction@4f936da8 | -110.46 | 28/09/2020 | false | null | P200920 | GIRO PAYMENT |  | GIRO PAYMENT | 
- | com.example.Transaction@3e2943ab | 265.0 | 28/09/2020 | false | null | 665417770001 | 3RD PTY TRANSFER ATM |  | 3RD PTY TRANSFER ATM | 
- | com.example.Transaction@1c98290c | 260.0 | 28/09/2020 | false | null | NORIDAH BINTE OTHMA | SI               FBP1819R IBG GIRO | OTHR | IBG GIRO | 
- | com.example.Transaction@5f3b9c57 | -110.28 | 28/09/2020 | false | null | 186362 | CHQ186362 CHEQUE |  | CHEQUE | 
- | com.example.Transaction@1e044120 | -1150.0 | 28/09/2020 | false | null | 186163 | CHQ186163 CHEQUE |  | CHEQUE | 
- | com.example.Transaction@2cf23c81 | -1258.46 | 28/09/2020 | false | null | 186296 | CHQ186296 CHEQUE |  | CHEQUE | 
- | com.example.Transaction@3624da92 | 244.0 | 29/09/2020 | false | null | MOHAMAD FAIZAL BIN | PAYMENT/TRANSFER OTHR S$ MOHAMAD FAIZAL BIN via PayNow: 7407b | OTHR S$ | PAYMENT/TRANSFER | 
- | com.example.Transaction@35fe2125 | 1325.55 | 29/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44102 | POS SETTLEMENT | 
- | com.example.Transaction@2484f433 | 340.0 | 29/09/2020 | false | null |  | CASH DEPOSIT     CDM |  | CASH DEPOSIT     CDM | 
- | com.example.Transaction@6b5966e1 | -30.0 | 29/09/2020 | false | null | LTA | LTAFBJ6039Z IBG GIRO | PADD 051108800008 | IBG GIRO | 
- | com.example.Transaction@4fcee388 | -7383.0 | 29/09/2020 | false | null | 186303 | CHQ186303 CHEQUE |  | CHEQUE | 
- | com.example.Transaction@f9879ac | 94.0 | 30/09/2020 | false | null | from NG WENG LOON | LOAR - FBE7176E FUND TRANSFER | via PayNow-UEN | FUND TRANSFER | 
- | com.example.Transaction@37f21974 | 251.0 | 30/09/2020 | false | null | from FBL3296G FARID | OTHR - Other FUND TRANSFER |  | FUND TRANSFER | 
- | com.example.Transaction@303e3593 | 1050.0 | 30/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44103 | POS SETTLEMENT | 
- | com.example.Transaction@4ef27d66 | -25.0 | 30/09/2020 | false | null | 44100 | xx-8024 LTA E-SERVICE VRLS     SIN DEBIT PURCHASE |  | DEBIT PURCHASE | 
- | com.example.Transaction@362a019c | -25.0 | 30/09/2020 | false | null | 44100 | xx-8024 LTA E-SERVICE VRLS     SIN DEBIT PURCHASE |  | DEBIT PURCHASE | 
- | com.example.Transaction@4a8a60bc | -57.99 | 30/09/2020 | false | null | Singapore Telecommu | 68472174 IBG GIRO | COLL 68472174 | IBG GIRO | 
- | com.example.Transaction@361c294e | -421.27 | 30/09/2020 | false | null | Singapore Telecommu | 11538363 IBG GIRO | COLL 11538363 | IBG GIRO | 
- | com.example.Transaction@5af28b27 | 322.0 | 30/09/2020 | false | null | 56903 | UOB BANK CHQ56903 CHEQUE DEPOSIT |  | CHEQUE DEPOSIT | 
+ | com.example.Transaction@5bcde458 | 260.0 | 01/09/2020 | false | null | from MUHAMMAD ZUHAI | OTHR - Other FUND TRANSFER | via PayNow-UEN | FUND TRANSFER | 
+ | com.example.Transaction@71870da7 | 814.45 | 01/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44074 | POS SETTLEMENT | 
+ | com.example.Transaction@2b8bd14b | 500.0 | 01/09/2020 | false | null | CHAN CHEE HONG | PAYMENT/TRANSFER LOAN CHAN CHEE HONG FBR2603D | LOAN | PAYMENT/TRANSFER | 
+ | com.example.Transaction@26f96b85 | -7753.0 | 01/09/2020 | false | null | 186290 | CHQ186290 CHEQUE |  | CHEQUE | 
+ | com.example.Transaction@46d8f407 | -7753.0 | 01/09/2020 | false | null | 186291 | CHQ186291 CHEQUE |  | CHEQUE | 
+ | com.example.Transaction@3c0036b | 218.0 | 02/09/2020 | false | null | MOHD RAZALI BIN MOH | PAYMENT/TRANSFER OTHR MOHD RAZALI BIN MOH FBQ4745U 83210310 | OTHR | PAYMENT/TRANSFER | 
+ | com.example.Transaction@17814b1c | 251.0 | 02/09/2020 | false | null | from FBL3296G FARID | OTHR - Other FUND TRANSFER |  | FUND TRANSFER | 
+ | com.example.Transaction@7ac9af2a | 438.0 | 02/09/2020 | false | null | HO CHI WING | PAYMENT/TRANSFER OTHR HO CHI WING FBG0332G | OTHR | PAYMENT/TRANSFER | 
+ | com.example.Transaction@7bb004b8 | 200.0 | 02/09/2020 | false | null | MOHAMED AJMEL BIN M | PAYMENT/TRANSFER OTHR MOHAMED AJMEL BIN M Ajmel fba2060j | OTHR | PAYMENT/TRANSFER | 
+ | com.example.Transaction@78e89bfe | 160.0 | 02/09/2020 | false | null | HELMI HUSAINI BIN S | PAYMENT/TRANSFER OTHR S$ HELMI HUSAINI BIN S via PayNow: FBK7313U | OTHR S$ | PAYMENT/TRANSFER | 
+ | com.example.Transaction@29c5ee1d | 340.0 | 02/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44075 | POS SETTLEMENT | 
+ | com.example.Transaction@15cea7b0 | -25.0 | 02/09/2020 | false | null | 29/08/2020 |xx-7992 LTA E-SERVICE VRLS     SIN DEBIT PURCHASE |  | DEBIT PURCHASE | 
+ | com.example.Transaction@49a71302 | -10683.0 | 02/09/2020 | false | null | 186289 | CHQ186289 CHEQUE |  | CHEQUE | 
+ | com.example.Transaction@57aa341b | 611.71 | 03/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44076 | POS SETTLEMENT | 
+ | com.example.Transaction@26e412ef | -25.0 | 03/09/2020 | false | null | 31/08/2020 |xx-7992 LTA E-SERVICE VRLS     SIN DEBIT PURCHASE |  | DEBIT PURCHASE | 
+ | com.example.Transaction@4ae263bf | -25.0 | 03/09/2020 | false | null | 31/08/2020 |xx-7992 LTA E-SERVICE VRLS     SIN DEBIT PURCHASE |  | DEBIT PURCHASE | 
+ | com.example.Transaction@51b1a8f6 | 244.0 | 04/09/2020 | false | null | SHER WENYONG BENJAM | PAYMENT/TRANSFER OTHR SHER WENYONG BENJAM FBL9839B | OTHR | PAYMENT/TRANSFER | 
+ | com.example.Transaction@6e0f7aad | 389.55 | 04/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44077 | POS SETTLEMENT | 
+ | com.example.Transaction@515ebef3 | -42.1 | 04/09/2020 | false | null | LTA | LTAFBC2384P IBG GIRO | PADD 051108800008 | IBG GIRO | 
+ | com.example.Transaction@6c298dc | 273.7 | 05/09/2020 | false | null | MUHD HADI BIN HALI | PAYMENT/TRANSFER OTHR S$ MUHD HADI BIN HALI via PayNow: FBL193P | OTHR S$ | PAYMENT/TRANSFER | 
+ | com.example.Transaction@1436a7ab | 352.0 | 07/09/2020 | false | null | VILLAFUERTE ARIEL D | PAYMENT/TRANSFER COLL VILLAFUERTE ARIEL D FBR1665G SEPT2020 | COLL | PAYMENT/TRANSFER | 
+ | com.example.Transaction@3b7b05a8 | 240.0 | 07/09/2020 | false | null | ARHAB SADEED | PAYMENT/TRANSFER OTHR S$ ARHAB SADEED via PayNow: FBJ8075E | OTHR S$ | PAYMENT/TRANSFER | 
+ | com.example.Transaction@3d36dff4 | 322.0 | 07/09/2020 | false | null | MUHAMMAD AMIRUL HAK | PAYMENT/TRANSFER OTHR S$ MUHAMMAD AMIRUL HAK via PayNow: 198903552W | OTHR S$ | PAYMENT/TRANSFER | 
+ | com.example.Transaction@7abe27bf | 217.0 | 07/09/2020 | false | null | from FBQ8185J HARUN | OTHR - FBQ8185J FUND TRANSFER |  | FUND TRANSFER | 
+ | com.example.Transaction@5b94ccbc | 484.0 | 07/09/2020 | false | null | INDRA SUKMA BIN BUH | PAYMENT/TRANSFER IHRP INDRA SUKMA BIN BUH FBP6139L- SEPTEMBER 2020 | IHRP | PAYMENT/TRANSFER | 
+ | com.example.Transaction@38a1c423 | 3220.9 | 07/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44078 | POS SETTLEMENT | 
+ | com.example.Transaction@336365bc | 90.85 | 07/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44079 | POS SETTLEMENT | 
+ | com.example.Transaction@3ed0918d | -0.2 | 07/09/2020 | false | null | P200909 | GIRO CHARGES |  | GIRO CHARGES | 
+ | com.example.Transaction@5e268ce6 | -0.2 | 07/09/2020 | false | null | P200908 | GIRO CHARGES |  | GIRO CHARGES | 
+ | com.example.Transaction@66ec9390 | -0.2 | 07/09/2020 | false | null | P200905 | GIRO CHARGES |  | GIRO CHARGES | 
+ | com.example.Transaction@4dafba3e | 261.0 | 08/09/2020 | false | null | ABDULLAH KHALESH KA | PAYMENT/TRANSFER OTHR S$ ABDULLAH KHALESH KA via PayNow: FBP 8163 C | OTHR S$ | PAYMENT/TRANSFER | 
+ | com.example.Transaction@7e9da981 | 397.0 | 08/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44081 | POS SETTLEMENT | 
+ | com.example.Transaction@74ad8d05 | -0.2 | 08/09/2020 | false | null | P200902 | GIRO CHARGES |  | GIRO CHARGES | 
+ | com.example.Transaction@205b132e | 203.0 | 09/09/2020 | false | null | FARHANI SHEREEN BTE | PAYMENT/TRANSFER OTHR FARHANI SHEREEN BTE FBP1309X | OTHR | PAYMENT/TRANSFER | 
+ | com.example.Transaction@73044cdf | 254.0 | 09/09/2020 | false | null | ISMAIL BIN MOHD JAI | PAYMENT/TRANSFER IHRP ISMAIL BIN MOHD JAI FBP2944E Ismail Mohd Jai | IHRP | PAYMENT/TRANSFER | 
+ | com.example.Transaction@3cbcd8f3 | 350.0 | 09/09/2020 | false | null | SZE WEI KIAT | PAYMENT/TRANSFER OTHR S$ SZE WEI KIAT via PayNow: FW9186X | OTHR S$ | PAYMENT/TRANSFER | 
+ | com.example.Transaction@719843e5 | 158.0 | 09/09/2020 | false | null | HANNAN HUZAIFI BIN | PAYMENT/TRANSFER OTHR S$ HANNAN HUZAIFI BIN via PayNow: Fbk7253j | OTHR S$ | PAYMENT/TRANSFER | 
+ | com.example.Transaction@9a2ec9b | 820.8 | 09/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44082 | POS SETTLEMENT | 
+ | com.example.Transaction@58112bc4 | -0.2 | 09/09/2020 | false | null | P200910 | GIRO CHARGES |  | GIRO CHARGES | 
+ | com.example.Transaction@2b556bb2 | 650.5 | 10/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44083 | POS SETTLEMENT | 
+ | com.example.Transaction@59546cfe | 700.0 | 10/09/2020 | false | null | MUHAMMAD RAQIB BIN | PAYMENT/TRANSFER OTHR MUHAMMAD RAQIB BIN FBP1371P | OTHR | PAYMENT/TRANSFER | 
+ | com.example.Transaction@29ea78b1 | 2.4 | 10/09/2020 | false | null | MUHAMMAD RAQIB BIN | PAYMENT/TRANSFER OTHR MUHAMMAD RAQIB BIN fbp1371p | OTHR | PAYMENT/TRANSFER | 
+ | com.example.Transaction@253b380a | -1350.0 | 10/09/2020 | false | null | HONG LEONG FINANCE | HLF-030 DUE 20200910 IBG GIRO | IHRP 38316717005680 | IBG GIRO | 
+ | com.example.Transaction@42fcc7e6 | 3659.55 | 11/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44084 | POS SETTLEMENT | 
+ | com.example.Transaction@108bdbd8 | -994.55 | 11/09/2020 | false | null | 186371 | CHQ186371 CHEQUE |  | CHEQUE | 
+ | com.example.Transaction@4f63e3c7 | -904.15 | 12/09/2020 | false | null | P200907 | FUND TRANSFER Fund Transfer to account 601265671001 SGD 904.15@1 Atan Motoring Supply Pte Ltd - Aug 2020 | CT0019530884 | FUND TRANSFER | 
+ | com.example.Transaction@6441c486 | 226.0 | 12/09/2020 | false | null | RADIWATI BTE MOHAME | PAYMENT/TRANSFER OTHR RADIWATI BTE MOHAME FBR1534B | OTHR | PAYMENT/TRANSFER | 
+ | com.example.Transaction@1dc2de84 | 193.0 | 14/09/2020 | false | null | FOREST CHILD CADRE | PAYMENT/TRANSFER ALLW FOREST CHILD CADRE EBGPP00912760247 | ALLW | PAYMENT/TRANSFER | 
+ | com.example.Transaction@2f61f937 | 246.0 | 14/09/2020 | false | null | from FBK5286C SHARE | OTHR - Other FUND TRANSFER |  | FUND TRANSFER | 
+ | com.example.Transaction@236134a1 | 9950.0 | 14/09/2020 | false | null |  | CASH DEPOSIT     CDM |  | CASH DEPOSIT     CDM | 
+ | com.example.Transaction@369c9bb | 10000.0 | 14/09/2020 | false | null |  | CASH DEPOSIT     CDM |  | CASH DEPOSIT     CDM | 
+ | com.example.Transaction@76d05cc9 | 5850.0 | 14/09/2020 | false | null |  | CASH DEPOSIT     CDM |  | CASH DEPOSIT     CDM | 
+ | com.example.Transaction@42b21d99 | 360.0 | 14/09/2020 | false | null | RAZALI BIN JOHARI | PAYMENT/TRANSFER OTHR RAZALI BIN JOHARI Transfer | OTHR | PAYMENT/TRANSFER | 
+ | com.example.Transaction@68dcfd52 | 270.0 | 14/09/2020 | false | null | from FBD7182L MUHAM | OTHR - FBP1782L FUND TRANSFER |  | FUND TRANSFER | 
+ | com.example.Transaction@25b5c5e3 | 202.0 | 14/09/2020 | false | null | NURHIDAYAH BTE MOLI | PAYMENT/TRANSFER OTHR S$ NURHIDAYAH BTE MOLI via PayNow: FBL6182G | OTHR S$ | PAYMENT/TRANSFER | 
+ | com.example.Transaction@5177e388 | 267.0 | 14/09/2020 | false | null | MUHAMMAD AFIQ BIN A | PAYMENT/TRANSFER OTHR S$ MUHAMMAD AFIQ BIN A via PayNow: FBP1376B | OTHR S$ | PAYMENT/TRANSFER | 
+ | com.example.Transaction@37b72ea | 216.0 | 14/09/2020 | false | null | MUHAMMAD ANDIKA BIN | PAYMENT/TRANSFER OTHR MUHAMMAD ANDIKA BIN FBP4314K | OTHR | PAYMENT/TRANSFER | 
+ | com.example.Transaction@cc239ba | 260.0 | 14/09/2020 | false | null | MUHAMMAD ZUHAIDI BI | PAYMENT/TRANSFER OTHR S$ MUHAMMAD ZUHAIDI BI via PayNow: 198903552W | OTHR S$ | PAYMENT/TRANSFER | 
+ | com.example.Transaction@3162743f | 707.05 | 14/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44085 | POS SETTLEMENT | 
+ | com.example.Transaction@2c708440 | 2216.0 | 14/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44086 | POS SETTLEMENT | 
+ | com.example.Transaction@3047254d | -0.2 | 14/09/2020 | false | null | P200912 | GIRO CHARGES |  | GIRO CHARGES | 
+ | com.example.Transaction@6f3f0fae | 202.0 | 14/09/2020 | false | null | WAHAB BIN MOHD ISA | SI               FBP2238K IBG GIRO | OTHR | IBG GIRO | 
+ | com.example.Transaction@77cb9cd1 | 258.0 | 15/09/2020 | false | null | NUR MUHAMMAD FIRDAU | PAYMENT/TRANSFER OTHR S$ NUR MUHAMMAD FIRDAU via PayNow: Transfer - UEN | OTHR S$ | PAYMENT/TRANSFER | 
+ | com.example.Transaction@971e903 | 234.0 | 15/09/2020 | false | null | MOHAMMAD RIDZUAN BI | PAYMENT/TRANSFER OTHR S$ MOHAMMAD RIDZUAN BI via PayNow: FBM8055Y | OTHR S$ | PAYMENT/TRANSFER | 
+ | com.example.Transaction@3e4f80cb | 260.65 | 15/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44088 | POS SETTLEMENT | 
+ | com.example.Transaction@38704ff0 | -0.2 | 15/09/2020 | false | null | P200903 | GIRO CHARGES |  | GIRO CHARGES | 
+ | com.example.Transaction@51d143a1 | 203.0 | 15/09/2020 | false | null | SRI NUR ASMA-UL-HUS | PAYMENT/TRANSFER OTHR S$ SRI NUR ASMA-UL-HUS via PayNow: Fbq2362d | OTHR S$ | PAYMENT/TRANSFER | 
+ | com.example.Transaction@dcc6211 | 100.0 | 16/09/2020 | false | null | MOHAMED AJMEL BIN M | PAYMENT/TRANSFER OTHR MOHAMED AJMEL BIN M fba 2060j ajmel | OTHR | PAYMENT/TRANSFER | 
+ | com.example.Transaction@47ec7422 | 244.0 | 16/09/2020 | false | null | THANIUS BIN MUSNI | PAYMENT/TRANSFER OTHR THANIUS BIN MUSNI INSTALLMENT NO 41 FOR BIKE FBL8716 | OTHR | PAYMENT/TRANSFER | 
+ | com.example.Transaction@48535004 | 1052.85 | 16/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44089 | POS SETTLEMENT | 
+ | com.example.Transaction@2b56f5f8 | -0.2 | 16/09/2020 | false | null | P200914 | GIRO CHARGES |  | GIRO CHARGES | 
+ | com.example.Transaction@79d743e6 | 258.0 | 16/09/2020 | false | null | G200916 | GIRO COLLECTION |  | GIRO COLLECTION | 
+ | com.example.Transaction@776802b0 | -0.2 | 16/09/2020 | false | null | G200916 | GIRO CHARGES |  | GIRO CHARGES | 
+ | com.example.Transaction@2257fadf | 25791.88 | 16/09/2020 | false | null | B01 23838 | TRANSFER Fund Transfer from SINGAPURA FINANCE LTD SGD 25 791.88 B01 23838 | CT0019562633 | TRANSFER | 
+ | com.example.Transaction@1fde4f40 | 403.95 | 17/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44090 | POS SETTLEMENT | 
+ | com.example.Transaction@3f29e26 | 789.1 | 18/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44091 | POS SETTLEMENT | 
+ | com.example.Transaction@6df3e44c | 0.43 | 19/09/2020 | false | null |  | CASH REBATE CASH REBATE |  | CASH REBATE | 
+ | com.example.Transaction@7ce7e83c | 0.07 | 19/09/2020 | false | null |  | CASH REBATE CASH REBATE |  | CASH REBATE | 
+ | com.example.Transaction@1ab6718 | 264.0 | 21/09/2020 | false | null | MUHAMMAD IZZAN BIN | PAYMENT/TRANSFER OTHR MUHAMMAD IZZAN BIN Transfer | OTHR | PAYMENT/TRANSFER | 
+ | com.example.Transaction@3910fe11 | 9950.0 | 21/09/2020 | false | null |  | CASH DEPOSIT     CDM |  | CASH DEPOSIT     CDM | 
+ | com.example.Transaction@460510aa | 12750.0 | 21/09/2020 | false | null |  | CASH DEPOSIT     CDM |  | CASH DEPOSIT     CDM | 
+ | com.example.Transaction@351e414e | 120.0 | 21/09/2020 | false | null | FADIL BIN ABD RAHIM | PAYMENT/TRANSFER OTHR FADIL BIN ABD RAHIM Transfer | OTHR | PAYMENT/TRANSFER | 
+ | com.example.Transaction@2c2db130 | -0.2 | 21/09/2020 | false | null | G200951 | GIRO CHARGES |  | GIRO CHARGES | 
+ | com.example.Transaction@327c7bea | 234.35 | 21/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44092 | POS SETTLEMENT | 
+ | com.example.Transaction@348d18a3 | 5471.85 | 21/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44093 | POS SETTLEMENT | 
+ | com.example.Transaction@34e20e6b | -170.0 | 21/09/2020 | false | null | 186370 | CHQ186370 CHEQUE |  | CHEQUE | 
+ | com.example.Transaction@6eb82908 | 354.0 | 22/09/2020 | false | null | MOHAMED HASHIM BIN | PAYMENT/TRANSFER IHRP MOHAMED HASHIM BIN Irfan - FBM7628B | IHRP | PAYMENT/TRANSFER | 
+ | com.example.Transaction@4a8df3e2 | 189.0 | 22/09/2020 | false | null | SAIFUL BAHRI BIN MD | PAYMENT/TRANSFER IHRP SAIFUL BAHRI BIN MD FBQ8326U | IHRP | PAYMENT/TRANSFER | 
+ | com.example.Transaction@3d98d138 | 310.95 | 22/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44095 | POS SETTLEMENT | 
+ | com.example.Transaction@2f2d52ef | -0.2 | 22/09/2020 | false | null | P200904 | GIRO CHARGES |  | GIRO CHARGES | 
+ | com.example.Transaction@7c1812b3 | 48.2 | 23/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44096 | POS SETTLEMENT | 
+ | com.example.Transaction@681adc8f | 463.37 | 24/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44097 | POS SETTLEMENT | 
+ | com.example.Transaction@3506d826 | -0.2 | 24/09/2020 | false | null | P200916 | GIRO CHARGES |  | GIRO CHARGES | 
+ | com.example.Transaction@35dd9ed3 | -0.2 | 24/09/2020 | false | null | P200917 | GIRO CHARGES |  | GIRO CHARGES | 
+ | com.example.Transaction@3cae7b8b | -85.99 | 24/09/2020 | false | null | 44096 | xx-8024 NTUC FAIRPRICE           S DEBIT PURCHASE |  | DEBIT PURCHASE | 
+ | com.example.Transaction@af9a89f | 1014.5 | 25/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44098 | POS SETTLEMENT | 
+ | com.example.Transaction@6482eef | -0.2 | 25/09/2020 | false | null | P200918 | GIRO CHARGES |  | GIRO CHARGES | 
+ | com.example.Transaction@474fae39 | -72.4 | 25/09/2020 | false | null | SP SERVICES LTD | GIRO Collection 8903495888 IBG GIRO | COLL 8903495888 | IBG GIRO | 
+ | com.example.Transaction@4f4c789f | -36.88 | 25/09/2020 | false | null | SP SERVICES LTD | GIRO Collection 8902370199 IBG GIRO | COLL 8902370199 | IBG GIRO | 
+ | com.example.Transaction@7a55f148 | 117.0 | 28/09/2020 | false | null | from S8422453G NORJ | OTHR - FBQ1405X FUND TRANSFER |  | FUND TRANSFER | 
+ | com.example.Transaction@2e2f720 | 217.0 | 28/09/2020 | false | null | from S8422453G NORJ | OTHR - FBQ2241U FUND TRANSFER |  | FUND TRANSFER | 
+ | com.example.Transaction@12b5454f | 281.0 | 28/09/2020 | false | null | MOHAMED NOH BIN BAS | PAYMENT/TRANSFER IHRP MOHAMED NOH BIN BAS FBM2040D | IHRP | PAYMENT/TRANSFER | 
+ | com.example.Transaction@5445f5ba | 210.0 | 28/09/2020 | false | null | MUHAMMAD AL-HAFIZ B | PAYMENT/TRANSFER OTHR S$ MUHAMMAD AL-HAFIZ B via PayNow: Fx 35 c | OTHR S$ | PAYMENT/TRANSFER | 
+ | com.example.Transaction@1431267b | 391.0 | 28/09/2020 | false | null | RAJA ZULFIKAAR ABDU | PAYMENT/TRANSFER OTHR S$ RAJA ZULFIKAAR ABDU via PayNow: FBQ8355K | OTHR S$ | PAYMENT/TRANSFER | 
+ | com.example.Transaction@342726f1 | 458.0 | 28/09/2020 | false | null | MOHAMED AJMEL BIN M | PAYMENT/TRANSFER OTHR MOHAMED AJMEL BIN M fba 2060j outstanding is cleared | OTHR | PAYMENT/TRANSFER | 
+ | com.example.Transaction@c808207 | 230.0 | 28/09/2020 | false | null | MUHAMMAD FAIZ TAJUD | PAYMENT/TRANSFER OTHR S$ MUHAMMAD FAIZ TAJUD via PayNow: FBP3638L | OTHR S$ | PAYMENT/TRANSFER | 
+ | com.example.Transaction@67110f71 | 355.0 | 28/09/2020 | false | null | OW YONG HOA LEON | PAYMENT/TRANSFER OTHR OW YONG HOA LEON Transfer | OTHR | PAYMENT/TRANSFER | 
+ | com.example.Transaction@3cd206b5 | 50.25 | 28/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44099 | POS SETTLEMENT | 
+ | com.example.Transaction@58e85c6f | 2832.85 | 28/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44100 | POS SETTLEMENT | 
+ | com.example.Transaction@a137d7a | -1.8 | 28/09/2020 | false | null | P200915 | GIRO CHARGES |  | GIRO CHARGES | 
+ | com.example.Transaction@6ac0b715 | -0.2 | 28/09/2020 | false | null | P200919 | GIRO CHARGES |  | GIRO CHARGES | 
+ | com.example.Transaction@468be356 | -0.2 | 28/09/2020 | false | null | P200920 | GIRO CHARGES |  | GIRO CHARGES | 
+ | com.example.Transaction@116a2108 | 265.0 | 28/09/2020 | false | null | 665417770001 | 3RD PTY TRANSFER ATM |  | 3RD PTY TRANSFER ATM | 
+ | com.example.Transaction@15d0849 | 260.0 | 28/09/2020 | false | null | NORIDAH BINTE OTHMA | SI               FBP1819R IBG GIRO | OTHR | IBG GIRO | 
+ | com.example.Transaction@6145b81e | -110.28 | 28/09/2020 | false | null | 186362 | CHQ186362 CHEQUE |  | CHEQUE | 
+ | com.example.Transaction@31e04b13 | 244.0 | 29/09/2020 | false | null | MOHAMAD FAIZAL BIN | PAYMENT/TRANSFER OTHR S$ MOHAMAD FAIZAL BIN via PayNow: 7407b | OTHR S$ | PAYMENT/TRANSFER | 
+ | com.example.Transaction@6c1832aa | 1325.55 | 29/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44102 | POS SETTLEMENT | 
+ | com.example.Transaction@5d01ea21 | 340.0 | 29/09/2020 | false | null |  | CASH DEPOSIT     CDM |  | CASH DEPOSIT     CDM | 
+ | com.example.Transaction@70f31322 | -30.0 | 29/09/2020 | false | null | LTA | LTAFBJ6039Z IBG GIRO | PADD 051108800008 | IBG GIRO | 
+ | com.example.Transaction@540b0448 | 94.0 | 30/09/2020 | false | null | from NG WENG LOON | LOAR - FBE7176E FUND TRANSFER | via PayNow-UEN | FUND TRANSFER | 
+ | com.example.Transaction@50a691d3 | 251.0 | 30/09/2020 | false | null | from FBL3296G FARID | OTHR - Other FUND TRANSFER |  | FUND TRANSFER | 
+ | com.example.Transaction@7308ffff | 1050.0 | 30/09/2020 | false | null | ATAN MOTOR | 11146097500 POS SETTLEMENT | 44103 | POS SETTLEMENT | 
+ | com.example.Transaction@15e0fe05 | -57.99 | 30/09/2020 | false | null | Singapore Telecommu | 68472174 IBG GIRO | COLL 68472174 | IBG GIRO | 
+ | com.example.Transaction@1128620c | -421.27 | 30/09/2020 | false | null | Singapore Telecommu | 11538363 IBG GIRO | COLL 11538363 | IBG GIRO | 
 &amp#27;[0m
-&amp#27;[36m ||||||||| PRINTING RECORDS ||||||||| :::COMPANY BOOKS records not found in BANK STATEMENT Record Count: (235)
+&amp#27;[36m ||||||||| PRINTING RECORDS ||||||||| :::COMPANY BOOKS records not found in BANK STATEMENT Record Count: (197)
  | Record Ref ID | Transaction Amount | Transaction Date | Reconciled? | Reconciled with Txn Ref ID | Transaction Description | 
- | com.example.Transaction@7f811d00 | -3.75 | 01/09/2020 | false | null | 186292:OCBC -- 186292:OCBC -- #67937 | 
- | com.example.Transaction@62923ee6 | -268714.82 | 111100 | false | null | BALANCE B/F | 
- | com.example.Transaction@4089713 | -17.1 | 01/09/2020 | false | null | JK:OCBC -- JK:OCBC -- FBC3952T LAY UP | 
- | com.example.Transaction@f19c9d2 | -25.0 | 01/09/2020 | false | null | AS:OCBC -- AS:OCBC -- FBR6338T ATAN TO OWNER | 
- | com.example.Transaction@7807ac2c | -25.0 | 01/09/2020 | false | null | AS:OCBC -- AS:OCBC -- FBR6347S ATAN TO OWNER | 
- | com.example.Transaction@b91d8c4 | -25.0 | 01/09/2020 | false | null | AS:OCBC -- AS:OCBC -- FBE1029L OWNER TO ATAN | 
- | com.example.Transaction@4b6166aa | 250.0 | 01/09/2020 | false | null | IBANKING -- IBANKING -- FBR1497A-001 : 006~006 IN | 
- | com.example.Transaction@a77614d | 250.0 | 01/09/2020 | false | null | PAYNOW -- PAYNOW -- FBJ6122R-002 : 009~009 IN | 
- | com.example.Transaction@4fd4cae3 | 240.0 | 01/09/2020 | false | null | NETS -- NETS -- FBP0585X-001 : 019~019 IN | 
- | com.example.Transaction@4a067c25 | 100.0 | 01/09/2020 | false | null | IBANKING -- IBANKING -- FBR6338T DOWN PAYMENT (1- | 
- | com.example.Transaction@a1217f9 | 218.0 | 01/09/2020 | false | null | IBANKING -- IBANKING -- FBQ4745U-001 : 011~011 IN | 
- | com.example.Transaction@3bde62ff | 251.0 | 01/09/2020 | false | null | IBANKING -- IBANKING -- FBL3296G-001 : 048~048 IN | 
- | com.example.Transaction@523424b5 | 438.0 | 01/09/2020 | false | null | IBANKING -- IBANKING -- FBG0332G-001 : 040~040 IN | 
- | com.example.Transaction@2baa8d82 | 200.0 | 01/09/2020 | false | null | IBANKING -- IBANKING -- FBA2060J-001 : 007~000 IN | 
- | com.example.Transaction@319dead1 | 160.0 | 01/09/2020 | false | null | IBANKING -- IBANKING -- FBK7313U-002 : 005~005 IN | 
- | com.example.Transaction@791cbf87 | -42.1 | 02/09/2020 | false | null | AS:OCBC -- AS:OCBC -- FBC2384P OWNER TO ATAN & | 
- | com.example.Transaction@a7e2d9d | 2026.0 | 02/09/2020 | false | null | SCB682618 -- SCB682618 -- FBK681C ACCIDENT CLAIM | 
- | com.example.Transaction@754777cd | 172.2 | 02/09/2020 | false | null | NETS -- NETS -- FBH7669J : JO202009-0001 | 
- | com.example.Transaction@2b52c0d6 | 50.0 | 02/09/2020 | false | null | NETS -- NETS -- FBQ0586M : JO201908-0019 | 
- | com.example.Transaction@372ea2bc | 236.5 | 02/09/2020 | false | null | NETS -- NETS -- FBF2978K : JO202008-0001 | 
- | com.example.Transaction@4cc76301 | 143.38 | 02/09/2020 | false | null | NETS -- NETS -- FBK4188J : JO202009-0002 | 
- | com.example.Transaction@2f08c4b | -1428.7 | 03/09/2020 | false | null | 186293:OCBC -- 186293:OCBC -- FBE3808S FBR6068Y FBK4960 | 
- | com.example.Transaction@3f19b8b3 | 246.1 | 03/09/2020 | false | null | NETS -- NETS -- FBG9091S : JO202007-0008 | 
- | com.example.Transaction@7de0c6ae | 34.25 | 03/09/2020 | false | null | NETS -- NETS -- FBQ8394Y : JO202002-0004 | 
- | com.example.Transaction@a486d78 | 79.2 | 03/09/2020 | false | null | NETS -- NETS -- FBR4422X : JO202007-0020 | 
- | com.example.Transaction@cdc3aae | 30.0 | 03/09/2020 | false | null | NETS -- NETS -- FBF8203Z : JO201504-0134 | 
- | com.example.Transaction@7ef2d7a6 | 244.0 | 03/09/2020 | false | null | IBANKING -- IBANKING -- FBL9839B-001 : 039~039 IN | 
- | com.example.Transaction@5dcbb60 | -64.0 | 04/09/2020 | false | null | JK:OCBC -- JK:OCBC -- FBN4034D 1YR R/T | 
- | com.example.Transaction@4c36250e | -757.56 | 04/09/2020 | false | null | P200905:OCBC -- P200905:OCBC -- AUG 2020 | 
- | com.example.Transaction@21526f6c | -904.15 | 04/09/2020 | false | null | P200907:OCBC -- P200907:OCBC -- AUG 2020 | 
- | com.example.Transaction@49f5c307 | -1697.5 | 04/09/2020 | false | null | P200908:OCBC -- P200908:OCBC -- DEC 2019 - JUN 2020 | 
- | com.example.Transaction@299266e2 | -842.09 | 04/09/2020 | false | null | P200909:OCBC -- P200909:OCBC -- JAN - JUL 2020 | 
- | com.example.Transaction@5471388b | 781.05 | 04/09/2020 | false | null | NETS -- NETS -- FBM3640R : JO201711-0005 | 
- | com.example.Transaction@66ea1466 | 117.7 | 04/09/2020 | false | null | NETS -- NETS -- FBL9612M : JO201903-0023 | 
- | com.example.Transaction@1601e47 | 2200.0 | 04/09/2020 | false | null | NETS -- NETS -- FBQ8096H BAL D/P | 
- | com.example.Transaction@3bffddff | 23.6 | 04/09/2020 | false | null | NETS -- NETS -- FBJ0402Y : JO201504-0263 | 
- | com.example.Transaction@66971f6b | 69.6 | 04/09/2020 | false | null | NETS -- NETS -- JSR6429M : JO202004-0008 | 
- | com.example.Transaction@50687efb | 28.95 | 04/09/2020 | false | null | NETS -- NETS -- JTH9676M : JO202006-0016 | 
- | com.example.Transaction@517bd097 | 58.85 | 05/09/2020 | false | null | NETS -- NETS -- FBM9819D : JO201806-0012 | 
- | com.example.Transaction@142eef62 | 32.0 | 05/09/2020 | false | null | NETS -- NETS -- FBP1458Z : JO201903-0026 | 
- | com.example.Transaction@4a9cc6cb | 10.7 | 05/09/2020 | false | null | PAYNOW -- PAYNOW -- FBL0193P : JO201611-0027 | 
- | com.example.Transaction@5990e6c5 | 263.0 | 05/09/2020 | false | null | PAYNOW -- PAYNOW -- FBL0193P-001 : 052~052 IN | 
- | com.example.Transaction@56e07a08 | 352.0 | 06/09/2020 | false | null | IBANKING -- IBANKING -- FBR1665G-001 : 006~006 IN | 
- | com.example.Transaction@35d6ca49 | 240.0 | 06/09/2020 | false | null | PAYNOW -- PAYNOW -- FBJ8075E-002 : 040~040 IN | 
- | com.example.Transaction@1950e8a6 | 322.0 | 06/09/2020 | false | null | PAYNOW -- PAYNOW -- FBR2590G-001 : 005~005 IN | 
- | com.example.Transaction@47289387 | 217.0 | 06/09/2020 | false | null | IBANKING -- IBANKING -- FBQ8185J-001 : 006~006 IN | 
- | com.example.Transaction@12cd9150 | 484.0 | 06/09/2020 | false | null | IBANKING -- IBANKING -- FBP6139L-001 : 017~017 IN | 
- | com.example.Transaction@114a85c2 | -32.0 | 07/09/2020 | false | null | JK:OCBC -- JK:OCBC -- FBM3142L R/T 6MTH | 
- | com.example.Transaction@f415a95 | -6468.23 | 07/09/2020 | false | null | P201001:OCBC -- P201001:OCBC -- JULY 2020 | 
- | com.example.Transaction@cf65451 | 45.0 | 07/09/2020 | false | null | NETS -- NETS -- FBJ8993E : JO201612-0005 | 
- | com.example.Transaction@724f138e | 85.6 | 07/09/2020 | false | null | NETS -- NETS -- FBP6503T : JO201905-0011 | 
- | com.example.Transaction@37eeec90 | 82.4 | 07/09/2020 | false | null | NETS -- NETS -- FBB6219M : JO201504-0270 | 
- | com.example.Transaction@32fe9d0a | 77.0 | 07/09/2020 | false | null | NETS -- NETS -- FBP9156S : JO201907-0041 | 
- | com.example.Transaction@c9413d8 | 23.55 | 07/09/2020 | false | null | NETS -- NETS -- FBH0172X : JO201504-0038 | 
- | com.example.Transaction@64da2a7 | 83.45 | 07/09/2020 | false | null | NETS -- NETS -- FBC2232U : JO201504-0078 | 
- | com.example.Transaction@46074492 | 261.0 | 07/09/2020 | false | null | PAYNOW -- PAYNOW -- FBP8163C-001 : 014~014 IN | 
- | com.example.Transaction@d78795 | -33444.86 | 08/09/2020 | false | null | 186294:OCBC -- 186294:OCBC -- JUL - AUG 2020 | 
- | com.example.Transaction@2c715e84 | -1960.0 | 08/09/2020 | false | null | P200910:OCBC -- P200910:OCBC -- IPAD PRO AND KEYBOARD | 
- | com.example.Transaction@47428937 | -32.0 | 08/09/2020 | false | null | AS:OCBC -- AS:OCBC -- FBM2621C R/T 6 MTHS | 
- | com.example.Transaction@3b9d6699 | -25.0 | 08/09/2020 | false | null | AS:OCBC -- AS:OCBC -- FBH8320H OWNER TO OWNER | 
- | com.example.Transaction@7caa550 | -25.0 | 08/09/2020 | false | null | AS:OCBC -- AS:OCBC -- FBE9353Y OWNER TO ATAN | 
- | com.example.Transaction@21694e53 | 583.15 | 08/09/2020 | false | null | NETS -- NETS -- FBE9557B : JO201912-0021 | 
- | com.example.Transaction@72b16078 | 177.7 | 08/09/2020 | false | null | NETS -- NETS -- FBG1213K : JO201807-0017 | 
- | com.example.Transaction@22c86919 | 59.95 | 08/09/2020 | false | null | NETS -- NETS -- FBR1665G : JO202003-0011 | 
- | com.example.Transaction@70fab835 | 203.0 | 08/09/2020 | false | null | IBANKING -- IBANKING -- FBP1309X-001 : 019~019 IN | 
- | com.example.Transaction@1b0a7baf | 254.0 | 08/09/2020 | false | null | IBANKING -- IBANKING -- FBP2944E-001 : 018~018 IN | 
- | com.example.Transaction@62417a16 | 350.0 | 08/09/2020 | false | null | PAYNOW -- PAYNOW -- FW9186X-001 : 010~010 INS | 
- | com.example.Transaction@32057e6 | 158.0 | 08/09/2020 | false | null | PAYNOW -- PAYNOW -- FBK7253J-002 : 023~023 IN | 
- | com.example.Transaction@26be6ca7 | -25.0 | 09/09/2020 | false | null | AS:OCBC -- AS:OCBC -- FBG4023Y ATAN TO OWNER | 
- | com.example.Transaction@6ea1bcdc | 96.3 | 09/09/2020 | false | null | NETS -- NETS -- FBD8165K : JO201504-0347 | 
- | com.example.Transaction@759fad4 | 60.0 | 09/09/2020 | false | null | NETS -- NETS -- FBJ3065S-003 : IN202009-0 | 
- | com.example.Transaction@64712be | 400.0 | 09/09/2020 | false | null | NETS -- NETS -- FBG4023Y | 
- | com.example.Transaction@53499d85 | 70.65 | 09/09/2020 | false | null | NETS -- NETS -- FBC4531T : JO201905-0024 | 
- | com.example.Transaction@30ed9c6c | 23.55 | 09/09/2020 | false | null | NETS -- NETS -- FBL9007K : JO201711-0011 | 
- | com.example.Transaction@782a4fff | -11901.33 | 10/09/2020 | false | null | 186196:OCBC -- 186196:OCBC -- MAY 2020 | 
- | com.example.Transaction@46c670a6 | -82.0 | 10/09/2020 | false | null | JK:OCBC -- JK:OCBC -- FBQ5546X R/T 6MTH & FINE | 
- | com.example.Transaction@59fc684e | 2660.0 | 10/09/2020 | false | null | 287685:DBS -- 287685:DBS -- FBN7255M ACCD CLAIMED | 
- | com.example.Transaction@5ae81e1 | 62.0 | 10/09/2020 | false | null | NETS -- NETS -- FBK9775G : JO201908-0008 | 
- | com.example.Transaction@2fd1731c | 37.45 | 10/09/2020 | false | null | NETS -- NETS -- FBB6219M : JO201504-0270 | 
- | com.example.Transaction@5ae76500 | 62.05 | 10/09/2020 | false | null | NETS -- NETS -- FBP1371P : JO201903-0002 | 
- | com.example.Transaction@6063d80a | 3300.0 | 10/09/2020 | false | null | NETS -- NETS -- FU7770H V/PRICE | 
- | com.example.Transaction@1133ec6e | 153.05 | 10/09/2020 | false | null | NETS -- NETS -- FBN7766E : JO202008-0018 | 
- | com.example.Transaction@355e34c7 | 702.4 | 10/09/2020 | false | null | IBANKING -- IBANKING -- FBP1371P-001 : 020~022 IN | 
- | com.example.Transaction@54709809 | 45.0 | 10/09/2020 | false | null | NETS -- NETS -- FBL7819Y : JO201711-0015 | 
- | com.example.Transaction@2a2da905 | -1258.46 | 11/09/2020 | false | null | 186296:OCBC -- 186296:OCBC -- FBQ8096H FBF4489S FBN3663 | 
- | com.example.Transaction@24f360b2 | 93.1 | 11/09/2020 | false | null | NETS -- NETS -- FQ2326L : JO202009-0011 | 
- | com.example.Transaction@60cf80e7 | 123.0 | 11/09/2020 | false | null | NETS -- NETS -- FBQ4869X-001 : 012~000 IN | 
- | com.example.Transaction@302fec27 | 90.95 | 11/09/2020 | false | null | NETS -- NETS -- FBP8737Y : JO201908-0010 | 
- | com.example.Transaction@770d0ea6 | 400.0 | 11/09/2020 | false | null | NETS -- NETS -- FBH5802D : JO201504-0423 | 
- | com.example.Transaction@48c40605 | 33.2 | 12/09/2020 | false | null | NETS -- NETS -- AZ0085G : JO201505-0057 | 
- | com.example.Transaction@54107f42 | 1700.0 | 12/09/2020 | false | null | NETS -- NETS -- FU7770H BAL V/P | 
- | com.example.Transaction@1b11ef33 | 100.65 | 12/09/2020 | false | null | NETS -- NETS -- FBP9268C : JO201907-0037 | 
- | com.example.Transaction@476aac9 | 112.45 | 12/09/2020 | false | null | NETS -- NETS -- FBH5064S : JO201504-0420 | 
- | com.example.Transaction@6cea706c | 44.95 | 12/09/2020 | false | null | NETS -- NETS -- FBH2745E : JO201801-0020 | 
- | com.example.Transaction@3bd7f8dc | 42.85 | 12/09/2020 | false | null | NETS -- NETS -- FBJ0832P : JO202008-0024 | 
- | com.example.Transaction@2f2bf0e2 | 128.4 | 12/09/2020 | false | null | NETS -- NETS -- FBM3627E : JO202009-0012 | 
- | com.example.Transaction@1eba372c | 53.5 | 12/09/2020 | false | null | NETS -- NETS -- FBK6986J : JO201706-0009 | 
- | com.example.Transaction@21ec5d87 | 193.0 | 12/09/2020 | false | null | IBANKING -- IBANKING -- FBP9517J-001 : 014~014 IN | 
- | com.example.Transaction@25f9407e | 202.0 | 12/09/2020 | false | null | IBANKING -- IBANKING -- FBG2736L-001 : 031~031 IN | 
- | com.example.Transaction@552518c3 | -1350.0 | 13/09/2020 | false | null | GIRO:OCBC -- GIRO:OCBC -- SJT1188L PREVIA [38/84] | 
- | com.example.Transaction@1a69561c | 246.0 | 13/09/2020 | false | null | IBANKING -- IBANKING -- FBK5286C-002 : 019~019 IN | 
- | com.example.Transaction@59aa20b3 | 202.0 | 13/09/2020 | false | null | IBANKING -- IBANKING -- FBL6182G-001 : 044~044 IN | 
- | com.example.Transaction@363f6148 | 360.0 | 13/09/2020 | false | null | IBANKING -- IBANKING -- FBG0756S-003 : 005~006 IN | 
- | com.example.Transaction@4b21844c | 270.0 | 13/09/2020 | false | null | IBANKING -- IBANKING -- FBP1782L-001 : 019~019 IN | 
- | com.example.Transaction@1b28f282 | 267.0 | 13/09/2020 | false | null | PAYNOW -- PAYNOW -- FBP1376B-001 : 019~019 IN | 
- | com.example.Transaction@138fe6ec | 216.0 | 13/09/2020 | false | null | IBANKING -- IBANKING -- FBP4314K-001 : 018~018 IN | 
- | com.example.Transaction@5e77f0f4 | 260.0 | 13/09/2020 | false | null | PAYNOW -- PAYNOW -- FBL9376U-002 : 012~012 IN | 
- | com.example.Transaction@19b30c92 | 10000.0 | 13/09/2020 | false | null | CASH -- CASH -- TRF : PETTY CASH TO CASH | 
- | com.example.Transaction@455351c4 | 9950.0 | 13/09/2020 | false | null | CASH -- CASH -- TRF : PETTY CASH TO CASH | 
- | com.example.Transaction@29876704 | 5850.0 | 13/09/2020 | false | null | CASH -- CASH -- TRF : PETTY CASH TO CASH | 
- | com.example.Transaction@4816c290 | -3970.17 | 14/09/2020 | false | null | P201007:OCBC -- P201007:OCBC -- AUGUST 2020 | 
- | com.example.Transaction@4940809c | -25.0 | 14/09/2020 | false | null | AS:OCBC -- AS:OCBC -- FBA291Y OWNER TO ATAN | 
- | com.example.Transaction@16423501 | -507.5 | 14/09/2020 | false | null | 186297:OCBC -- 186297:OCBC -- FBK276P FBN7509G FBH5987D | 
- | com.example.Transaction@4efcf8a | 70.65 | 14/09/2020 | false | null | NETS -- NETS -- FBN9425B : JO201901-0010 | 
- | com.example.Transaction@7a138fc5 | 226.0 | 14/09/2020 | false | null | IBANKING -- IBANKING -- FBR1534B-001 : 006~006 IN | 
- | com.example.Transaction@379ab47b | 190.0 | 14/09/2020 | false | null | NETS -- NETS -- FBB5016M : JO202003-0017 | 
- | com.example.Transaction@307765b4 | 258.0 | 14/09/2020 | false | null | PAYNOW -- PAYNOW -- FBL6793T-001 : 043~043 IN | 
- | com.example.Transaction@4a9e6faf | 234.0 | 14/09/2020 | false | null | PAYNOW -- PAYNOW -- FBM8055Y-002 : 008~008 IN | 
- | com.example.Transaction@2c95ac9e | 203.0 | 14/09/2020 | false | null | IBANKING -- IBANKING -- FBQ3081H-001 : 012~012 IN | 
- | com.example.Transaction@4e4efc1b | -4500.0 | 15/09/2020 | false | null | 186298:OCBC -- 186298:OCBC -- FBN7255M | 
- | com.example.Transaction@459f7aa3 | -2796.0 | 15/09/2020 | false | null | P200914:OCBC -- P200914:OCBC -- MAR - JUN 2020 | 
- | com.example.Transaction@7cc586a8 | -64.0 | 15/09/2020 | false | null | JK:OCBC -- JK:OCBC -- FBF6819K R/T 1YR | 
- | com.example.Transaction@7db534f2 | 30.0 | 15/09/2020 | false | null | NETS -- NETS -- FBL4650K : JO201909-0004 | 
- | com.example.Transaction@44a2b17b | 132.7 | 15/09/2020 | false | null | NETS -- NETS -- FBR6347S : JO202009-0014 | 
- | com.example.Transaction@7a56812e | 200.0 | 15/09/2020 | false | null | NETS -- NETS -- FBK5878U DEPOSIT HP 97557 | 
- | com.example.Transaction@2a76b80a | 690.15 | 15/09/2020 | false | null | NETS -- NETS -- FBJ2762U : JO201504-0227 | 
- | com.example.Transaction@7eb01b12 | 100.0 | 15/09/2020 | false | null | IBANKING -- IBANKING -- FBA2060J-001 : 008~000 IN | 
- | com.example.Transaction@2f4854d6 | 244.0 | 15/09/2020 | false | null | IBANKING -- IBANKING -- FBL8716D-001 : 041~041 IN | 
- | com.example.Transaction@61d9efe0 | 219.35 | 16/09/2020 | false | null | NETS -- NETS -- FBH1782D : JO202006-0013 | 
- | com.example.Transaction@7e70bd39 | 15.0 | 16/09/2020 | false | null | NETS -- NETS -- FBR3691S : JO202008-0007 | 
- | com.example.Transaction@e6516e | 130.0 | 16/09/2020 | false | null | NETS -- NETS -- FBP9042L : JO202008-0032 | 
- | com.example.Transaction@6de54b40 | 39.6 | 16/09/2020 | false | null | NETS -- NETS -- FY9955H : JO201507-0049 | 
- | com.example.Transaction@43ed0ff3 | -57.0 | 17/09/2020 | false | null | AS:OCBC -- AS:OCBC -- FBK2341X OWNER TO ATAN & | 
- | com.example.Transaction@388ffbc2 | -193.29 | 17/09/2020 | false | null | 186299:OCBC -- 186299:OCBC -- FBC2232U REFUND EXCESS IN | 
- | com.example.Transaction@a50b09c | 155.0 | 17/09/2020 | false | null | NETS -- NETS -- FBD9595X-001 : IN202009-0 | 
- | com.example.Transaction@4da855dd | 25791.88 | 17/09/2020 | false | null | IBANKING -- IBANKING -- BLK NO 23838 | 
- | com.example.Transaction@6691490c | 47.1 | 17/09/2020 | false | null | NETS -- NETS -- FBP8276K : JO201907-0010 | 
- | com.example.Transaction@2187fff7 | 182.0 | 17/09/2020 | false | null | NETS -- NETS -- FBN8849T : JO201901-0027 | 
- | com.example.Transaction@2e5c7f0b | 258.0 | 17/09/2020 | false | null | GIRO -- GIRO -- FBB9394U MSIG 2ND, R/T 1Y | 
- | com.example.Transaction@21d5c1a0 | 290.0 | 17/09/2020 | false | null | NETS -- NETS -- FBM1258A-001 : 037~037 IN | 
- | com.example.Transaction@4de025bf | 15.0 | 17/09/2020 | false | null | NETS -- NETS -- FBP9517J : JO202009-0017 | 
- | com.example.Transaction@538613b3 | 30.0 | 17/09/2020 | false | null | NETS -- NETS -- FBP9517J : JO202009-0017 | 
- | com.example.Transaction@1eef9aef | 70.0 | 17/09/2020 | false | null | NETS -- NETS -- HELMET | 
- | com.example.Transaction@11389053 | -64.2 | 18/09/2020 | false | null | 186300:OCBC -- 186300:OCBC -- A200900075 & A200901130 | 
- | com.example.Transaction@5db99216 | 160.5 | 18/09/2020 | false | null | NETS -- NETS -- FBL0605T : JO202008-0046 | 
- | com.example.Transaction@3ec11999 | 23.55 | 18/09/2020 | false | null | NETS -- NETS -- FBE7176E : JO202006-0015 | 
- | com.example.Transaction@5c1bd44c | 26.75 | 18/09/2020 | false | null | NETS -- NETS -- BRAKE PAD | 
- | com.example.Transaction@9f46d94 | 23.55 | 18/09/2020 | false | null | NETS -- NETS -- JTS2846M : JO202009-0018 | 
- | com.example.Transaction@18cc679e | -25.0 | 19/09/2020 | false | null | AS:OCBC -- AS:OCBC -- FBG7923E ATAN TO OWNER | 
- | com.example.Transaction@2e77b8cf | -25.0 | 19/09/2020 | false | null | AS:OCBC -- AS:OCBC -- FZ7271E OWNER TO ATAN | 
- | com.example.Transaction@2c4ca0f9 | -25.0 | 19/09/2020 | false | null | AS:OCBC -- AS:OCBC -- FBC2384P ATAN TO OWNER | 
- | com.example.Transaction@67ef029 | 2000.0 | 19/09/2020 | false | null | NETS -- NETS -- FBE1029L DEPOSIT | 
- | com.example.Transaction@7df587ef | 71.7 | 19/09/2020 | false | null | NETS -- NETS -- FBM2963R : JO201709-0016 | 
- | com.example.Transaction@6e57e95e | 3000.0 | 19/09/2020 | false | null | NETS -- NETS -- FBG7923E  VEHICLE PRICE B | 
- | com.example.Transaction@2755d705 | 110.25 | 19/09/2020 | false | null | NETS -- NETS -- FW7727Z : JO202009-0020 | 
- | com.example.Transaction@56db847e | 32.1 | 19/09/2020 | false | null | NETS -- NETS -- FBM4172T : JO201802-0022 | 
- | com.example.Transaction@740abb5 | 179.8 | 19/09/2020 | false | null | NETS -- NETS -- FBM9426D : JO202006-0007 | 
- | com.example.Transaction@560cbf1a | 78.0 | 19/09/2020 | false | null | NETS -- NETS -- HELMET | 
- | com.example.Transaction@5fe8b721 | 264.0 | 20/09/2020 | false | null | IBANKING -- IBANKING -- FBP3580P-001 : 018~018 IN | 
- | com.example.Transaction@551a20d6 | 120.0 | 20/09/2020 | false | null | IBANKING -- IBANKING -- FBK2060G-004 : 011~011 IN | 
- | com.example.Transaction@578524c3 | 12750.0 | 20/09/2020 | false | null | CASH -- CASH -- TRF : PETTY CASH TO CASH | 
- | com.example.Transaction@64c2b546 | 9950.0 | 20/09/2020 | false | null | CASH -- CASH -- TRF : PETTY CASH TO CASH | 
- | com.example.Transaction@7e094740 | -85.99 | 21/09/2020 | false | null | JK:OCBC -- JK:OCBC -- TOILETRIES & REFRESHMENT | 
- | com.example.Transaction@7a11c4c7 | 220.0 | 21/09/2020 | false | null | NETS -- NETS -- HELMET | 
- | com.example.Transaction@4cc547a | 90.95 | 21/09/2020 | false | null | NETS -- NETS -- FBG8149S : JO201712-0004 | 
- | com.example.Transaction@7555b920 | 354.0 | 21/09/2020 | false | null | IBANKING -- IBANKING -- FBM7628B-001 : 030~030 IN | 
- | com.example.Transaction@4152d38d | 189.0 | 21/09/2020 | false | null | IBANKING -- IBANKING -- FBQ8326U-001 : 006~006 IN | 
- | com.example.Transaction@3591009c | -64.0 | 22/09/2020 | false | null | JK:OCBC -- JK:OCBC -- FBQ4745U R/T 1YR | 
- | com.example.Transaction@5398edd0 | 48.2 | 22/09/2020 | false | null | NETS -- NETS -- FBL9007K : JO201711-0011 | 
- | com.example.Transaction@b5cc23a | 260.0 | 22/09/2020 | false | null | UOB676534 -- UOB676534 -- FBM1276Y FY7625Z | 
- | com.example.Transaction@5cc5b667 | -353.1 | 23/09/2020 | false | null | P200916:OCBC -- P200916:OCBC -- AR202009-0025 | 
- | com.example.Transaction@61edc883 | -3405.51 | 23/09/2020 | false | null | P200917:OCBC -- P200917:OCBC -- AR202005-0017, AR202006-0 | 
- | com.example.Transaction@758f4f03 | -2916.69 | 23/09/2020 | false | null | 186302:OCBC -- 186302:OCBC -- FBM3142L FBG5928E FW7324C | 
- | com.example.Transaction@182f1e9a | 344.6 | 23/09/2020 | false | null | NETS -- NETS -- FBQ4503B : JO201910-0014 | 
- | com.example.Transaction@6928f576 | 118.77 | 23/09/2020 | false | null | NETS -- NETS -- FBH4393Z : JO202007-0013 | 
- | com.example.Transaction@660e9100 | -64.0 | 24/09/2020 | false | null | JK:OCBC -- JK:OCBC -- FBQ4503B R/T 1YR | 
- | com.example.Transaction@69f63d95 | -7383.0 | 24/09/2020 | false | null | 186301:OCBC -- 186301:OCBC -- FBR6999K COE BAL REGN FEE | 
- | com.example.Transaction@9cd25ff | 128.4 | 24/09/2020 | false | null | NETS -- NETS -- FBC2232U : JO201504-0078 | 
- | com.example.Transaction@27e0f2f5 | 56.75 | 24/09/2020 | false | null | NETS -- NETS -- FY9955H : JO201507-0049 | 
- | com.example.Transaction@3574e198 | 314.7 | 24/09/2020 | false | null | NETS -- NETS -- FBM1607B : JO201709-0013 | 
- | com.example.Transaction@6db66836 | 424.75 | 24/09/2020 | false | null | NETS -- NETS -- FBG9596C : JO201905-0003 | 
- | com.example.Transaction@db44aa2 | 15.0 | 24/09/2020 | false | null | NETS -- NETS -- FBD5858P : JO202006-0011 | 
- | com.example.Transaction@2de366bb | 64.2 | 24/09/2020 | false | null | NETS -- NETS -- FBJ8432H : JO202006-0009 | 
- | com.example.Transaction@3f093abe | 10.7 | 24/09/2020 | false | null | NETS -- NETS -- FBJ8432H : JO202006-0009 | 
- | com.example.Transaction@61a002b1 | -2264.5 | 25/09/2020 | false | null | P200919:OCBC -- P200919:OCBC -- JUL - AUG 2020 | 
- | com.example.Transaction@4eeea57d | -110.46 | 25/09/2020 | false | null | P200920:OCBC -- P200920:OCBC -- CREDIT CARD BILLS | 
- | com.example.Transaction@780ec4a5 | -30.0 | 25/09/2020 | false | null | GIRO:OCBC -- GIRO:OCBC -- FBJ6039Z EXTN OF TEMP TT | 
- | com.example.Transaction@e24ddd0 | -109.28 | 25/09/2020 | false | null | GIRO:OCBC -- GIRO:OCBC -- SEP 2020 UTILITIES | 
- | com.example.Transaction@6f70f32f | 322.0 | 25/09/2020 | false | null | 056903:UOB -- 056903:UOB -- FBB9569H MSIG | 
- | com.example.Transaction@548e76f1 | 50.25 | 25/09/2020 | false | null | NETS -- NETS -- FBN8194Z : JO201901-0025 | 
- | com.example.Transaction@5aabbb29 | -25.0 | 26/09/2020 | false | null | JK:OCBC -- JK:OCBC -- FBP4146D OWNER TO ATAN | 
- | com.example.Transaction@72c927f1 | -25.0 | 26/09/2020 | false | null | JK:OCBC -- JK:OCBC -- FBR6999K ATAN TO OWNER | 
- | com.example.Transaction@1ac85b0c | -1150.0 | 26/09/2020 | false | null | 186163:OCBC -- 186163:OCBC -- FBB7712Z | 
- | com.example.Transaction@3dd69f5a | 2372.0 | 26/09/2020 | false | null | NETS -- NETS -- DEPOSIT UH200 | 
- | com.example.Transaction@3aa3193a | 45.0 | 26/09/2020 | false | null | NETS -- NETS -- FBR6304R : JO202009-0022 | 
- | com.example.Transaction@1ee4730 | 126.95 | 26/09/2020 | false | null | NETS -- NETS -- FBQ6819C : JO201911-0026 | 
- | com.example.Transaction@59a67c3a | 262.15 | 26/09/2020 | false | null | NETS -- NETS -- FBB3250R : JO201504-0244 | 
- | com.example.Transaction@5003041b | 26.75 | 26/09/2020 | false | null | NETS -- NETS -- FBJ3475S : JO202001-0008 | 
- | com.example.Transaction@724bade8 | 117.0 | 26/09/2020 | false | null | IBANKING -- IBANKING -- FBQ1405X-001 : 014~014 IN | 
- | com.example.Transaction@16fb356 | 217.0 | 26/09/2020 | false | null | IBANKING -- IBANKING -- FBQ2241U-001 : 013~013 IN | 
- | com.example.Transaction@6bc248ed | 281.0 | 27/09/2020 | false | null | IBANKING -- IBANKING -- FBM2040D-001 : 038~038 IN | 
- | com.example.Transaction@23a9ba52 | 210.0 | 27/09/2020 | false | null | PAYNOW -- PAYNOW -- FX0035C-001 : 014~014 INS | 
- | com.example.Transaction@ca27722 | 391.0 | 27/09/2020 | false | null | PAYNOW -- PAYNOW -- FBQ8355K-001 : 008~008 IN | 
- | com.example.Transaction@70ab80e3 | 458.0 | 27/09/2020 | false | null | IBANKING -- IBANKING -- FBA2060J-001 : 008~009 IN | 
- | com.example.Transaction@9573b3b | 230.0 | 27/09/2020 | false | null | PAYNOW -- PAYNOW -- FBP3628L-001 : 019~019 IN | 
- | com.example.Transaction@67427b69 | 260.0 | 27/09/2020 | false | null | PAYNOW -- PAYNOW -- FBQ4082Z-001 : 012~012 IN | 
- | com.example.Transaction@78461bc4 | 355.0 | 27/09/2020 | false | null | IBANKING -- IBANKING -- FBK9330G-001 : 054~054 IN | 
- | com.example.Transaction@544630b7 | 265.0 | 27/09/2020 | false | null | IBANKING -- IBANKING -- FBM0811J-001 : 039~039 IN | 
- | com.example.Transaction@64f857e7 | -7383.0 | 28/09/2020 | false | null | 186303:OCBC -- 186303:OCBC -- FBR7428K COE BAL REGN FEE | 
- | com.example.Transaction@1095f122 | -25.0 | 28/09/2020 | false | null | AS:OCBC -- AS:OCBC -- FBB7712Z OWNER TO ATAN | 
- | com.example.Transaction@58c540cf | -25.0 | 28/09/2020 | false | null | AS:OCBC -- AS:OCBC -- FBR7428K ATAN TO OWNER | 
- | com.example.Transaction@3d6300e8 | 212.95 | 28/09/2020 | false | null | NETS -- NETS -- FBG6438X : JO201504-0302 | 
- | com.example.Transaction@1b822fcc | 112.6 | 28/09/2020 | false | null | NETS -- NETS -- FBQ6876L : JO202009-0024 | 
- | com.example.Transaction@24a1c17f | 1000.0 | 28/09/2020 | false | null | NETS -- NETS -- FBQ203T DEPOSIT | 
- | com.example.Transaction@56102e1c | 244.0 | 28/09/2020 | false | null | PAYNOW -- PAYNOW -- FBQ7407B-001 : 010~010 IN | 
- | com.example.Transaction@73511076 | 295.0 | 28/09/2020 | false | null | 252473:RHB -- 252473:RHB -- FBP1203S-001 : 021~021 IN | 
- | com.example.Transaction@7927bd9f | -25.0 | 29/09/2020 | false | null | AS:OCBC -- AS:OCBC -- FBQ203T ATAN TO OWNER | 
- | com.example.Transaction@532721fd | 240.0 | 29/09/2020 | false | null | IBANKING -- IBANKING -- FY9021C-002 : 030~030 INS | 
- | com.example.Transaction@410954b | 1050.0 | 29/09/2020 | false | null | NETS -- NETS -- FBQ203T | 
- | com.example.Transaction@7fb9f71f | 100.0 | 29/09/2020 | false | null | IBANKING -- IBANKING -- FBL0679E-002 : 026~000 IN | 
- | com.example.Transaction@3b366632 | 94.0 | 29/09/2020 | false | null | PAYNOW -- PAYNOW -- FBE7176E-002 : 002~002 IN | 
- | com.example.Transaction@51f49060 | 251.0 | 29/09/2020 | false | null | IBANKING -- IBANKING -- FBL3296G-001 : 049~049 IN | 
- | com.example.Transaction@514eedd8 | -64.0 | 30/09/2020 | false | null | JK:OCBC -- JK:OCBC -- FBK5363M R/T 1 YR | 
- | com.example.Transaction@617fe9e1 | -2931.98 | 30/09/2020 | false | null | 186304:OCBC -- 186304:OCBC -- FBK5878U FBF6924P FBG650 | 
- | com.example.Transaction@6970140a | -800.0 | 30/09/2020 | false | null | 186164:OCBC -- 186164:OCBC -- FBK5878U COMMISSION | 
- | com.example.Transaction@1cf2fed4 | -4.5 | 30/09/2020 | false | null | GIRO:OCBC -- GIRO:OCBC -- SEP 2020 BANK CHARGES | 
- | com.example.Transaction@3af4e0bf | -479.26 | 30/09/2020 | false | null | GIRO:OCBC -- GIRO:OCBC -- SEP 2020 TEL CHARGES | 
- | com.example.Transaction@245a26e1 | 23.55 | 30/09/2020 | false | null | NETS -- NETS -- FBA7731Z : JO202007-0028 | 
- | com.example.Transaction@4d63b624 | 16.0 | 30/09/2020 | false | null | NETS -- NETS -- FBQ0203T : JO201907-0028 | 
- | com.example.Transaction@466cf502 | 30.0 | 30/09/2020 | false | null | NETS -- NETS -- FBM9426D : JO202006-0007 | 
- | com.example.Transaction@5b800468 | 24.6 | 30/09/2020 | false | null | NETS -- NETS -- FBH0172X : JO201504-0038 | 
- | com.example.Transaction@2e185cd7 | 62.1 | 30/09/2020 | false | null | NETS -- NETS -- FBH2745E : JO201801-0020 | 
- | com.example.Transaction@7e1a1da6 | 345.7 | 30/09/2020 | false | null | NETS -- NETS -- FBH1782D : JO202006-0013 | 
- | com.example.Transaction@5f7f2382 | 250.0 | 30/09/2020 | false | null | PAYNOW -- PAYNOW -- FBJ6122R-002 : 010~010 IN | 
- | com.example.Transaction@407cf41 | 286.0 | 30/09/2020 | false | null | PAYNOW -- PAYNOW -- FBP2680R-001 : 019~019 IN | 
+ | com.example.Transaction@1fba386c | -25.0 | 01/09/2020 | false | null | AS:OCBC -- AS:OCBC -- FBR6347S ATAN TO OWNER | 
+ | com.example.Transaction@7e736350 | -25.0 | 01/09/2020 | false | null | AS:OCBC -- AS:OCBC -- FBE1029L OWNER TO ATAN | 
+ | com.example.Transaction@36b310aa | 250.0 | 01/09/2020 | false | null | IBANKING -- IBANKING -- FBR1497A-001 : 006~006 IN | 
+ | com.example.Transaction@76c387f9 | 250.0 | 01/09/2020 | false | null | PAYNOW -- PAYNOW -- FBJ6122R-002 : 009~009 IN | 
+ | com.example.Transaction@3874b815 | 240.0 | 01/09/2020 | false | null | NETS -- NETS -- FBP0585X-001 : 019~019 IN | 
+ | com.example.Transaction@5d7835a8 | 100.0 | 01/09/2020 | false | null | IBANKING -- IBANKING -- FBR6338T DOWN PAYMENT (1- | 
+ | com.example.Transaction@736048ed | 218.0 | 01/09/2020 | false | null | IBANKING -- IBANKING -- FBQ4745U-001 : 011~011 IN | 
+ | com.example.Transaction@1976f537 | 251.0 | 01/09/2020 | false | null | IBANKING -- IBANKING -- FBL3296G-001 : 048~048 IN | 
+ | com.example.Transaction@45f421c | 438.0 | 01/09/2020 | false | null | IBANKING -- IBANKING -- FBG0332G-001 : 040~040 IN | 
+ | com.example.Transaction@1816e24a | 200.0 | 01/09/2020 | false | null | IBANKING -- IBANKING -- FBA2060J-001 : 007~000 IN | 
+ | com.example.Transaction@6940f685 | 160.0 | 01/09/2020 | false | null | IBANKING -- IBANKING -- FBK7313U-002 : 005~005 IN | 
+ | com.example.Transaction@47b179d7 | -42.1 | 02/09/2020 | false | null | AS:OCBC -- AS:OCBC -- FBC2384P OWNER TO ATAN & | 
+ | com.example.Transaction@39008c9f | 172.2 | 02/09/2020 | false | null | NETS -- NETS -- FBH7669J : JO202009-0001 | 
+ | com.example.Transaction@162b3d47 | 50.0 | 02/09/2020 | false | null | NETS -- NETS -- FBQ0586M : JO201908-0019 | 
+ | com.example.Transaction@783115d9 | 236.5 | 02/09/2020 | false | null | NETS -- NETS -- FBF2978K : JO202008-0001 | 
+ | com.example.Transaction@3402b4c9 | 143.38 | 02/09/2020 | false | null | NETS -- NETS -- FBK4188J : JO202009-0002 | 
+ | com.example.Transaction@95bb2a2 | 246.1 | 03/09/2020 | false | null | NETS -- NETS -- FBG9091S : JO202007-0008 | 
+ | com.example.Transaction@46d567cb | 34.25 | 03/09/2020 | false | null | NETS -- NETS -- FBQ8394Y : JO202002-0004 | 
+ | com.example.Transaction@363a3d15 | 79.2 | 03/09/2020 | false | null | NETS -- NETS -- FBR4422X : JO202007-0020 | 
+ | com.example.Transaction@173f73e7 | 30.0 | 03/09/2020 | false | null | NETS -- NETS -- FBF8203Z : JO201504-0134 | 
+ | com.example.Transaction@43a51d00 | 244.0 | 03/09/2020 | false | null | IBANKING -- IBANKING -- FBL9839B-001 : 039~039 IN | 
+ | com.example.Transaction@2e23c180 | -64.0 | 04/09/2020 | false | null | JK:OCBC -- JK:OCBC -- FBN4034D 1YR R/T | 
+ | com.example.Transaction@499683c4 | -904.15 | 04/09/2020 | false | null | P200907:OCBC -- P200907:OCBC -- AUG 2020 | 
+ | com.example.Transaction@25da615a | 781.05 | 04/09/2020 | false | null | NETS -- NETS -- FBM3640R : JO201711-0005 | 
+ | com.example.Transaction@4efc25fc | 117.7 | 04/09/2020 | false | null | NETS -- NETS -- FBL9612M : JO201903-0023 | 
+ | com.example.Transaction@7ee3d262 | 2200.0 | 04/09/2020 | false | null | NETS -- NETS -- FBQ8096H BAL D/P | 
+ | com.example.Transaction@396e6d9 | 23.6 | 04/09/2020 | false | null | NETS -- NETS -- FBJ0402Y : JO201504-0263 | 
+ | com.example.Transaction@75308740 | 69.6 | 04/09/2020 | false | null | NETS -- NETS -- JSR6429M : JO202004-0008 | 
+ | com.example.Transaction@5acc9fdf | 28.95 | 04/09/2020 | false | null | NETS -- NETS -- JTH9676M : JO202006-0016 | 
+ | com.example.Transaction@3a5c2626 | 58.85 | 05/09/2020 | false | null | NETS -- NETS -- FBM9819D : JO201806-0012 | 
+ | com.example.Transaction@e48bf9a | 32.0 | 05/09/2020 | false | null | NETS -- NETS -- FBP1458Z : JO201903-0026 | 
+ | com.example.Transaction@7fb33394 | 10.7 | 05/09/2020 | false | null | PAYNOW -- PAYNOW -- FBL0193P : JO201611-0027 | 
+ | com.example.Transaction@41bf79da | 263.0 | 05/09/2020 | false | null | PAYNOW -- PAYNOW -- FBL0193P-001 : 052~052 IN | 
+ | com.example.Transaction@1a891add | 352.0 | 06/09/2020 | false | null | IBANKING -- IBANKING -- FBR1665G-001 : 006~006 IN | 
+ | com.example.Transaction@5176d279 | 240.0 | 06/09/2020 | false | null | PAYNOW -- PAYNOW -- FBJ8075E-002 : 040~040 IN | 
+ | com.example.Transaction@373f7450 | 322.0 | 06/09/2020 | false | null | PAYNOW -- PAYNOW -- FBR2590G-001 : 005~005 IN | 
+ | com.example.Transaction@d74bac4 | 217.0 | 06/09/2020 | false | null | IBANKING -- IBANKING -- FBQ8185J-001 : 006~006 IN | 
+ | com.example.Transaction@5ff90645 | 484.0 | 06/09/2020 | false | null | IBANKING -- IBANKING -- FBP6139L-001 : 017~017 IN | 
+ | com.example.Transaction@387bf2d9 | -6468.23 | 07/09/2020 | false | null | P201001:OCBC -- P201001:OCBC -- JULY 2020 | 
+ | com.example.Transaction@74aa9c72 | 45.0 | 07/09/2020 | false | null | NETS -- NETS -- FBJ8993E : JO201612-0005 | 
+ | com.example.Transaction@5c20aab9 | 85.6 | 07/09/2020 | false | null | NETS -- NETS -- FBP6503T : JO201905-0011 | 
+ | com.example.Transaction@4b7c4456 | 82.4 | 07/09/2020 | false | null | NETS -- NETS -- FBB6219M : JO201504-0270 | 
+ | com.example.Transaction@2c768ada | 77.0 | 07/09/2020 | false | null | NETS -- NETS -- FBP9156S : JO201907-0041 | 
+ | com.example.Transaction@c1fca2a | 23.55 | 07/09/2020 | false | null | NETS -- NETS -- FBH0172X : JO201504-0038 | 
+ | com.example.Transaction@5533dc72 | 83.45 | 07/09/2020 | false | null | NETS -- NETS -- FBC2232U : JO201504-0078 | 
+ | com.example.Transaction@7c447c76 | 261.0 | 07/09/2020 | false | null | PAYNOW -- PAYNOW -- FBP8163C-001 : 014~014 IN | 
+ | com.example.Transaction@64fc097e | -25.0 | 08/09/2020 | false | null | AS:OCBC -- AS:OCBC -- FBE9353Y OWNER TO ATAN | 
+ | com.example.Transaction@1640c151 | 583.15 | 08/09/2020 | false | null | NETS -- NETS -- FBE9557B : JO201912-0021 | 
+ | com.example.Transaction@5d5b5fa7 | 177.7 | 08/09/2020 | false | null | NETS -- NETS -- FBG1213K : JO201807-0017 | 
+ | com.example.Transaction@2a32fb6 | 59.95 | 08/09/2020 | false | null | NETS -- NETS -- FBR1665G : JO202003-0011 | 
+ | com.example.Transaction@6107165 | 203.0 | 08/09/2020 | false | null | IBANKING -- IBANKING -- FBP1309X-001 : 019~019 IN | 
+ | com.example.Transaction@164a62bf | 254.0 | 08/09/2020 | false | null | IBANKING -- IBANKING -- FBP2944E-001 : 018~018 IN | 
+ | com.example.Transaction@11ebb1b6 | 350.0 | 08/09/2020 | false | null | PAYNOW -- PAYNOW -- FW9186X-001 : 010~010 INS | 
+ | com.example.Transaction@aaee2a2 | 158.0 | 08/09/2020 | false | null | PAYNOW -- PAYNOW -- FBK7253J-002 : 023~023 IN | 
+ | com.example.Transaction@f3021cb | 96.3 | 09/09/2020 | false | null | NETS -- NETS -- FBD8165K : JO201504-0347 | 
+ | com.example.Transaction@4aaae508 | 60.0 | 09/09/2020 | false | null | NETS -- NETS -- FBJ3065S-003 : IN202009-0 | 
+ | com.example.Transaction@6009bea | 400.0 | 09/09/2020 | false | null | NETS -- NETS -- FBG4023Y | 
+ | com.example.Transaction@7bc6d27a | 70.65 | 09/09/2020 | false | null | NETS -- NETS -- FBC4531T : JO201905-0024 | 
+ | com.example.Transaction@75769ab0 | 23.55 | 09/09/2020 | false | null | NETS -- NETS -- FBL9007K : JO201711-0011 | 
+ | com.example.Transaction@6869a3b3 | 62.0 | 10/09/2020 | false | null | NETS -- NETS -- FBK9775G : JO201908-0008 | 
+ | com.example.Transaction@6ab4ba9f | 37.45 | 10/09/2020 | false | null | NETS -- NETS -- FBB6219M : JO201504-0270 | 
+ | com.example.Transaction@27ace0b1 | 62.05 | 10/09/2020 | false | null | NETS -- NETS -- FBP1371P : JO201903-0002 | 
+ | com.example.Transaction@664e5dee | 3300.0 | 10/09/2020 | false | null | NETS -- NETS -- FU7770H V/PRICE | 
+ | com.example.Transaction@431f1eaf | 153.05 | 10/09/2020 | false | null | NETS -- NETS -- FBN7766E : JO202008-0018 | 
+ | com.example.Transaction@cb03411 | 702.4 | 10/09/2020 | false | null | IBANKING -- IBANKING -- FBP1371P-001 : 020~022 IN | 
+ | com.example.Transaction@4c59e45e | 45.0 | 10/09/2020 | false | null | NETS -- NETS -- FBL7819Y : JO201711-0015 | 
+ | com.example.Transaction@58ec7116 | 93.1 | 11/09/2020 | false | null | NETS -- NETS -- FQ2326L : JO202009-0011 | 
+ | com.example.Transaction@63bde6c2 | 123.0 | 11/09/2020 | false | null | NETS -- NETS -- FBQ4869X-001 : 012~000 IN | 
+ | com.example.Transaction@6ea04618 | 90.95 | 11/09/2020 | false | null | NETS -- NETS -- FBP8737Y : JO201908-0010 | 
+ | com.example.Transaction@6dd82486 | 400.0 | 11/09/2020 | false | null | NETS -- NETS -- FBH5802D : JO201504-0423 | 
+ | com.example.Transaction@56078cea | 33.2 | 12/09/2020 | false | null | NETS -- NETS -- AZ0085G : JO201505-0057 | 
+ | com.example.Transaction@5a00eb1e | 1700.0 | 12/09/2020 | false | null | NETS -- NETS -- FU7770H BAL V/P | 
+ | com.example.Transaction@36fcf6c0 | 100.65 | 12/09/2020 | false | null | NETS -- NETS -- FBP9268C : JO201907-0037 | 
+ | com.example.Transaction@1aac188d | 112.45 | 12/09/2020 | false | null | NETS -- NETS -- FBH5064S : JO201504-0420 | 
+ | com.example.Transaction@7026b7ee | 44.95 | 12/09/2020 | false | null | NETS -- NETS -- FBH2745E : JO201801-0020 | 
+ | com.example.Transaction@2d23faef | 42.85 | 12/09/2020 | false | null | NETS -- NETS -- FBJ0832P : JO202008-0024 | 
+ | com.example.Transaction@7cb8437d | 128.4 | 12/09/2020 | false | null | NETS -- NETS -- FBM3627E : JO202009-0012 | 
+ | com.example.Transaction@62a4417 | 53.5 | 12/09/2020 | false | null | NETS -- NETS -- FBK6986J : JO201706-0009 | 
+ | com.example.Transaction@43f61afb | 193.0 | 12/09/2020 | false | null | IBANKING -- IBANKING -- FBP9517J-001 : 014~014 IN | 
+ | com.example.Transaction@713064e8 | 202.0 | 12/09/2020 | false | null | IBANKING -- IBANKING -- FBG2736L-001 : 031~031 IN | 
+ | com.example.Transaction@4fad6218 | -1350.0 | 13/09/2020 | false | null | GIRO:OCBC -- GIRO:OCBC -- SJT1188L PREVIA [38/84] | 
+ | com.example.Transaction@1bf39d06 | 246.0 | 13/09/2020 | false | null | IBANKING -- IBANKING -- FBK5286C-002 : 019~019 IN | 
+ | com.example.Transaction@68217d41 | 202.0 | 13/09/2020 | false | null | IBANKING -- IBANKING -- FBL6182G-001 : 044~044 IN | 
+ | com.example.Transaction@1ac45389 | 360.0 | 13/09/2020 | false | null | IBANKING -- IBANKING -- FBG0756S-003 : 005~006 IN | 
+ | com.example.Transaction@3e5d4f6b | 270.0 | 13/09/2020 | false | null | IBANKING -- IBANKING -- FBP1782L-001 : 019~019 IN | 
+ | com.example.Transaction@39c1fe0b | 267.0 | 13/09/2020 | false | null | PAYNOW -- PAYNOW -- FBP1376B-001 : 019~019 IN | 
+ | com.example.Transaction@5ae95707 | 216.0 | 13/09/2020 | false | null | IBANKING -- IBANKING -- FBP4314K-001 : 018~018 IN | 
+ | com.example.Transaction@62891fc8 | 260.0 | 13/09/2020 | false | null | PAYNOW -- PAYNOW -- FBL9376U-002 : 012~012 IN | 
+ | com.example.Transaction@367b22e5 | 10000.0 | 13/09/2020 | false | null | CASH -- CASH -- TRF : PETTY CASH TO CASH | 
+ | com.example.Transaction@fca387 | 9950.0 | 13/09/2020 | false | null | CASH -- CASH -- TRF : PETTY CASH TO CASH | 
+ | com.example.Transaction@10bd9df0 | 5850.0 | 13/09/2020 | false | null | CASH -- CASH -- TRF : PETTY CASH TO CASH | 
+ | com.example.Transaction@3ae0b770 | -3970.17 | 14/09/2020 | false | null | P201007:OCBC -- P201007:OCBC -- AUGUST 2020 | 
+ | com.example.Transaction@55e3d6c3 | -25.0 | 14/09/2020 | false | null | AS:OCBC -- AS:OCBC -- FBA291Y OWNER TO ATAN | 
+ | com.example.Transaction@30e6a763 | 70.65 | 14/09/2020 | false | null | NETS -- NETS -- FBN9425B : JO201901-0010 | 
+ | com.example.Transaction@4c48fe92 | 226.0 | 14/09/2020 | false | null | IBANKING -- IBANKING -- FBR1534B-001 : 006~006 IN | 
+ | com.example.Transaction@732c9b5c | 190.0 | 14/09/2020 | false | null | NETS -- NETS -- FBB5016M : JO202003-0017 | 
+ | com.example.Transaction@38320e34 | 258.0 | 14/09/2020 | false | null | PAYNOW -- PAYNOW -- FBL6793T-001 : 043~043 IN | 
+ | com.example.Transaction@3d6a6bee | 234.0 | 14/09/2020 | false | null | PAYNOW -- PAYNOW -- FBM8055Y-002 : 008~008 IN | 
+ | com.example.Transaction@36ddaebf | 203.0 | 14/09/2020 | false | null | IBANKING -- IBANKING -- FBQ3081H-001 : 012~012 IN | 
+ | com.example.Transaction@213c3543 | -64.0 | 15/09/2020 | false | null | JK:OCBC -- JK:OCBC -- FBF6819K R/T 1YR | 
+ | com.example.Transaction@9d7ccfe | 30.0 | 15/09/2020 | false | null | NETS -- NETS -- FBL4650K : JO201909-0004 | 
+ | com.example.Transaction@670ce331 | 132.7 | 15/09/2020 | false | null | NETS -- NETS -- FBR6347S : JO202009-0014 | 
+ | com.example.Transaction@3cff0139 | 200.0 | 15/09/2020 | false | null | NETS -- NETS -- FBK5878U DEPOSIT HP 97557 | 
+ | com.example.Transaction@7c29adc8 | 690.15 | 15/09/2020 | false | null | NETS -- NETS -- FBJ2762U : JO201504-0227 | 
+ | com.example.Transaction@4b2e3e8f | 100.0 | 15/09/2020 | false | null | IBANKING -- IBANKING -- FBA2060J-001 : 008~000 IN | 
+ | com.example.Transaction@4bbb49b0 | 244.0 | 15/09/2020 | false | null | IBANKING -- IBANKING -- FBL8716D-001 : 041~041 IN | 
+ | com.example.Transaction@f096f37 | 219.35 | 16/09/2020 | false | null | NETS -- NETS -- FBH1782D : JO202006-0013 | 
+ | com.example.Transaction@3effd4f3 | 15.0 | 16/09/2020 | false | null | NETS -- NETS -- FBR3691S : JO202008-0007 | 
+ | com.example.Transaction@41f4fe5 | 130.0 | 16/09/2020 | false | null | NETS -- NETS -- FBP9042L : JO202008-0032 | 
+ | com.example.Transaction@15f8701f | 39.6 | 16/09/2020 | false | null | NETS -- NETS -- FY9955H : JO201507-0049 | 
+ | com.example.Transaction@514cd540 | 155.0 | 17/09/2020 | false | null | NETS -- NETS -- FBD9595X-001 : IN202009-0 | 
+ | com.example.Transaction@11d4dbd6 | 25791.88 | 17/09/2020 | false | null | IBANKING -- IBANKING -- BLK NO 23838 | 
+ | com.example.Transaction@6f4ade6e | 47.1 | 17/09/2020 | false | null | NETS -- NETS -- FBP8276K : JO201907-0010 | 
+ | com.example.Transaction@39e43310 | 182.0 | 17/09/2020 | false | null | NETS -- NETS -- FBN8849T : JO201901-0027 | 
+ | com.example.Transaction@eb507b9 | 258.0 | 17/09/2020 | false | null | GIRO -- GIRO -- FBB9394U MSIG 2ND, R/T 1Y | 
+ | com.example.Transaction@390877d2 | 290.0 | 17/09/2020 | false | null | NETS -- NETS -- FBM1258A-001 : 037~037 IN | 
+ | com.example.Transaction@86733 | 15.0 | 17/09/2020 | false | null | NETS -- NETS -- FBP9517J : JO202009-0017 | 
+ | com.example.Transaction@186cb891 | 30.0 | 17/09/2020 | false | null | NETS -- NETS -- FBP9517J : JO202009-0017 | 
+ | com.example.Transaction@3ec2ecea | 70.0 | 17/09/2020 | false | null | NETS -- NETS -- HELMET | 
+ | com.example.Transaction@440eaa07 | 160.5 | 18/09/2020 | false | null | NETS -- NETS -- FBL0605T : JO202008-0046 | 
+ | com.example.Transaction@7fc7c4a | 23.55 | 18/09/2020 | false | null | NETS -- NETS -- FBE7176E : JO202006-0015 | 
+ | com.example.Transaction@7aa9e414 | 26.75 | 18/09/2020 | false | null | NETS -- NETS -- BRAKE PAD | 
+ | com.example.Transaction@53a5e217 | 23.55 | 18/09/2020 | false | null | NETS -- NETS -- JTS2846M : JO202009-0018 | 
+ | com.example.Transaction@624a24f6 | -25.0 | 19/09/2020 | false | null | AS:OCBC -- AS:OCBC -- FZ7271E OWNER TO ATAN | 
+ | com.example.Transaction@6b00ad9 | -25.0 | 19/09/2020 | false | null | AS:OCBC -- AS:OCBC -- FBC2384P ATAN TO OWNER | 
+ | com.example.Transaction@338cc75f | 2000.0 | 19/09/2020 | false | null | NETS -- NETS -- FBE1029L DEPOSIT | 
+ | com.example.Transaction@4f453e63 | 71.7 | 19/09/2020 | false | null | NETS -- NETS -- FBM2963R : JO201709-0016 | 
+ | com.example.Transaction@7c9bdee9 | 3000.0 | 19/09/2020 | false | null | NETS -- NETS -- FBG7923E  VEHICLE PRICE B | 
+ | com.example.Transaction@7afbf561 | 110.25 | 19/09/2020 | false | null | NETS -- NETS -- FW7727Z : JO202009-0020 | 
+ | com.example.Transaction@2f98635e | 32.1 | 19/09/2020 | false | null | NETS -- NETS -- FBM4172T : JO201802-0022 | 
+ | com.example.Transaction@49c8f6e8 | 179.8 | 19/09/2020 | false | null | NETS -- NETS -- FBM9426D : JO202006-0007 | 
+ | com.example.Transaction@6b0615ae | 78.0 | 19/09/2020 | false | null | NETS -- NETS -- HELMET | 
+ | com.example.Transaction@4e73b552 | 264.0 | 20/09/2020 | false | null | IBANKING -- IBANKING -- FBP3580P-001 : 018~018 IN | 
+ | com.example.Transaction@221dad51 | 120.0 | 20/09/2020 | false | null | IBANKING -- IBANKING -- FBK2060G-004 : 011~011 IN | 
+ | com.example.Transaction@2cec704c | 12750.0 | 20/09/2020 | false | null | CASH -- CASH -- TRF : PETTY CASH TO CASH | 
+ | com.example.Transaction@771cbb1a | 9950.0 | 20/09/2020 | false | null | CASH -- CASH -- TRF : PETTY CASH TO CASH | 
+ | com.example.Transaction@2416498e | -85.99 | 21/09/2020 | false | null | JK:OCBC -- JK:OCBC -- TOILETRIES & REFRESHMENT | 
+ | com.example.Transaction@6b2e0f78 | 220.0 | 21/09/2020 | false | null | NETS -- NETS -- HELMET | 
+ | com.example.Transaction@240f6c41 | 90.95 | 21/09/2020 | false | null | NETS -- NETS -- FBG8149S : JO201712-0004 | 
+ | com.example.Transaction@3659d7b1 | 354.0 | 21/09/2020 | false | null | IBANKING -- IBANKING -- FBM7628B-001 : 030~030 IN | 
+ | com.example.Transaction@2015b2cd | 189.0 | 21/09/2020 | false | null | IBANKING -- IBANKING -- FBQ8326U-001 : 006~006 IN | 
+ | com.example.Transaction@3bdb2c78 | -64.0 | 22/09/2020 | false | null | JK:OCBC -- JK:OCBC -- FBQ4745U R/T 1YR | 
+ | com.example.Transaction@64693226 | 48.2 | 22/09/2020 | false | null | NETS -- NETS -- FBL9007K : JO201711-0011 | 
+ | com.example.Transaction@1c758545 | -2916.69 | 23/09/2020 | false | null | 186302:OCBC -- 186302:OCBC -- FBM3142L FBG5928E FW7324C | 
+ | com.example.Transaction@117bcfdc | 344.6 | 23/09/2020 | false | null | NETS -- NETS -- FBQ4503B : JO201910-0014 | 
+ | com.example.Transaction@73a19967 | 118.77 | 23/09/2020 | false | null | NETS -- NETS -- FBH4393Z : JO202007-0013 | 
+ | com.example.Transaction@5e746d37 | 128.4 | 24/09/2020 | false | null | NETS -- NETS -- FBC2232U : JO201504-0078 | 
+ | com.example.Transaction@6e1b9411 | 56.75 | 24/09/2020 | false | null | NETS -- NETS -- FY9955H : JO201507-0049 | 
+ | com.example.Transaction@21d1b321 | 314.7 | 24/09/2020 | false | null | NETS -- NETS -- FBM1607B : JO201709-0013 | 
+ | com.example.Transaction@5ec46cdd | 424.75 | 24/09/2020 | false | null | NETS -- NETS -- FBG9596C : JO201905-0003 | 
+ | com.example.Transaction@2324bfe7 | 15.0 | 24/09/2020 | false | null | NETS -- NETS -- FBD5858P : JO202006-0011 | 
+ | com.example.Transaction@112d1c8e | 64.2 | 24/09/2020 | false | null | NETS -- NETS -- FBJ8432H : JO202006-0009 | 
+ | com.example.Transaction@3d49fd31 | 10.7 | 24/09/2020 | false | null | NETS -- NETS -- FBJ8432H : JO202006-0009 | 
+ | com.example.Transaction@4016ccc1 | -30.0 | 25/09/2020 | false | null | GIRO:OCBC -- GIRO:OCBC -- FBJ6039Z EXTN OF TEMP TT | 
+ | com.example.Transaction@46cb98a3 | -109.28 | 25/09/2020 | false | null | GIRO:OCBC -- GIRO:OCBC -- SEP 2020 UTILITIES | 
+ | com.example.Transaction@3ffb3598 | 50.25 | 25/09/2020 | false | null | NETS -- NETS -- FBN8194Z : JO201901-0025 | 
+ | com.example.Transaction@4da9f723 | -25.0 | 26/09/2020 | false | null | JK:OCBC -- JK:OCBC -- FBR6999K ATAN TO OWNER | 
+ | com.example.Transaction@3b2f4a93 | 2372.0 | 26/09/2020 | false | null | NETS -- NETS -- DEPOSIT UH200 | 
+ | com.example.Transaction@213bd3d5 | 45.0 | 26/09/2020 | false | null | NETS -- NETS -- FBR6304R : JO202009-0022 | 
+ | com.example.Transaction@470a659f | 126.95 | 26/09/2020 | false | null | NETS -- NETS -- FBQ6819C : JO201911-0026 | 
+ | com.example.Transaction@451882b2 | 262.15 | 26/09/2020 | false | null | NETS -- NETS -- FBB3250R : JO201504-0244 | 
+ | com.example.Transaction@4a23350 | 26.75 | 26/09/2020 | false | null | NETS -- NETS -- FBJ3475S : JO202001-0008 | 
+ | com.example.Transaction@7b78ed6a | 117.0 | 26/09/2020 | false | null | IBANKING -- IBANKING -- FBQ1405X-001 : 014~014 IN | 
+ | com.example.Transaction@6fca5907 | 217.0 | 26/09/2020 | false | null | IBANKING -- IBANKING -- FBQ2241U-001 : 013~013 IN | 
+ | com.example.Transaction@6ec65b5e | 281.0 | 27/09/2020 | false | null | IBANKING -- IBANKING -- FBM2040D-001 : 038~038 IN | 
+ | com.example.Transaction@7bebcd65 | 210.0 | 27/09/2020 | false | null | PAYNOW -- PAYNOW -- FX0035C-001 : 014~014 INS | 
+ | com.example.Transaction@47447ccf | 391.0 | 27/09/2020 | false | null | PAYNOW -- PAYNOW -- FBQ8355K-001 : 008~008 IN | 
+ | com.example.Transaction@7afb1741 | 458.0 | 27/09/2020 | false | null | IBANKING -- IBANKING -- FBA2060J-001 : 008~009 IN | 
+ | com.example.Transaction@263bbfeb | 230.0 | 27/09/2020 | false | null | PAYNOW -- PAYNOW -- FBP3628L-001 : 019~019 IN | 
+ | com.example.Transaction@31edeac | 260.0 | 27/09/2020 | false | null | PAYNOW -- PAYNOW -- FBQ4082Z-001 : 012~012 IN | 
+ | com.example.Transaction@67d86804 | 355.0 | 27/09/2020 | false | null | IBANKING -- IBANKING -- FBK9330G-001 : 054~054 IN | 
+ | com.example.Transaction@45bb2aa1 | 265.0 | 27/09/2020 | false | null | IBANKING -- IBANKING -- FBM0811J-001 : 039~039 IN | 
+ | com.example.Transaction@3e84111a | -25.0 | 28/09/2020 | false | null | AS:OCBC -- AS:OCBC -- FBB7712Z OWNER TO ATAN | 
+ | com.example.Transaction@4b1a43d8 | -25.0 | 28/09/2020 | false | null | AS:OCBC -- AS:OCBC -- FBR7428K ATAN TO OWNER | 
+ | com.example.Transaction@6fa69af7 | 212.95 | 28/09/2020 | false | null | NETS -- NETS -- FBG6438X : JO201504-0302 | 
+ | com.example.Transaction@73545b80 | 112.6 | 28/09/2020 | false | null | NETS -- NETS -- FBQ6876L : JO202009-0024 | 
+ | com.example.Transaction@6d469831 | 1000.0 | 28/09/2020 | false | null | NETS -- NETS -- FBQ203T DEPOSIT | 
+ | com.example.Transaction@74db12c2 | 244.0 | 28/09/2020 | false | null | PAYNOW -- PAYNOW -- FBQ7407B-001 : 010~010 IN | 
+ | com.example.Transaction@2ff15f8c | -25.0 | 29/09/2020 | false | null | AS:OCBC -- AS:OCBC -- FBQ203T ATAN TO OWNER | 
+ | com.example.Transaction@7ea899a9 | 240.0 | 29/09/2020 | false | null | IBANKING -- IBANKING -- FY9021C-002 : 030~030 INS | 
+ | com.example.Transaction@2776015d | 1050.0 | 29/09/2020 | false | null | NETS -- NETS -- FBQ203T | 
+ | com.example.Transaction@b174a73 | 100.0 | 29/09/2020 | false | null | IBANKING -- IBANKING -- FBL0679E-002 : 026~000 IN | 
+ | com.example.Transaction@2e3f79a2 | 94.0 | 29/09/2020 | false | null | PAYNOW -- PAYNOW -- FBE7176E-002 : 002~002 IN | 
+ | com.example.Transaction@1460c81d | 251.0 | 29/09/2020 | false | null | IBANKING -- IBANKING -- FBL3296G-001 : 049~049 IN | 
+ | com.example.Transaction@38b5f25 | -64.0 | 30/09/2020 | false | null | JK:OCBC -- JK:OCBC -- FBK5363M R/T 1 YR | 
+ | com.example.Transaction@327ed9f5 | -2931.98 | 30/09/2020 | false | null | 186304:OCBC -- 186304:OCBC -- FBK5878U FBF6924P FBG650 | 
+ | com.example.Transaction@67594471 | -800.0 | 30/09/2020 | false | null | 186164:OCBC -- 186164:OCBC -- FBK5878U COMMISSION | 
+ | com.example.Transaction@756b58a7 | -4.5 | 30/09/2020 | false | null | GIRO:OCBC -- GIRO:OCBC -- SEP 2020 BANK CHARGES | 
+ | com.example.Transaction@2cc04358 | -479.26 | 30/09/2020 | false | null | GIRO:OCBC -- GIRO:OCBC -- SEP 2020 TEL CHARGES | 
+ | com.example.Transaction@68b58644 | 23.55 | 30/09/2020 | false | null | NETS -- NETS -- FBA7731Z : JO202007-0028 | 
+ | com.example.Transaction@45e22def | 16.0 | 30/09/2020 | false | null | NETS -- NETS -- FBQ0203T : JO201907-0028 | 
+ | com.example.Transaction@6ae3fb94 | 30.0 | 30/09/2020 | false | null | NETS -- NETS -- FBM9426D : JO202006-0007 | 
+ | com.example.Transaction@4417af13 | 24.6 | 30/09/2020 | false | null | NETS -- NETS -- FBH0172X : JO201504-0038 | 
+ | com.example.Transaction@d48673 | 62.1 | 30/09/2020 | false | null | NETS -- NETS -- FBH2745E : JO201801-0020 | 
+ | com.example.Transaction@548d5ed3 | 345.7 | 30/09/2020 | false | null | NETS -- NETS -- FBH1782D : JO202006-0013 | 
+ | com.example.Transaction@21c7208d | 250.0 | 30/09/2020 | false | null | PAYNOW -- PAYNOW -- FBJ6122R-002 : 010~010 IN | 
+ | com.example.Transaction@58516c91 | 286.0 | 30/09/2020 | false | null | PAYNOW -- PAYNOW -- FBP2680R-001 : 019~019 IN | 
 &amp#27;[0m
 ]]></system-out>
   </testcase>
-  <testcase name="expect_reconciliation_is_for_two_set_of_records" classname="com.example.tests.TestReconciliationTool" time="0.003">
+  <testcase name="expect_reconciliation_is_for_two_set_of_records" classname="com.example.tests.TestReconciliationTool" time="0.002">
     <system-out><![CDATA[Bank Statement Balance Computed: 322555.06
 ]]></system-out>
   </testcase>
-  <testcase name="expect_able_to_pass_in_bankrecords_and_companyrecords" classname="com.example.tests.TestReconciliationTool" time="0.001">
-    <system-out><![CDATA[Bank Statement Balance Computed: 322555.06
-]]></system-out>
-  </testcase>
-  <testcase name="expect_reconciled_records_transaction_dates_are_the_same" classname="com.example.tests.TestReconciliationTool" time="0.212">
+  <testcase name="expect_able_to_pass_in_bankrecords_and_companyrecords" classname="com.example.tests.TestReconciliationTool" time="0.002">
     <system-out><![CDATA[Bank Statement Balance Computed: 322555.06
 ]]></system-out>
   </testcase>

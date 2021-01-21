@@ -60,17 +60,57 @@ public class ReconciliationTool {
     }
 
 
-    public void runReconBasedOnArr1() {
+    public void runRecon() {
+
+        Transaction matchedTxn;
 
         for (Transaction txn : array1) {
-            Transaction matchedTxn = reconTransactionInArr2_withGoodMatches(txn.transactionAmount,txn.transactionDate,txn.toString());
+
+            if(txn.chequeNo != null){
+                matchedTxn = reconTransactionInArr2_forCheques(txn.chequeNo,txn.transactionAmount, txn.getTransactionRefIDString());
+            }
+            else {
+                matchedTxn = reconTransactionInArr2_withGoodMatches(txn.transactionAmount, txn.transactionDate, txn.toString());
+            } if(matchedTxn == null){
+
+                //LTA Transactions based on reference date (refdate)
+                matchedTxn = reconTransactionInArr2_forLTA(txn.refdate,txn.transactionAmount,txn.getTransactionRefIDString());
+            }
+
             if(matchedTxn != null) {
                 txn.reconciled = true;
                 txn.reconciledTxnRefID = matchedTxn.toString();
                 arr1_pendingReconRecords.remove(txn);
+                arr2_pendingReconRecords.remove(matchedTxn);
             }
         }
 
+    }
+
+    public Transaction reconTransactionInArr2_forCheques(String chq, double txnAmt, String arr1TxnRefID){
+        for (Transaction record : array2) {
+            if(record.transactionDesc.contains(chq) && record.transactionAmount == txnAmt){
+               // System.out.println(chq);
+                record.reconciled = true;
+                record.reconciledTxnRefID = arr1TxnRefID;
+                return record;
+            }
+        }
+        return null;
+    }
+
+    public Transaction reconTransactionInArr2_forLTA(String refDate, double txnAmt, String arr1TxnRefID){
+
+        for (Transaction record : array2) {
+
+            if(record.transactionDate.equals(refDate) && record.transactionAmount == txnAmt){
+               // System.out.println(record.transactionDate+"|"+record.transactionDesc + "|" + record.transactionAmount);
+                record.reconciled = true;
+                record.reconciledTxnRefID = arr1TxnRefID;
+                return record;
+            }
+        }
+        return null;
     }
 
     public Transaction reconTransactionInArr2_withGoodMatches(double txnAmt, String txnDate, String arr1TxnRefID){
@@ -107,6 +147,7 @@ public class ReconciliationTool {
         }
         return txnFound;
     }
+
 
     public void printRecordsSummary() {
 

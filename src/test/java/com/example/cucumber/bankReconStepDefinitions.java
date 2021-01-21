@@ -34,7 +34,7 @@ public class bankReconStepDefinitions {
 
     @When("reconciling bank record with company record")
     public void reconciling_bank_record_with_company_record() {
-        reconKit.runReconBasedOnArr1();
+        reconKit.runRecon();
     }
 
     @Then("the transaction is considered reconciled")
