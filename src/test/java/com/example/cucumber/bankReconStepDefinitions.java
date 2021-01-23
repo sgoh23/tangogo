@@ -34,7 +34,7 @@ public class bankReconStepDefinitions {
 
     @When("reconciling bank record with company record")
     public void reconciling_bank_record_with_company_record() {
-        reconKit.runReconBasedOnArr1();
+        reconKit.runRecon();
     }
 
     @Then("the transaction is considered reconciled")
@@ -49,7 +49,7 @@ public class bankReconStepDefinitions {
         stmtRecord = reconKit.getArr1PendingReconTxn(double1,date);
         assertNotNull(stmtRecord,"Bank statement has this amount: " + double1);
 
-        Transaction txn = reconKit.reconTransactionInArr2_withGoodMatches(double1,date, stmtRecord.toString());
+        Transaction txn = reconKit.reconTransaction_forAllByDateAndAmount(double1,date, stmtRecord.toString());
         assertNull(txn, "Company Books does not have this record amount nor transaction");
     }
 
@@ -60,7 +60,7 @@ public class bankReconStepDefinitions {
 
     @When("Company Book has an amount {double} recorded on {string} and not found in bank statement")
     public void company_book_has_an_amount_recorded_and_not_found_in_bank_statement(Double double1, String date) {
-        Transaction companyRecord = reconKit.reconTransactionInArr2_withGoodMatches(double1, date, "Test@Transaction");
+        Transaction companyRecord = reconKit.reconTransaction_forAllByDateAndAmount(double1, date, "Test@Transaction");
         assertNotNull(companyRecord,"Company has a record amount: "+double1+ " on "+date);
 
        Transaction txn = reconKit.getArr1PendingReconTxn(double1,date);

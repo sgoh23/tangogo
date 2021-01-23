@@ -1,5 +1,8 @@
 package com.example;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 
 public class CompanyBankAccount {
@@ -7,6 +10,7 @@ public class CompanyBankAccount {
     ArrayList<Transaction> coyCashinBankRecords = new ArrayList<>();
 
     double coyCashinBankBalance;
+    final static String coyNETSCode = "NETS -- NETS";
 
     public CompanyBankAccount() {
         initiateCoyCashinBankRecords();
@@ -28,7 +32,6 @@ public class CompanyBankAccount {
 
     public void initiateTestRecords(){
         coyCashinBankRecords.add(new Transaction(-3.75,"01/09/2020","186292:OCBC -- 186292:OCBC -- #67937"));
-        coyCashinBankRecords.add(new Transaction(-268714.82,"111100","BALANCE B/F"));
         coyCashinBankRecords.add(new Transaction(-17.1,"01/09/2020","JK:OCBC -- JK:OCBC -- FBC3952T LAY UP"));
         coyCashinBankRecords.add(new Transaction(-25,"01/09/2020","AS:OCBC -- AS:OCBC -- FBR6338T ATAN TO OWNER"));
         coyCashinBankRecords.add(new Transaction(-25,"01/09/2020","AS:OCBC -- AS:OCBC -- FBR6347S ATAN TO OWNER"));
@@ -672,21 +675,19 @@ public class CompanyBankAccount {
         return coyCashinBankRecords.size();
     }
 
+    public Map<String, Double> getNETSSummary(){
 
-//    public double getCoyCashinBankBalance(){
-//
-//        coyCashinBankBalance = 0.00;
-//        try{
-//            for (Transaction record : coyCashinBankRecords) {
-//                coyCashinBankBalance += record.transactionAmount;
-//            }
-//
-//        }catch(Exception e){
-//            e.printStackTrace();
-//        }
-//
-//        return coyCashinBankBalance;
-//    }
+        List<Transaction> pendingNets = coyCashinBankRecords.stream()
+                .filter(x -> coyNETSCode.equals(x.getTransactionChannel()))
+                .collect(Collectors.toList());
 
+        Map<String, Double> sumByDate = pendingNets.stream().collect(
+                Collectors.groupingBy(Transaction::getTransactionDate,
+                        Collectors.summingDouble(Transaction::getTransactionAmount)));
+
+       // System.out.println(sumByDate);
+
+        return sumByDate;
+    }
 
 }
