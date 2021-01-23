@@ -216,6 +216,44 @@ public class TestReconciliationTool {
         }
     }
 
+
+    @Test
+    public void expect_AfterReconRun_suggests_remaining_pending_may_match_amount(){
+
+        reconKit.runRecon();
+        reconKit.runReconForNETSTransactions();
+
+        List<Transaction> mayMatches = reconKit.mayMatchRecords.stream()
+                .filter(t -> t.reconciled &&
+                        t.transactionChannel.equals("MAY-MATCH"))
+                .collect(Collectors.toList());
+
+        reconKit.printRecords(mayMatches,"MAY MATCH");
+        if(mayMatches.size()==0){
+            assertNotEquals(0,mayMatches.size(),"Supposed to have some suggested may-matches");
+        }
+
+        for(Transaction txn : mayMatches){
+
+            Transaction reconWithTxn = reconKit.array2.stream()
+                    .filter(x -> x.getTransactionRefIDString().equals(txn.reconciledTxnRefID))
+                    .findAny()
+                    .orElse(null);
+
+            if(reconWithTxn != null){
+
+                assertTrue(reconWithTxn.reconciled,"Suppose to flag as reconciled on company");
+                assertEquals(reconWithTxn.getTransactionRefIDString(),txn.reconciledTxnRefID,"Supposed to return the right transaction reference");
+                assertEquals(txn.transactionAmount,reconWithTxn.transactionAmount,"Supposed to match amount");
+            }else{
+                assertFalse(txn.reconciled);
+                assertEquals("",txn.reconciledTxnRefID);
+            }
+        }
+
+
+    }
+
     @Test
     public void expect_able_to_tell_which_records_on_array1_unable_to_reconcile() {
 

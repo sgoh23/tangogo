@@ -13,6 +13,8 @@ public class ReconciliationTool {
 
     public ArrayList<Transaction> arr1_pendingReconRecords = new ArrayList<>();
     public ArrayList<Transaction> arr2_pendingReconRecords = new ArrayList<>();
+    public ArrayList<Transaction> mayMatchRecords = new ArrayList<>();
+
 
     double bal1;
     double bal2;
@@ -91,6 +93,13 @@ public class ReconciliationTool {
 
         allOtherTxn.forEach(a -> reconTransaction_forAllByDateAndAmount(a.transactionAmount,a.transactionDate,a.getTransactionRefIDString()));
 
+        List<Transaction> mayMatches = arr1_pendingReconRecords.stream()
+                .filter(t -> !t.reconciled &&
+                        t.transactionChannel.equals(""))
+                .collect(Collectors.toList());
+
+        mayMatches.forEach(this::reconTransaction_forMayMatches);
+
     }
 
     public Transaction reconTransaction_forCheques(String chq, double txnAmt, String arr1TxnRefID){
@@ -151,6 +160,34 @@ public class ReconciliationTool {
 
             record.updateAsReconciled(true,arr1TxnRefID);
             removeFromPendingRecon(record,arr1TxnRefID,array1);
+
+        }
+        return record;
+    }
+
+    public Transaction reconTransaction_forMayMatches(Transaction tryMatchingWithTxn){
+
+        Transaction record = arr2_pendingReconRecords.stream()
+                .filter(txn -> txn.transactionAmount == tryMatchingWithTxn.transactionAmount &&
+                        txn.transactionChannel.equals("") &&
+                        !txn.reconciled)
+                .findAny()
+                .orElse(null);
+
+
+        if(record != null){
+
+            tryMatchingWithTxn.updateAsReconciled(true,record.getTransactionRefIDString());
+            tryMatchingWithTxn.transactionChannel = "MAY-MATCH";
+            mayMatchRecords.add(tryMatchingWithTxn);
+
+            record.updateAsReconciled(true,tryMatchingWithTxn.getTransactionRefIDString());
+            record.transactionChannel = "MAY-MATCH";
+            removeFromPendingRecon(record,tryMatchingWithTxn.getTransactionRefIDString(),array1);
+
+            System.out.println(record.transactionDesc);
+            System.out.println(tryMatchingWithTxn.transactionDesc);
+            printRecords(record,"RECORD");
 
         }
         return record;
@@ -254,7 +291,7 @@ public class ReconciliationTool {
 
 
     public void printRecordsSummary(ArrayList<Transaction> array, ArrayList<Transaction> baseArray, String listname) {
-        Print.summarizeRecords(array,baseArray,"Bank Records Pending Recon");
+        Print.summarizeRecords(array,baseArray,listname);
     }
     public void printRecords(ArrayList<Transaction> array, String listname){
         Print.theseRecords(array,listname);
