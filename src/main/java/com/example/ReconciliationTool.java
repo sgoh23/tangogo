@@ -71,6 +71,7 @@ public class ReconciliationTool {
 
     public void runRecon() {
 
+        //Run for cheques
         List<Transaction> cheques = array1.stream()
                 .filter(transaction -> !transaction.getChequeNo().isEmpty() &&
                         !transaction.reconciled)
@@ -78,6 +79,7 @@ public class ReconciliationTool {
 
         cheques.forEach(c -> reconTransaction_forCheques(c.chequeNo,c.transactionAmount,c.getTransactionRefIDString()));
 
+        //Run for LTA Fees
         List<Transaction> LTATxns = arr1_pendingReconRecords.stream()
                 .filter(transaction -> !transaction.reconciled &&
                         transaction.transactionChannel.equals(transaction.LTA) &&
@@ -86,6 +88,7 @@ public class ReconciliationTool {
 
         LTATxns.forEach(l -> reconTransaction_forLTA(l.refdate,l.transactionAmount,l.getTransactionRefIDString()));
 
+        //Run for all good matches
         List<Transaction> allOtherTxn = arr1_pendingReconRecords.stream()
                 .filter(transaction -> !transaction.reconciled &&
                         transaction.transactionChannel.equals(""))
@@ -93,16 +96,54 @@ public class ReconciliationTool {
 
         allOtherTxn.forEach(a -> reconTransaction_forAllByDateAndAmount(a.transactionAmount,a.transactionDate,a.getTransactionRefIDString()));
 
+        //Run for suggested may-matches
         List<Transaction> mayMatches = arr1_pendingReconRecords.stream()
                 .filter(t -> !t.reconciled &&
                         t.transactionChannel.equals(""))
                 .collect(Collectors.toList());
 
-        mayMatches.forEach(this::reconTransaction_forMayMatches);
+        mayMatches.forEach(this::reconTransaction_SuggestedMayMatches);
+
 
     }
 
-    public Transaction reconTransaction_forCheques(String chq, double txnAmt, String arr1TxnRefID){
+    public void reconTransaction_forLumpsumCharges(Map<String, Double> groupSummary, String categoryname) {
+
+        List<Transaction> gclist = array1.stream()
+                .filter(t -> t.transactionChannel.equals(categoryname) &&
+                        !t.reconciled)
+                .collect(Collectors.toList());
+
+        double sumOfCharges = gclist.stream().mapToDouble(Transaction::getTransactionAmount).sum();
+
+        System.out.println(groupSummary);
+        System.out.println(categoryname+"TOTAL: " + sumOfCharges);
+
+        for (Map.Entry<String, Double> entry : groupSummary.entrySet()) {
+
+            String datekey = entry.getKey();
+            Double amtValue = entry.getValue();
+
+            BigDecimal bd = new BigDecimal(amtValue).setScale(2, RoundingMode.HALF_UP);
+            double value = bd.doubleValue();
+
+            List<Transaction> pendingDailylist = array1.stream()
+                    .filter(t -> t.transactionChannel.equals(categoryname) &&
+                            t.transactionDate.equals(datekey))
+                    .collect(Collectors.toList());
+
+            pendingDailylist.forEach(l -> {
+                try {
+                    l.updateAsReconciled(true, "Manual User Entry for "+categoryname+" on " + l.transactionDate);
+                    updateReconciledRecords(l, l.getTransactionRefIDString(), array1);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+        }
+    }
+
+    public void reconTransaction_forCheques(String chq, double txnAmt, String arr1TxnRefID){
 
         //System.out.println(chq);
         Transaction record = array2.stream()
@@ -113,19 +154,14 @@ public class ReconciliationTool {
 
 
         if(record != null){
-            record.updateAsReconciled(true,arr1TxnRefID);
             record.chequeNo = chq;
             //printRecords(record,"RECORD");
-            removeFromPendingRecon(record,arr1TxnRefID,array1);
+            updateReconciledRecords(record,arr1TxnRefID,array1);
         }
 
-        return record;
-
     }
+    public void reconTransaction_forLTA(String refDate, double txnAmt, String arr1TxnRefID){
 
-    public Transaction reconTransaction_forLTA(String refDate, double txnAmt, String arr1TxnRefID){
-
-        //System.out.println(refDate+"|"+arr1TxnRefID+"|"+txnAmt);
         Transaction record = array2.stream()
                 .filter(txn -> txn.transactionDate.equals(refDate) &&
                         txn.isValidDate(refDate) &&
@@ -135,14 +171,10 @@ public class ReconciliationTool {
                 .orElse(null);
 
 
-        if(record != null){
+        if(record != null) {
             record.transactionChannel = record.LTA;
-            record.updateAsReconciled(true,arr1TxnRefID);
-            //printRecords(record, "LTA Record");
-
-            removeFromPendingRecon(record,arr1TxnRefID,array1);
+            updateReconciledRecords(record, arr1TxnRefID, array1);
         }
-        return record;
     }
 
     public Transaction reconTransaction_forAllByDateAndAmount(double txnAmt, String txnDate, String arr1TxnRefID){
@@ -158,14 +190,13 @@ public class ReconciliationTool {
 
         if(record != null){
 
-            record.updateAsReconciled(true,arr1TxnRefID);
-            removeFromPendingRecon(record,arr1TxnRefID,array1);
+          //  record.updateAsReconciled(true,arr1TxnRefID);
+            updateReconciledRecords(record,arr1TxnRefID,array1);
 
         }
         return record;
     }
-
-    public Transaction reconTransaction_forMayMatches(Transaction tryMatchingWithTxn){
+    public void reconTransaction_SuggestedMayMatches(Transaction tryMatchingWithTxn){
 
         Transaction record = arr2_pendingReconRecords.stream()
                 .filter(txn -> txn.transactionAmount == tryMatchingWithTxn.transactionAmount &&
@@ -177,26 +208,22 @@ public class ReconciliationTool {
 
         if(record != null){
 
-            tryMatchingWithTxn.updateAsReconciled(true,record.getTransactionRefIDString());
+           // tryMatchingWithTxn.updateAsReconciled(true,record.getTransactionRefIDString());
             tryMatchingWithTxn.transactionChannel = "MAY-MATCH";
             mayMatchRecords.add(tryMatchingWithTxn);
 
-            record.updateAsReconciled(true,tryMatchingWithTxn.getTransactionRefIDString());
+           // record.updateAsReconciled(true,tryMatchingWithTxn.getTransactionRefIDString());
             record.transactionChannel = "MAY-MATCH";
-            removeFromPendingRecon(record,tryMatchingWithTxn.getTransactionRefIDString(),array1);
-
-            System.out.println(record.transactionDesc);
-            System.out.println(tryMatchingWithTxn.transactionDesc);
-            printRecords(record,"RECORD");
+            updateReconciledRecords(record,tryMatchingWithTxn.getTransactionRefIDString(),array1);
 
         }
-        return record;
     }
 
-    public boolean runReconForNETSTransactions() {
+    public void runReconForNETSTransactions(Map<String,Double> netsSummaryByDate) {
 
-        CompanyBankAccount coy = new CompanyBankAccount();
-        Map<String, Double> netsSummaryByDate = coy.getNETSSummary();
+//        CompanyBankAccount coy = new CompanyBankAccount();
+//        Map<String, Double> netsSummaryByDate = coy.getNETSSummary();
+
         boolean success = false;
 
         for (Map.Entry<String, Double> entry : netsSummaryByDate.entrySet()) {
@@ -209,7 +236,12 @@ public class ReconciliationTool {
 
            // System.out.println("Key: " + netsDateKey + ", Value: " + value);
 
-            Transaction txnFound = getArr1PendingReconNETSTxn(value, netsDateKey);
+            Transaction txnFound = array1.stream()
+                    .filter(transaction -> transaction.transactionChannel.equals(transaction.NETS) &&
+                            transaction.getTransactionAmount() == value &&
+                            transaction.refdate.equals(netsDateKey))
+                    .findAny()
+                    .orElse(null);
 
             if (txnFound != null) { //Match is found in bank record
 
@@ -218,10 +250,13 @@ public class ReconciliationTool {
                 success = true;
             }
         }
-        return success;
+
 
     }
-
+    public void reconTransactionInArr1(Transaction txn, String refID){
+        arr1_pendingReconRecords.remove(txn);
+        txn.updateAsReconciled(true,refID);
+    }
     private void reconTransactionInArr2_forNETS(Transaction txnFound){
 
         List<Transaction> coyDailyNETsReconciledRecords = arr2_pendingReconRecords.stream()
@@ -235,58 +270,25 @@ public class ReconciliationTool {
         }
 
         //Print NETS Recon Trail
-       //printRecords(coyDailyNETsReconciledRecords, "NETS Details");
+        //printRecords(coyDailyNETsReconciledRecords, "NETS Details");
     }
 
-    public boolean removeFromPendingRecon(Transaction matchedTxn, String reconWithRef, ArrayList<Transaction> fromArray){
+    public void updateReconciledRecords(Transaction matchedTxn, String reconWithRef, ArrayList<Transaction> reconWithThisArray){
 
-        boolean success = false;
-
-        Transaction reconWithTxn = fromArray.stream()
+        Transaction reconWithTxn = reconWithThisArray.stream()
                 .filter(transaction -> transaction.getTransactionRefIDString().equals(reconWithRef))
                 .findAny()
                 .orElse(null);
 
         if(reconWithTxn != null) {
+            matchedTxn.updateAsReconciled(true,reconWithTxn.getTransactionRefIDString());
             reconWithTxn.updateAsReconciled(true,matchedTxn.getTransactionRefIDString());
             arr1_pendingReconRecords.remove(reconWithTxn);
             arr2_pendingReconRecords.remove(matchedTxn);
-            success = true;
+            //System.out.println("RECON WITH" + reconWithTxn.refdate + "|"+reconWithTxn.transactionAmount);
+
         }
 
-        return success;
-    }
-
-    public void reconTransactionInArr1(Transaction txn, String refID){
-        arr1_pendingReconRecords.remove(txn);
-        txn.updateAsReconciled(true,refID);
-    }
-
-    public Transaction getArr1PendingReconNETSTxn(double amt, String date){
-
-        Transaction txnFound = array1.stream()
-                .filter(transaction -> transaction.transactionChannel.equals(transaction.NETS) &&
-                        transaction.getTransactionAmount() == amt &&
-                        transaction.refdate.equals(date))
-                .findAny()
-                .orElse(null);
-
-        // System.out.println(txnFound.transactionDesc+"|"+txnFound.getTransactionAmount());
-
-        return txnFound;
-
-    }
-
-    public Transaction getTransactionFromArray2(String txnRefID) {
-
-        Transaction txnFound = null;
-        for(Transaction txn : array2){
-
-            if(txn.getTransactionRefIDString().equals(txnRefID)){
-                txnFound = txn;
-            }
-        }
-        return txnFound;
     }
 
 

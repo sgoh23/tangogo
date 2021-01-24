@@ -26,11 +26,15 @@ public class Transaction{
     public String notes_ourRef="";                 // Sample: "OTHR S$"
     public String notes_supplementaryDetails = "";   // Sample: "PAYMENT/TRANSFER"
 
-    public final static String CHEQUE = "CHEQUE";
-    public final static String GIRO_PAYMENT = "GIRO PAYMENT";
-    public final static String LTA = "LTA";
-    public final static String NETS = "NETS -- NETS";
-    public final static String POS_SETTLEMENT = "POS SETTLEMENT";
+    public final String CHEQUE = "CHEQUE";
+    public final String GIRO_PAYMENT = "GIRO PAYMENT";
+    public final String LTA = "LTA";
+    public final String NETS = "NETS -- NETS";
+    public final String POS_SETTLEMENT = "POS SETTLEMENT";
+    public final String GIRO_CHARGES = "GIRO CHARGES";
+    public final String CASH_REBATE = "CASH REBATE";
+    public final String DEBIT_PURCHASE = "DEBIT PURCHASE";
+
 
     public Transaction(){
     }
@@ -68,11 +72,24 @@ public class Transaction{
             transactionChannel = GIRO_PAYMENT;
         }
 
-        if(!transactionDesc.isEmpty() && (transactionDesc.contains(LTA))){
-            transactionChannel = LTA;
+        if(!notes_supplementaryDetails.isEmpty() &&
+                (notes_supplementaryDetails.contains(GIRO_CHARGES))){
+            transactionChannel = GIRO_CHARGES;
+        }
 
-            if(isValidDate(notes_refForAccOwner) && !notes_refForAccOwner.isEmpty()) {
+        if(!notes_supplementaryDetails.isEmpty() &&
+                (notes_supplementaryDetails.contains(CASH_REBATE))){
+            transactionChannel = CASH_REBATE;
+        }
+
+        if(!transactionDesc.isEmpty() && (transactionDesc.contains(LTA)) ){
+
+            if(isValidDate(notes_refForAccOwner) && !notes_refForAccOwner.isEmpty() &&
+                    notes_supplementaryDetails.equals(DEBIT_PURCHASE)) {
+
+                transactionChannel = LTA;
                 refdate = notes_refForAccOwner;
+
             }
         }
 

@@ -2,10 +2,14 @@ package com.example;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class BankStatement extends Transaction{
 
     ArrayList<Transaction> bankRecords = new ArrayList<>();
+    ArrayList<Transaction> GIROCharges = new ArrayList<>();
 
     public Calendar statementStartDate = Calendar.getInstance();
     public Calendar statementEndDate = Calendar.getInstance();
@@ -81,6 +85,19 @@ public class BankStatement extends Transaction{
     }
     public ArrayList<Transaction> getBankRecords(){
        return bankRecords;
+    }
+
+    public Map<String, Double> getChargesSumByDate(String categoryname){
+
+        List<Transaction> gclist = this.bankRecords.stream()
+                .filter(t -> t.transactionChannel.equals(categoryname))
+                .collect(Collectors.toList());
+
+        Map<String, Double> sumByDate = gclist.stream().collect(
+                Collectors.groupingBy(Transaction::getTransactionDate,
+                        Collectors.summingDouble(Transaction::getTransactionAmount)));
+
+        return sumByDate;
     }
 
     public void initiateTestRecords(){

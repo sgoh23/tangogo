@@ -35,7 +35,7 @@ public class Print {
         for (Transaction record : records) {
             System.out.println( " | " +record.transactionChannel + " | " + record.toString() + " | " + record.transactionAmount + " | " +
                     record.transactionDate + " | "+record.reconciled + " | "+record.reconciledTxnRefID + " | " +
-                    record.transactionDesc + " | " );
+                    record.transactionDesc + " | ");
         }
         System.out.println(ANSI_RESET);
 

@@ -26,116 +26,133 @@ public class Transaction{
 <span class="pc" id="L26">    public String notes_ourRef=&quot;&quot;;                 // Sample: &quot;OTHR S$&quot;</span>
 <span class="pc" id="L27">    public String notes_supplementaryDetails = &quot;&quot;;   // Sample: &quot;PAYMENT/TRANSFER&quot;</span>
 
-    public final static String CHEQUE = &quot;CHEQUE&quot;;
-    public final static String GIRO_PAYMENT = &quot;GIRO PAYMENT&quot;;
-    public final static String LTA = &quot;LTA&quot;;
-    public final static String NETS = &quot;NETS -- NETS&quot;;
-    public final static String POS_SETTLEMENT = &quot;POS SETTLEMENT&quot;;
+<span class="pc" id="L29">    public final String CHEQUE = &quot;CHEQUE&quot;;</span>
+<span class="pc" id="L30">    public final String GIRO_PAYMENT = &quot;GIRO PAYMENT&quot;;</span>
+<span class="pc" id="L31">    public final String LTA = &quot;LTA&quot;;</span>
+<span class="pc" id="L32">    public final String NETS = &quot;NETS -- NETS&quot;;</span>
+<span class="pc" id="L33">    public final String POS_SETTLEMENT = &quot;POS SETTLEMENT&quot;;</span>
+<span class="pc" id="L34">    public final String GIRO_CHARGES = &quot;GIRO CHARGES&quot;;</span>
+<span class="pc" id="L35">    public final String CASH_REBATE = &quot;CASH REBATE&quot;;</span>
+<span class="pc" id="L36">    public final String DEBIT_PURCHASE = &quot;DEBIT PURCHASE&quot;;</span>
 
-<span class="fc" id="L35">    public Transaction(){</span>
-<span class="fc" id="L36">    }</span>
 
-<span class="nc" id="L38">    public Transaction(double txnAmt, String txnDate){</span>
-<span class="nc" id="L39">        transactionAmount = txnAmt;</span>
-<span class="nc" id="L40">        transactionDate = txnDate;</span>
-<span class="nc" id="L41">    }</span>
+<span class="fc" id="L39">    public Transaction(){</span>
+<span class="fc" id="L40">    }</span>
 
-<span class="fc" id="L43">    public Transaction(double txnAmt, String txnDate, String txnDesc){</span>
-<span class="fc" id="L44">        transactionAmount = txnAmt;</span>
-<span class="fc" id="L45">        transactionDate = txnDate;</span>
-<span class="fc" id="L46">        transactionDesc = txnDesc;</span>
+<span class="nc" id="L42">    public Transaction(double txnAmt, String txnDate){</span>
+<span class="nc" id="L43">        transactionAmount = txnAmt;</span>
+<span class="nc" id="L44">        transactionDate = txnDate;</span>
+<span class="nc" id="L45">    }</span>
 
-<span class="pc bpc" id="L48" title="2 of 6 branches missed.">        if(!transactionDesc.isEmpty() &amp;&amp; ((transactionDesc.contains(NETS)) || notes_supplementaryDetails.equals(POS_SETTLEMENT))){</span>
-<span class="fc" id="L49">            setThisAsNETSTransaction();</span>
+<span class="fc" id="L47">    public Transaction(double txnAmt, String txnDate, String txnDesc){</span>
+<span class="fc" id="L48">        transactionAmount = txnAmt;</span>
+<span class="fc" id="L49">        transactionDate = txnDate;</span>
+<span class="fc" id="L50">        transactionDesc = txnDesc;</span>
+
+<span class="pc bpc" id="L52" title="2 of 6 branches missed.">        if(!transactionDesc.isEmpty() &amp;&amp; ((transactionDesc.contains(NETS)) || notes_supplementaryDetails.equals(POS_SETTLEMENT))){</span>
+<span class="fc" id="L53">            setThisAsNETSTransaction();</span>
         }
 
-<span class="fc" id="L52">    }</span>
-<span class="fc" id="L53">    public Transaction(double txnAmt, String txnDate, String txnDesc1, String txnDesc2, String txnDesc3, String txnDesc4){</span>
-<span class="fc" id="L54">        transactionAmount = txnAmt;</span>
-<span class="fc" id="L55">        transactionDate = txnDate;</span>
-<span class="fc" id="L56">        transactionDesc = txnDesc1;</span>
-<span class="fc" id="L57">        notes_refForAccOwner = txnDesc2;</span>
-<span class="fc" id="L58">        notes_ourRef = txnDesc3;</span>
-<span class="fc" id="L59">        notes_supplementaryDetails = txnDesc4;</span>
+<span class="fc" id="L56">    }</span>
+<span class="fc" id="L57">    public Transaction(double txnAmt, String txnDate, String txnDesc1, String txnDesc2, String txnDesc3, String txnDesc4){</span>
+<span class="fc" id="L58">        transactionAmount = txnAmt;</span>
+<span class="fc" id="L59">        transactionDate = txnDate;</span>
+<span class="fc" id="L60">        transactionDesc = txnDesc1;</span>
+<span class="fc" id="L61">        notes_refForAccOwner = txnDesc2;</span>
+<span class="fc" id="L62">        notes_ourRef = txnDesc3;</span>
+<span class="fc" id="L63">        notes_supplementaryDetails = txnDesc4;</span>
 
-<span class="pc bpc" id="L61" title="1 of 4 branches missed.">        if(!notes_supplementaryDetails.isEmpty() &amp;&amp; (notes_supplementaryDetails.contains(CHEQUE) )){</span>
-<span class="fc" id="L62">            chequeNo = notes_refForAccOwner;</span>
-<span class="fc" id="L63">            transactionChannel = CHEQUE;</span>
+<span class="pc bpc" id="L65" title="1 of 4 branches missed.">        if(!notes_supplementaryDetails.isEmpty() &amp;&amp; (notes_supplementaryDetails.contains(CHEQUE) )){</span>
+<span class="fc" id="L66">            chequeNo = notes_refForAccOwner;</span>
+<span class="fc" id="L67">            transactionChannel = CHEQUE;</span>
         }
 
-<span class="pc bpc" id="L66" title="1 of 4 branches missed.">        if(!notes_supplementaryDetails.isEmpty() &amp;&amp; (notes_supplementaryDetails.contains(GIRO_PAYMENT))){</span>
-<span class="fc" id="L67">            chequeNo = notes_refForAccOwner;</span>
-<span class="fc" id="L68">            transactionChannel = GIRO_PAYMENT;</span>
+<span class="pc bpc" id="L70" title="1 of 4 branches missed.">        if(!notes_supplementaryDetails.isEmpty() &amp;&amp; (notes_supplementaryDetails.contains(GIRO_PAYMENT))){</span>
+<span class="fc" id="L71">            chequeNo = notes_refForAccOwner;</span>
+<span class="fc" id="L72">            transactionChannel = GIRO_PAYMENT;</span>
         }
 
-<span class="pc bpc" id="L71" title="1 of 4 branches missed.">        if(!transactionDesc.isEmpty() &amp;&amp; (transactionDesc.contains(LTA))){</span>
-<span class="fc" id="L72">            transactionChannel = LTA;</span>
+<span class="pc bpc" id="L75" title="1 of 2 branches missed.">        if(!notes_supplementaryDetails.isEmpty() &amp;&amp;</span>
+<span class="fc bfc" id="L76" title="All 2 branches covered.">                (notes_supplementaryDetails.contains(GIRO_CHARGES))){</span>
+<span class="fc" id="L77">            transactionChannel = GIRO_CHARGES;</span>
+        }
 
-<span class="pc bpc" id="L74" title="1 of 4 branches missed.">            if(isValidDate(notes_refForAccOwner) &amp;&amp; !notes_refForAccOwner.isEmpty()) {</span>
-<span class="fc" id="L75">                refdate = notes_refForAccOwner;</span>
+<span class="pc bpc" id="L80" title="1 of 2 branches missed.">        if(!notes_supplementaryDetails.isEmpty() &amp;&amp;</span>
+<span class="fc bfc" id="L81" title="All 2 branches covered.">                (notes_supplementaryDetails.contains(CASH_REBATE))){</span>
+<span class="fc" id="L82">            transactionChannel = CASH_REBATE;</span>
+        }
+
+<span class="pc bpc" id="L85" title="1 of 4 branches missed.">        if(!transactionDesc.isEmpty() &amp;&amp; (transactionDesc.contains(LTA)) ){</span>
+
+<span class="pc bpc" id="L87" title="1 of 4 branches missed.">            if(isValidDate(notes_refForAccOwner) &amp;&amp; !notes_refForAccOwner.isEmpty() &amp;&amp;</span>
+<span class="pc bpc" id="L88" title="1 of 2 branches missed.">                    notes_supplementaryDetails.equals(DEBIT_PURCHASE)) {</span>
+
+<span class="fc" id="L90">                transactionChannel = LTA;</span>
+<span class="fc" id="L91">                refdate = notes_refForAccOwner;</span>
+
             }
         }
 
-<span class="pc bpc" id="L79" title="2 of 6 branches missed.">        if(!transactionDesc.isEmpty() &amp;&amp; ((transactionDesc.contains(NETS)) || notes_supplementaryDetails.equals(POS_SETTLEMENT))){</span>
-<span class="fc" id="L80">            setThisAsNETSTransaction();</span>
+<span class="pc bpc" id="L96" title="2 of 6 branches missed.">        if(!transactionDesc.isEmpty() &amp;&amp; ((transactionDesc.contains(NETS)) || notes_supplementaryDetails.equals(POS_SETTLEMENT))){</span>
+<span class="fc" id="L97">            setThisAsNETSTransaction();</span>
         }
 
-<span class="fc" id="L83">    }</span>
+<span class="fc" id="L100">    }</span>
 
     public void setThisAsNETSTransaction(){
-<span class="fc" id="L86">        transactionChannel = NETS;</span>
+<span class="fc" id="L103">        transactionChannel = NETS;</span>
 
-<span class="pc bpc" id="L88" title="1 of 4 branches missed.">        if(isValidDate(notes_ourRef) &amp;&amp; !notes_ourRef.isEmpty()) {</span>
-<span class="fc" id="L89">            refdate = notes_ourRef;</span>
+<span class="pc bpc" id="L105" title="1 of 4 branches missed.">        if(isValidDate(notes_ourRef) &amp;&amp; !notes_ourRef.isEmpty()) {</span>
+<span class="fc" id="L106">            refdate = notes_ourRef;</span>
         }
 
-<span class="fc" id="L92">    }</span>
+<span class="fc" id="L109">    }</span>
 
     public String getTransactionRefIDString(){
-<span class="fc" id="L95">        return this.toString();</span>
+<span class="fc" id="L112">        return this.toString();</span>
     }
 
-<span class="fc" id="L98">    public double getTransactionAmount(){ return this.transactionAmount;}</span>
+<span class="fc" id="L115">    public double getTransactionAmount(){ return this.transactionAmount;}</span>
 
-<span class="fc" id="L100">    public String getTransactionDate(){ return this.transactionDate;}</span>
+<span class="fc" id="L117">    public String getTransactionDate(){ return this.transactionDate;}</span>
 
-<span class="fc" id="L102">    public String getTransactionChannel(){ return this.transactionChannel;}</span>
+<span class="fc" id="L119">    public String getTransactionChannel(){ return this.transactionChannel;}</span>
 
-<span class="fc" id="L104">    public String getChequeNo(){return this.chequeNo;}</span>
+<span class="fc" id="L121">    public String getChequeNo(){return this.chequeNo;}</span>
 
     public void updateAsReconciled(boolean status, String refID){
 
-<span class="pc bpc" id="L108" title="1 of 4 branches missed.">        if(!this.reconciled &amp;&amp; this.reconciledTxnRefID.isEmpty()) {</span>
-<span class="fc" id="L109">            this.reconciled = status;</span>
-<span class="fc" id="L110">            this.reconciledTxnRefID = refID;</span>
+<span class="pc bpc" id="L125" title="1 of 4 branches missed.">        if(!this.reconciled &amp;&amp; this.reconciledTxnRefID.isEmpty()) {</span>
+<span class="fc" id="L126">            this.reconciled = status;</span>
+<span class="fc" id="L127">            this.reconciledTxnRefID = refID;</span>
         }
-<span class="fc" id="L112">    }</span>
+<span class="fc" id="L129">    }</span>
 
     public boolean isValidDate(final String date) {
 
-<span class="fc" id="L116">        boolean valid = false;</span>
+<span class="fc" id="L133">        boolean valid = false;</span>
 
-<span class="fc bfc" id="L118" title="All 2 branches covered.">        if(!date.isEmpty()) {</span>
+<span class="fc bfc" id="L135" title="All 2 branches covered.">        if(!date.isEmpty()) {</span>
             //System.out.println(date);
 
             try {
 
-<span class="fc" id="L123">                DateTimeFormatter dtf = DateTimeFormatter.ofPattern(&quot;dd/MM/yyyy&quot;, Locale.US);</span>
+<span class="fc" id="L140">                DateTimeFormatter dtf = DateTimeFormatter.ofPattern(&quot;dd/MM/yyyy&quot;, Locale.US);</span>
 
                 // ResolverStyle.STRICT for 30, 31 days checking, and also leap year.
                 // LocalDate.parse(date, dtf.withResolverStyle(ResolverStyle.STRICT));
-<span class="fc" id="L127">                LocalDateTime localDateTime = LocalDate.parse(date, dtf).atStartOfDay();</span>
-<span class="fc" id="L128">                valid = true;</span>
+<span class="fc" id="L144">                LocalDateTime localDateTime = LocalDate.parse(date, dtf).atStartOfDay();</span>
+<span class="fc" id="L145">                valid = true;</span>
 
-<span class="fc" id="L130">            } catch (DateTimeParseException e) {</span>
+<span class="fc" id="L147">            } catch (DateTimeParseException e) {</span>
                 // e.printStackTrace();
-<span class="fc" id="L132">                valid = false;</span>
-<span class="fc" id="L133">            }</span>
+<span class="fc" id="L149">                valid = false;</span>
+<span class="fc" id="L150">            }</span>
 
         }
 
         //System.out.println(valid);
-<span class="fc" id="L138">        return valid;</span>
+<span class="fc" id="L155">        return valid;</span>
     }
 }
 
