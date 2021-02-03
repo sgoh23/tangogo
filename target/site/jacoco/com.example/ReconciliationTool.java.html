@@ -88,221 +88,253 @@ public class ReconciliationTool {
 
 <span class="fc" id="L89">        LTATxns.forEach(l -&gt; reconTransaction_forLTA(l.refdate,l.transactionAmount,l.getTransactionRefIDString()));</span>
 
-        //Run for all good matches
-<span class="fc" id="L92">        List&lt;Transaction&gt; allOtherTxn = arr1_pendingReconRecords.stream()</span>
-<span class="pc bpc" id="L93" title="1 of 2 branches missed.">                .filter(transaction -&gt; !transaction.reconciled &amp;&amp;</span>
-<span class="fc bfc" id="L94" title="All 2 branches covered.">                        transaction.transactionChannel.equals(&quot;&quot;))</span>
+        //Run for Payment Transfers from known senders
+<span class="fc" id="L92">        List&lt;Transaction&gt; paymentTransferTxn = arr1_pendingReconRecords.stream()</span>
+<span class="fc bfc" id="L93" title="All 2 branches covered.">                .filter(transaction -&gt; transaction.transactionChannel.equals(transaction.PAYMENT_TRANSFER) &amp;&amp;</span>
+<span class="pc bpc" id="L94" title="1 of 2 branches missed.">                        !transaction.sender.isEmpty())</span>
 <span class="fc" id="L95">                .collect(Collectors.toList());</span>
 
-<span class="fc" id="L97">        allOtherTxn.forEach(a -&gt; reconTransaction_forAllByDateAndAmount(a.transactionAmount,a.transactionDate,a.getTransactionRefIDString()));</span>
+       // printRecords(paymentTransferTxn,&quot;TRANSFERS&quot;);
+<span class="fc" id="L98">        paymentTransferTxn.forEach(p -&gt; reconTransaction_forPaymentTransfers(p.sender,p.transactionAmount,p.transactionDate,p.getTransactionRefIDString()));</span>
+
+        //Run for all good matches
+<span class="fc" id="L101">        List&lt;Transaction&gt; allOtherTxn = arr1_pendingReconRecords.stream()</span>
+<span class="pc bpc" id="L102" title="1 of 2 branches missed.">                .filter(transaction -&gt; !transaction.reconciled &amp;&amp;</span>
+<span class="fc bfc" id="L103" title="All 2 branches covered.">                        transaction.transactionChannel.equals(&quot;&quot;))</span>
+<span class="fc" id="L104">                .collect(Collectors.toList());</span>
+
+<span class="fc" id="L106">        allOtherTxn.forEach(a -&gt; reconTransaction_forAllByDateAndAmount(a.transactionAmount,a.transactionDate,a.getTransactionRefIDString()));</span>
 
         //Run for suggested may-matches
-<span class="fc" id="L100">        List&lt;Transaction&gt; mayMatches = arr1_pendingReconRecords.stream()</span>
-<span class="pc bpc" id="L101" title="1 of 2 branches missed.">                .filter(t -&gt; !t.reconciled &amp;&amp;</span>
-<span class="fc bfc" id="L102" title="All 2 branches covered.">                        t.transactionChannel.equals(&quot;&quot;))</span>
-<span class="fc" id="L103">                .collect(Collectors.toList());</span>
+<span class="fc" id="L109">        List&lt;Transaction&gt; mayMatches = arr1_pendingReconRecords.stream()</span>
+<span class="pc bpc" id="L110" title="1 of 2 branches missed.">                .filter(t -&gt; !t.reconciled &amp;&amp;</span>
+<span class="fc bfc" id="L111" title="All 4 branches covered.">                        (t.transactionChannel.equals(&quot;&quot;) || t.transactionChannel.equals(t.PAYMENT_TRANSFER)))</span>
+<span class="fc" id="L112">                .collect(Collectors.toList());</span>
 
-<span class="fc" id="L105">        mayMatches.forEach(this::reconTransaction_SuggestedMayMatches);</span>
+<span class="fc" id="L114">        mayMatches.forEach(this::reconTransaction_SuggestedMayMatches);</span>
 
 
-<span class="fc" id="L108">    }</span>
+<span class="fc" id="L117">    }</span>
 
     public void reconTransaction_forLumpsumCharges(Map&lt;String, Double&gt; groupSummary, String categoryname) {
 
-<span class="fc" id="L112">        List&lt;Transaction&gt; gclist = array1.stream()</span>
-<span class="pc bpc" id="L113" title="1 of 4 branches missed.">                .filter(t -&gt; t.transactionChannel.equals(categoryname) &amp;&amp;</span>
+<span class="fc" id="L121">        List&lt;Transaction&gt; gclist = array1.stream()</span>
+<span class="pc bpc" id="L122" title="1 of 4 branches missed.">                .filter(t -&gt; t.transactionChannel.equals(categoryname) &amp;&amp;</span>
                         !t.reconciled)
-<span class="fc" id="L115">                .collect(Collectors.toList());</span>
+<span class="fc" id="L124">                .collect(Collectors.toList());</span>
 
-<span class="fc" id="L117">        double sumOfCharges = gclist.stream().mapToDouble(Transaction::getTransactionAmount).sum();</span>
+<span class="fc" id="L126">        double sumOfCharges = gclist.stream().mapToDouble(Transaction::getTransactionAmount).sum();</span>
 
-<span class="fc" id="L119">        System.out.println(groupSummary);</span>
-<span class="fc" id="L120">        System.out.println(categoryname+&quot;TOTAL: &quot; + sumOfCharges);</span>
+<span class="fc" id="L128">        System.out.println(categoryname+&quot; TOTAL: &quot; + sumOfCharges);</span>
+<span class="fc" id="L129">        System.out.println(groupSummary);</span>
 
-<span class="fc bfc" id="L122" title="All 2 branches covered.">        for (Map.Entry&lt;String, Double&gt; entry : groupSummary.entrySet()) {</span>
 
-<span class="fc" id="L124">            String datekey = entry.getKey();</span>
-<span class="fc" id="L125">            Double amtValue = entry.getValue();</span>
+<span class="fc bfc" id="L132" title="All 2 branches covered.">        for (Map.Entry&lt;String, Double&gt; entry : groupSummary.entrySet()) {</span>
 
-<span class="fc" id="L127">            BigDecimal bd = new BigDecimal(amtValue).setScale(2, RoundingMode.HALF_UP);</span>
-<span class="fc" id="L128">            double value = bd.doubleValue();</span>
+<span class="fc" id="L134">            String datekey = entry.getKey();</span>
+<span class="fc" id="L135">            Double amtValue = entry.getValue();</span>
 
-<span class="fc" id="L130">            List&lt;Transaction&gt; pendingDailylist = array1.stream()</span>
-<span class="fc bfc" id="L131" title="All 2 branches covered.">                    .filter(t -&gt; t.transactionChannel.equals(categoryname) &amp;&amp;</span>
-<span class="fc bfc" id="L132" title="All 2 branches covered.">                            t.transactionDate.equals(datekey))</span>
-<span class="fc" id="L133">                    .collect(Collectors.toList());</span>
+<span class="fc" id="L137">            BigDecimal bd = new BigDecimal(amtValue).setScale(2, RoundingMode.HALF_UP);</span>
+<span class="fc" id="L138">            double value = bd.doubleValue();</span>
 
-<span class="fc" id="L135">            pendingDailylist.forEach(l -&gt; {</span>
+<span class="fc" id="L140">            List&lt;Transaction&gt; pendingDailylist = array1.stream()</span>
+<span class="fc bfc" id="L141" title="All 2 branches covered.">                    .filter(t -&gt; t.transactionChannel.equals(categoryname) &amp;&amp;</span>
+<span class="fc bfc" id="L142" title="All 2 branches covered.">                            t.transactionDate.equals(datekey))</span>
+<span class="fc" id="L143">                    .collect(Collectors.toList());</span>
+
+<span class="fc" id="L145">            pendingDailylist.forEach(l -&gt; {</span>
                 try {
-<span class="fc" id="L137">                    l.updateAsReconciled(true, &quot;Manual User Entry for &quot;+categoryname+&quot; on &quot; + l.transactionDate);</span>
-<span class="fc" id="L138">                    updateReconciledRecords(l, l.getTransactionRefIDString(), array1);</span>
-<span class="nc" id="L139">                } catch (Exception e) {</span>
-<span class="nc" id="L140">                    e.printStackTrace();</span>
-<span class="fc" id="L141">                }</span>
-<span class="fc" id="L142">            });</span>
-<span class="fc" id="L143">        }</span>
-<span class="fc" id="L144">    }</span>
+<span class="fc" id="L147">                    l.updateAsReconciled(true, &quot;Manual User Entry for &quot;+categoryname+&quot; on &quot; + l.transactionDate);</span>
+<span class="fc" id="L148">                    updateReconciledRecords(l, l.getTransactionRefIDString(), array1);</span>
+<span class="nc" id="L149">                } catch (Exception e) {</span>
+<span class="nc" id="L150">                    e.printStackTrace();</span>
+<span class="fc" id="L151">                }</span>
+<span class="fc" id="L152">            });</span>
+<span class="fc" id="L153">        }</span>
+<span class="fc" id="L154">    }</span>
 
     public void reconTransaction_forCheques(String chq, double txnAmt, String arr1TxnRefID){
 
         //System.out.println(chq);
-<span class="fc" id="L149">        Transaction record = array2.stream()</span>
-<span class="fc bfc" id="L150" title="All 4 branches covered.">                .filter(transaction -&gt; transaction.transactionDesc.contains(chq) &amp;&amp;</span>
+<span class="fc" id="L159">        Transaction record = array2.stream()</span>
+<span class="fc bfc" id="L160" title="All 4 branches covered.">                .filter(transaction -&gt; transaction.transactionDesc.contains(chq) &amp;&amp;</span>
                         transaction.transactionAmount == txnAmt)
-<span class="fc" id="L152">                .findAny()</span>
-<span class="fc" id="L153">                .orElse(null);</span>
+<span class="fc" id="L162">                .findAny()</span>
+<span class="fc" id="L163">                .orElse(null);</span>
 
 
-<span class="fc bfc" id="L156" title="All 2 branches covered.">        if(record != null){</span>
-<span class="fc" id="L157">            record.chequeNo = chq;</span>
+<span class="fc bfc" id="L166" title="All 2 branches covered.">        if(record != null){</span>
+<span class="fc" id="L167">            record.chequeNo = chq;</span>
             //printRecords(record,&quot;RECORD&quot;);
-<span class="fc" id="L159">            updateReconciledRecords(record,arr1TxnRefID,array1);</span>
+<span class="fc" id="L169">            updateReconciledRecords(record,arr1TxnRefID,array1);</span>
         }
 
-<span class="fc" id="L162">    }</span>
+<span class="fc" id="L172">    }</span>
     public void reconTransaction_forLTA(String refDate, double txnAmt, String arr1TxnRefID){
 
-<span class="fc" id="L165">        Transaction record = array2.stream()</span>
-<span class="fc bfc" id="L166" title="All 2 branches covered.">                .filter(txn -&gt; txn.transactionDate.equals(refDate) &amp;&amp;</span>
-<span class="pc bpc" id="L167" title="1 of 6 branches missed.">                        txn.isValidDate(refDate) &amp;&amp;</span>
+<span class="fc" id="L175">        Transaction record = array2.stream()</span>
+<span class="fc bfc" id="L176" title="All 2 branches covered.">                .filter(txn -&gt; txn.transactionDate.equals(refDate) &amp;&amp;</span>
+<span class="pc bpc" id="L177" title="1 of 6 branches missed.">                        txn.isValidDate(refDate) &amp;&amp;</span>
                         !txn.reconciled &amp;&amp;
                         txn.transactionAmount == txnAmt)
-<span class="fc" id="L170">                .findAny()</span>
-<span class="fc" id="L171">                .orElse(null);</span>
+<span class="fc" id="L180">                .findAny()</span>
+<span class="fc" id="L181">                .orElse(null);</span>
 
 
-<span class="fc bfc" id="L174" title="All 2 branches covered.">        if(record != null) {</span>
-<span class="fc" id="L175">            record.transactionChannel = record.LTA;</span>
-<span class="fc" id="L176">            updateReconciledRecords(record, arr1TxnRefID, array1);</span>
+<span class="fc bfc" id="L184" title="All 2 branches covered.">        if(record != null) {</span>
+<span class="fc" id="L185">            record.transactionChannel = record.LTA;</span>
+<span class="fc" id="L186">            updateReconciledRecords(record, arr1TxnRefID, array1);</span>
         }
-<span class="fc" id="L178">    }</span>
+<span class="fc" id="L188">    }</span>
+
+    public Transaction reconTransaction_forPaymentTransfers(String sender, double txnAmt, String txnDate, String arr1TxnRefID){
+
+<span class="fc" id="L192">        Transaction record = array2.stream()</span>
+<span class="fc bfc" id="L193" title="All 2 branches covered.">                .filter(txn -&gt; txn.transactionAmount == txnAmt &amp;&amp;</span>
+<span class="pc bpc" id="L194" title="1 of 2 branches missed.">                        txn.isValidDate(txnDate) &amp;&amp;</span>
+<span class="fc bfc" id="L195" title="All 2 branches covered.">                        txn.transactionDate.equals(txnDate) &amp;&amp;</span>
+                        //txn.transactionChannel.equals(&quot;&quot;) &amp;&amp;
+<span class="pc bpc" id="L197" title="1 of 4 branches missed.">                        txn.transactionDesc.contains(sender) &amp;&amp;</span>
+                        !txn.reconciled)
+<span class="fc" id="L199">                .findAny()</span>
+<span class="fc" id="L200">                .orElse(null);</span>
+
+
+<span class="fc bfc" id="L203" title="All 2 branches covered.">        if(record != null){</span>
+
+<span class="fc" id="L205">            record.sender = sender;</span>
+            //  record.updateAsReconciled(true,arr1TxnRefID);
+<span class="fc" id="L207">            updateReconciledRecords(record,arr1TxnRefID,array1);</span>
+
+        }
+<span class="fc" id="L210">        return record;</span>
+    }
 
     public Transaction reconTransaction_forAllByDateAndAmount(double txnAmt, String txnDate, String arr1TxnRefID){
 
-<span class="fc" id="L182">        Transaction record = array2.stream()</span>
-<span class="fc bfc" id="L183" title="All 2 branches covered.">                .filter(txn -&gt; txn.transactionAmount == txnAmt &amp;&amp;</span>
-<span class="pc bpc" id="L184" title="1 of 2 branches missed.">                        txn.isValidDate(txnDate) &amp;&amp;</span>
-<span class="fc bfc" id="L185" title="All 2 branches covered.">                        txn.transactionDate.equals(txnDate) &amp;&amp;</span>
-<span class="fc bfc" id="L186" title="All 4 branches covered.">                        txn.transactionChannel.equals(&quot;&quot;) &amp;&amp;</span>
+<span class="fc" id="L215">        Transaction record = array2.stream()</span>
+<span class="fc bfc" id="L216" title="All 2 branches covered.">                .filter(txn -&gt; txn.transactionAmount == txnAmt &amp;&amp;</span>
+<span class="pc bpc" id="L217" title="1 of 2 branches missed.">                        txn.isValidDate(txnDate) &amp;&amp;</span>
+<span class="fc bfc" id="L218" title="All 2 branches covered.">                        txn.transactionDate.equals(txnDate) &amp;&amp;</span>
+<span class="pc bpc" id="L219" title="1 of 4 branches missed.">                        txn.transactionChannel.equals(&quot;&quot;) &amp;&amp;</span>
                         !txn.reconciled)
-<span class="fc" id="L188">                .findAny()</span>
-<span class="fc" id="L189">                .orElse(null);</span>
+<span class="fc" id="L221">                .findAny()</span>
+<span class="fc" id="L222">                .orElse(null);</span>
 
-<span class="fc bfc" id="L191" title="All 2 branches covered.">        if(record != null){</span>
-
+<span class="fc bfc" id="L224" title="All 2 branches covered.">        if(record != null){</span>
           //  record.updateAsReconciled(true,arr1TxnRefID);
-<span class="fc" id="L194">            updateReconciledRecords(record,arr1TxnRefID,array1);</span>
+<span class="fc" id="L226">            updateReconciledRecords(record,arr1TxnRefID,array1);</span>
 
         }
-<span class="fc" id="L197">        return record;</span>
+<span class="fc" id="L229">        return record;</span>
     }
     public void reconTransaction_SuggestedMayMatches(Transaction tryMatchingWithTxn){
 
-<span class="fc" id="L201">        Transaction record = arr2_pendingReconRecords.stream()</span>
-<span class="fc bfc" id="L202" title="All 2 branches covered.">                .filter(txn -&gt; txn.transactionAmount == tryMatchingWithTxn.transactionAmount &amp;&amp;</span>
-<span class="pc bpc" id="L203" title="1 of 4 branches missed.">                        txn.transactionChannel.equals(&quot;&quot;) &amp;&amp;</span>
+<span class="fc" id="L233">        Transaction record = arr2_pendingReconRecords.stream()</span>
+<span class="fc bfc" id="L234" title="All 2 branches covered.">                .filter(txn -&gt; txn.transactionAmount == tryMatchingWithTxn.transactionAmount &amp;&amp;</span>
+<span class="pc bpc" id="L235" title="1 of 4 branches missed.">                        txn.transactionChannel.equals(&quot;&quot;) &amp;&amp;</span>
                         !txn.reconciled)
-<span class="fc" id="L205">                .findAny()</span>
-<span class="fc" id="L206">                .orElse(null);</span>
+<span class="fc" id="L237">                .findAny()</span>
+<span class="fc" id="L238">                .orElse(null);</span>
 
 
-<span class="fc bfc" id="L209" title="All 2 branches covered.">        if(record != null){</span>
+<span class="fc bfc" id="L241" title="All 2 branches covered.">        if(record != null){</span>
 
            // tryMatchingWithTxn.updateAsReconciled(true,record.getTransactionRefIDString());
-<span class="fc" id="L212">            tryMatchingWithTxn.transactionChannel = &quot;MAY-MATCH&quot;;</span>
-<span class="fc" id="L213">            mayMatchRecords.add(tryMatchingWithTxn);</span>
+<span class="fc" id="L244">            tryMatchingWithTxn.transactionChannel = &quot;MAY-MATCH&quot;;</span>
+<span class="fc" id="L245">            mayMatchRecords.add(tryMatchingWithTxn);</span>
 
            // record.updateAsReconciled(true,tryMatchingWithTxn.getTransactionRefIDString());
-<span class="fc" id="L216">            record.transactionChannel = &quot;MAY-MATCH&quot;;</span>
-<span class="fc" id="L217">            updateReconciledRecords(record,tryMatchingWithTxn.getTransactionRefIDString(),array1);</span>
+<span class="fc" id="L248">            record.transactionChannel = &quot;MAY-MATCH&quot;;</span>
+<span class="fc" id="L249">            updateReconciledRecords(record,tryMatchingWithTxn.getTransactionRefIDString(),array1);</span>
 
         }
-<span class="fc" id="L220">    }</span>
+<span class="fc" id="L252">    }</span>
 
     public void runReconForNETSTransactions(Map&lt;String,Double&gt; netsSummaryByDate) {
 
 //        CompanyBankAccount coy = new CompanyBankAccount();
 //        Map&lt;String, Double&gt; netsSummaryByDate = coy.getNETSSummary();
 
-<span class="fc" id="L227">        boolean success = false;</span>
+<span class="fc" id="L259">        boolean success = false;</span>
 
-<span class="fc bfc" id="L229" title="All 2 branches covered.">        for (Map.Entry&lt;String, Double&gt; entry : netsSummaryByDate.entrySet()) {</span>
+<span class="fc bfc" id="L261" title="All 2 branches covered.">        for (Map.Entry&lt;String, Double&gt; entry : netsSummaryByDate.entrySet()) {</span>
 
-<span class="fc" id="L231">            String netsDateKey = entry.getKey();</span>
-<span class="fc" id="L232">            Double amtValue = entry.getValue();</span>
+<span class="fc" id="L263">            String netsDateKey = entry.getKey();</span>
+<span class="fc" id="L264">            Double amtValue = entry.getValue();</span>
 
-<span class="fc" id="L234">            BigDecimal bd = new BigDecimal(amtValue).setScale(2, RoundingMode.HALF_UP);</span>
-<span class="fc" id="L235">            double value = bd.doubleValue();</span>
+<span class="fc" id="L266">            BigDecimal bd = new BigDecimal(amtValue).setScale(2, RoundingMode.HALF_UP);</span>
+<span class="fc" id="L267">            double value = bd.doubleValue();</span>
 
            // System.out.println(&quot;Key: &quot; + netsDateKey + &quot;, Value: &quot; + value);
 
-<span class="fc" id="L239">            Transaction txnFound = array1.stream()</span>
-<span class="fc bfc" id="L240" title="All 2 branches covered.">                    .filter(transaction -&gt; transaction.transactionChannel.equals(transaction.NETS) &amp;&amp;</span>
-<span class="fc bfc" id="L241" title="All 2 branches covered.">                            transaction.getTransactionAmount() == value &amp;&amp;</span>
-<span class="pc bpc" id="L242" title="1 of 2 branches missed.">                            transaction.refdate.equals(netsDateKey))</span>
-<span class="fc" id="L243">                    .findAny()</span>
-<span class="fc" id="L244">                    .orElse(null);</span>
+<span class="fc" id="L271">            Transaction txnFound = array1.stream()</span>
+<span class="fc bfc" id="L272" title="All 2 branches covered.">                    .filter(transaction -&gt; transaction.transactionChannel.equals(transaction.NETS) &amp;&amp;</span>
+<span class="fc bfc" id="L273" title="All 2 branches covered.">                            transaction.getTransactionAmount() == value &amp;&amp;</span>
+<span class="pc bpc" id="L274" title="1 of 2 branches missed.">                            transaction.refdate.equals(netsDateKey))</span>
+<span class="fc" id="L275">                    .findAny()</span>
+<span class="fc" id="L276">                    .orElse(null);</span>
 
-<span class="fc bfc" id="L246" title="All 2 branches covered.">            if (txnFound != null) { //Match is found in bank record</span>
+<span class="fc bfc" id="L278" title="All 2 branches covered.">            if (txnFound != null) { //Match is found in bank record</span>
 
-<span class="fc" id="L248">                reconTransactionInArr1(txnFound, &quot;DailyNETSSum-&quot; + netsDateKey);</span>
-<span class="fc" id="L249">                reconTransactionInArr2_forNETS(txnFound);</span>
-<span class="fc" id="L250">                success = true;</span>
+<span class="fc" id="L280">                reconTransactionInArr1(txnFound, &quot;DailyNETSSum-&quot; + netsDateKey);</span>
+<span class="fc" id="L281">                reconTransactionInArr2_forNETS(txnFound);</span>
+<span class="fc" id="L282">                success = true;</span>
             }
-<span class="fc" id="L252">        }</span>
+<span class="fc" id="L284">        }</span>
 
 
-<span class="fc" id="L255">    }</span>
+<span class="fc" id="L287">    }</span>
     public void reconTransactionInArr1(Transaction txn, String refID){
-<span class="fc" id="L257">        arr1_pendingReconRecords.remove(txn);</span>
-<span class="fc" id="L258">        txn.updateAsReconciled(true,refID);</span>
-<span class="fc" id="L259">    }</span>
+<span class="fc" id="L289">        arr1_pendingReconRecords.remove(txn);</span>
+<span class="fc" id="L290">        txn.updateAsReconciled(true,refID);</span>
+<span class="fc" id="L291">    }</span>
     private void reconTransactionInArr2_forNETS(Transaction txnFound){
 
-<span class="fc" id="L262">        List&lt;Transaction&gt; coyDailyNETsReconciledRecords = arr2_pendingReconRecords.stream()</span>
-<span class="fc bfc" id="L263" title="All 2 branches covered.">                .filter(transaction -&gt; transaction.transactionChannel.equals(transaction.NETS) &amp;&amp;</span>
-<span class="fc bfc" id="L264" title="All 2 branches covered.">                        transaction.getTransactionDate().equals(txnFound.refdate))</span>
-<span class="fc" id="L265">                .collect(Collectors.toList());</span>
+<span class="fc" id="L294">        List&lt;Transaction&gt; coyDailyNETsReconciledRecords = arr2_pendingReconRecords.stream()</span>
+<span class="fc bfc" id="L295" title="All 2 branches covered.">                .filter(transaction -&gt; transaction.transactionChannel.equals(transaction.NETS) &amp;&amp;</span>
+<span class="fc bfc" id="L296" title="All 2 branches covered.">                        transaction.getTransactionDate().equals(txnFound.refdate))</span>
+<span class="fc" id="L297">                .collect(Collectors.toList());</span>
 
-<span class="fc bfc" id="L267" title="All 2 branches covered.">        for (Transaction txn : coyDailyNETsReconciledRecords) {</span>
-<span class="fc" id="L268">            arr2_pendingReconRecords.remove(txn);</span>
-<span class="fc" id="L269">            txn.updateAsReconciled(true, txn.getTransactionRefIDString());</span>
-<span class="fc" id="L270">        }</span>
+<span class="fc bfc" id="L299" title="All 2 branches covered.">        for (Transaction txn : coyDailyNETsReconciledRecords) {</span>
+<span class="fc" id="L300">            arr2_pendingReconRecords.remove(txn);</span>
+<span class="fc" id="L301">            txn.updateAsReconciled(true, txn.getTransactionRefIDString());</span>
+<span class="fc" id="L302">        }</span>
 
         //Print NETS Recon Trail
         //printRecords(coyDailyNETsReconciledRecords, &quot;NETS Details&quot;);
-<span class="fc" id="L274">    }</span>
+<span class="fc" id="L306">    }</span>
 
     public void updateReconciledRecords(Transaction matchedTxn, String reconWithRef, ArrayList&lt;Transaction&gt; reconWithThisArray){
 
-<span class="fc" id="L278">        Transaction reconWithTxn = reconWithThisArray.stream()</span>
-<span class="fc" id="L279">                .filter(transaction -&gt; transaction.getTransactionRefIDString().equals(reconWithRef))</span>
-<span class="fc" id="L280">                .findAny()</span>
-<span class="fc" id="L281">                .orElse(null);</span>
+<span class="fc" id="L310">        Transaction reconWithTxn = reconWithThisArray.stream()</span>
+<span class="fc" id="L311">                .filter(transaction -&gt; transaction.getTransactionRefIDString().equals(reconWithRef))</span>
+<span class="fc" id="L312">                .findAny()</span>
+<span class="fc" id="L313">                .orElse(null);</span>
 
-<span class="pc bpc" id="L283" title="1 of 2 branches missed.">        if(reconWithTxn != null) {</span>
-<span class="fc" id="L284">            matchedTxn.updateAsReconciled(true,reconWithTxn.getTransactionRefIDString());</span>
-<span class="fc" id="L285">            reconWithTxn.updateAsReconciled(true,matchedTxn.getTransactionRefIDString());</span>
-<span class="fc" id="L286">            arr1_pendingReconRecords.remove(reconWithTxn);</span>
-<span class="fc" id="L287">            arr2_pendingReconRecords.remove(matchedTxn);</span>
+<span class="pc bpc" id="L315" title="1 of 2 branches missed.">        if(reconWithTxn != null) {</span>
+<span class="fc" id="L316">            matchedTxn.updateAsReconciled(true,reconWithTxn.getTransactionRefIDString());</span>
+<span class="fc" id="L317">            reconWithTxn.updateAsReconciled(true,matchedTxn.getTransactionRefIDString());</span>
+<span class="fc" id="L318">            arr1_pendingReconRecords.remove(reconWithTxn);</span>
+<span class="fc" id="L319">            arr2_pendingReconRecords.remove(matchedTxn);</span>
             //System.out.println(&quot;RECON WITH&quot; + reconWithTxn.refdate + &quot;|&quot;+reconWithTxn.transactionAmount);
 
         }
 
-<span class="fc" id="L292">    }</span>
+<span class="fc" id="L324">    }</span>
 
 
     public void printRecordsSummary(ArrayList&lt;Transaction&gt; array, ArrayList&lt;Transaction&gt; baseArray, String listname) {
-<span class="fc" id="L296">        Print.summarizeRecords(array,baseArray,listname);</span>
-<span class="fc" id="L297">    }</span>
+<span class="fc" id="L328">        Print.summarizeRecords(array,baseArray,listname);</span>
+<span class="fc" id="L329">    }</span>
     public void printRecords(ArrayList&lt;Transaction&gt; array, String listname){
-<span class="fc" id="L299">        Print.theseRecords(array,listname);</span>
-<span class="fc" id="L300">    }</span>
+<span class="fc" id="L331">        Print.theseRecords(array,listname);</span>
+<span class="fc" id="L332">    }</span>
     public void printRecords(List&lt;Transaction&gt; array, String listname){
-<span class="fc" id="L302">        Print.theseRecords(array,listname);</span>
-<span class="fc" id="L303">    }</span>
+<span class="fc" id="L334">        Print.theseRecords(array,listname);</span>
+<span class="fc" id="L335">    }</span>
     public void printRecords(Transaction txn, String listname){
-<span class="fc" id="L305">        Print.thisRecord(txn,listname);</span>
-<span class="fc" id="L306">    }</span>
+<span class="fc" id="L337">        Print.thisRecord(txn,listname);</span>
+<span class="fc" id="L338">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

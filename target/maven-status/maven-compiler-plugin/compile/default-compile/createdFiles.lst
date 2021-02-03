@@ -1,5 +1,6 @@
+com/example/OCBCStatement.class
 com/example/Transaction.class
-com/example/Print.class
 com/example/BankStatement.class
 com/example/CompanyBankAccount.class
 com/example/ReconciliationTool.class
+com/example/Print.class

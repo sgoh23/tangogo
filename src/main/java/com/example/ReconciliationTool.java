@@ -88,6 +88,15 @@ public class ReconciliationTool {
 
         LTATxns.forEach(l -> reconTransaction_forLTA(l.refdate,l.transactionAmount,l.getTransactionRefIDString()));
 
+        //Run for Payment Transfers from known senders
+        List<Transaction> paymentTransferTxn = arr1_pendingReconRecords.stream()
+                .filter(transaction -> transaction.transactionChannel.equals(transaction.PAYMENT_TRANSFER) &&
+                        !transaction.sender.isEmpty())
+                .collect(Collectors.toList());
+
+       // printRecords(paymentTransferTxn,"TRANSFERS");
+        paymentTransferTxn.forEach(p -> reconTransaction_forPaymentTransfers(p.sender,p.transactionAmount,p.transactionDate,p.getTransactionRefIDString()));
+
         //Run for all good matches
         List<Transaction> allOtherTxn = arr1_pendingReconRecords.stream()
                 .filter(transaction -> !transaction.reconciled &&
@@ -99,7 +108,7 @@ public class ReconciliationTool {
         //Run for suggested may-matches
         List<Transaction> mayMatches = arr1_pendingReconRecords.stream()
                 .filter(t -> !t.reconciled &&
-                        t.transactionChannel.equals(""))
+                        (t.transactionChannel.equals("") || t.transactionChannel.equals(t.PAYMENT_TRANSFER)))
                 .collect(Collectors.toList());
 
         mayMatches.forEach(this::reconTransaction_SuggestedMayMatches);
@@ -116,8 +125,9 @@ public class ReconciliationTool {
 
         double sumOfCharges = gclist.stream().mapToDouble(Transaction::getTransactionAmount).sum();
 
+        System.out.println(categoryname+" TOTAL: " + sumOfCharges);
         System.out.println(groupSummary);
-        System.out.println(categoryname+"TOTAL: " + sumOfCharges);
+
 
         for (Map.Entry<String, Double> entry : groupSummary.entrySet()) {
 
@@ -177,6 +187,29 @@ public class ReconciliationTool {
         }
     }
 
+    public Transaction reconTransaction_forPaymentTransfers(String sender, double txnAmt, String txnDate, String arr1TxnRefID){
+
+        Transaction record = array2.stream()
+                .filter(txn -> txn.transactionAmount == txnAmt &&
+                        txn.isValidDate(txnDate) &&
+                        txn.transactionDate.equals(txnDate) &&
+                        //txn.transactionChannel.equals("") &&
+                        txn.transactionDesc.contains(sender) &&
+                        !txn.reconciled)
+                .findAny()
+                .orElse(null);
+
+
+        if(record != null){
+
+            record.sender = sender;
+            //  record.updateAsReconciled(true,arr1TxnRefID);
+            updateReconciledRecords(record,arr1TxnRefID,array1);
+
+        }
+        return record;
+    }
+
     public Transaction reconTransaction_forAllByDateAndAmount(double txnAmt, String txnDate, String arr1TxnRefID){
 
         Transaction record = array2.stream()
@@ -189,7 +222,6 @@ public class ReconciliationTool {
                 .orElse(null);
 
         if(record != null){
-
           //  record.updateAsReconciled(true,arr1TxnRefID);
             updateReconciledRecords(record,arr1TxnRefID,array1);
 

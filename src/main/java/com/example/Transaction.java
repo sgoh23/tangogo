@@ -16,6 +16,7 @@ public class Transaction{
     public String chequeNo = "";
     public String refdate = "";
     public String transactionChannel = "";
+    public String sender = "";
 
 
     public double creditAmount;                 // Sample:  42.80
@@ -34,6 +35,7 @@ public class Transaction{
     public final String GIRO_CHARGES = "GIRO CHARGES";
     public final String CASH_REBATE = "CASH REBATE";
     public final String DEBIT_PURCHASE = "DEBIT PURCHASE";
+    public final String PAYMENT_TRANSFER = "PAYMENT/TRANSFER";
 
 
     public Transaction(){
@@ -67,9 +69,17 @@ public class Transaction{
             transactionChannel = CHEQUE;
         }
 
-        if(!notes_supplementaryDetails.isEmpty() && (notes_supplementaryDetails.contains(GIRO_PAYMENT))){
+        if(!notes_supplementaryDetails.isEmpty() &&
+                notes_supplementaryDetails.contains(GIRO_PAYMENT)){
             chequeNo = notes_refForAccOwner;
-            transactionChannel = GIRO_PAYMENT;
+            transactionChannel = notes_supplementaryDetails;
+
+        }
+
+        if(!notes_supplementaryDetails.isEmpty() &&
+                notes_supplementaryDetails.contains(PAYMENT_TRANSFER)){
+            sender = notes_refForAccOwner;
+            transactionChannel = notes_supplementaryDetails;
         }
 
         if(!notes_supplementaryDetails.isEmpty() &&
@@ -88,7 +98,19 @@ public class Transaction{
                     notes_supplementaryDetails.equals(DEBIT_PURCHASE)) {
 
                 transactionChannel = LTA;
-                refdate = notes_refForAccOwner;
+                if (isValidDate(notes_refForAccOwner)) {
+
+                    refdate = notes_refForAccOwner;
+
+                } else{
+
+                    try{
+                        //converting excel number to date
+                    }catch(Exception e){
+                        e.printStackTrace();
+                    }
+
+                }
 
             }
         }

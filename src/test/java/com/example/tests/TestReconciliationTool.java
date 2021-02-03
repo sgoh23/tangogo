@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -163,7 +164,7 @@ public class TestReconciliationTool {
                         transaction.isValidDate(transaction.refdate))
                 .collect(Collectors.toList());
 
-        reconKit.printRecords(LTARecords,"LTA List");
+        //reconKit.printRecords(LTARecords,"LTA List");
 
         if(LTARecords.size()>0){
             assertNotEquals(0,reconciledList.size(),"Expect to have some matches since there are "+
@@ -211,7 +212,7 @@ public class TestReconciliationTool {
                         t.transactionChannel.equals(t.NETS))
                 .collect(Collectors.toList());
 
-        reconKit.printRecords(reconciledList,"NETS reconciled list");
+        //reconKit.printRecords(reconciledList,"NETS reconciled list");
 
         for(Transaction txn : reconciledList){
 
@@ -225,8 +226,36 @@ public class TestReconciliationTool {
         }
     }
 
-
     @Test
+    public void expect_NETS_bank_transaction_has_notesOurRef_as_a_date(){
+
+        List<Transaction> netsTxn = reconKit.array1.stream()
+                .filter(t -> t.transactionChannel.equals(t.NETS))
+                .collect(Collectors.toList());
+
+        for(Transaction txn : netsTxn){
+            assertEquals(txn.refdate,txn.notes_ourRef,"They should match");
+            assertFalse(txn.refdate.isEmpty(),"There should be value in refdate : "+txn+txn.transactionDate+"|"+txn.transactionDesc);
+            assertTrue(txn.isValidDate(txn.notes_ourRef),"Value is supposed to be a date");
+        }
+
+    }
+    @Test
+    public void expect_LTA_bank_transaction_has_notes_refForAccOwner_as_a_date() {
+
+        List<Transaction> LTAtxn = reconKit.array1.stream()
+                .filter(t -> t.transactionDesc.contains(t.LTA) &&
+                        t.notes_supplementaryDetails.equals(t.DEBIT_PURCHASE))
+                .collect(Collectors.toList());
+
+        for (Transaction txn : LTAtxn) {
+            assertEquals(txn.refdate, txn.notes_refForAccOwner, "They should be dates and should match");
+            assertFalse(txn.refdate.isEmpty(), "There should be value in refdate : " + txn + txn.transactionDate + "|" + txn.transactionDesc);
+            assertTrue(txn.isValidDate(txn.notes_refForAccOwner), "Value is supposed to be a date");
+        }
+    }
+
+        @Test
     public void expect_AfterReconRun_suggests_remaining_pending_may_match_amount(){
 
         reconKit.runRecon();
@@ -341,6 +370,67 @@ public class TestReconciliationTool {
     }
 
     @Test
+    public void expect_reconciled_paymentTransfer_records_sender_matches_the_same() {
+
+        reconKit.runRecon();
+
+        Transaction txnFound = null;
+        List<Transaction> reconciledList = reconKit.array1.stream()
+                .filter(transaction -> transaction.reconciled &&
+                        transaction.transactionChannel.equals(transaction.PAYMENT_TRANSFER))
+                .collect(Collectors.toList());
+
+        //reconKit.printRecords(reconciledList,"RECONCILED");
+
+        if(reconKit.array1.size()>0) {
+            assertNotEquals(0, reconciledList.size(),
+                    "Supposed to match some payment transfers by sender "+
+                            reconKit.arr1_pendingReconRecords.size() + " records in statement");
+        }
+
+        for(Transaction txn : reconciledList){
+            // System.out.println(txn.transactionDesc + ":"+ txn.transactionDate);
+
+            Transaction reconWithTxn = reconKit.array2.stream()
+                    .filter(x -> x.getTransactionRefIDString().equals(txn.reconciledTxnRefID))
+                    .findAny()
+                    .orElse(null);
+
+            if(reconWithTxn != null){
+
+                assertTrue(reconWithTxn.reconciled,"Supposed to have reconciled flag marked as true");
+                assertEquals(reconWithTxn.getTransactionRefIDString(),txn.reconciledTxnRefID,
+                        "Supposed to have updated the reconciled transaction "+ txn + "|" +
+                                txn.transactionDesc + "|" + txn.transactionAmount );
+
+                assertEquals(reconWithTxn.transactionAmount,txn.transactionAmount,
+                        "Supposed to have transaction amount match");
+
+                assertEquals(reconWithTxn.transactionDate
+                        ,txn.transactionDate,"Supposed to have transaction date match" + txn +
+                                "|" + txn.transactionDesc + "|VS|" + reconWithTxn.transactionDesc + "|" + txn.transactionAmount );
+
+                assertEquals("", reconWithTxn.transactionChannel,
+                        txn + "|" + txn.transactionDate+ "|" +txn.transactionAmount+
+                                "Supposed to belong to a normal transaction case, but transaction channel = "+
+                                reconWithTxn.transactionChannel + ": "+
+                                reconWithTxn.transactionDate +"|"+
+                                reconWithTxn.transactionAmount +"|");
+
+                assertTrue(reconWithTxn.sender.contains(txn.sender),"Supposed to match sender name");
+
+            }else{
+
+                assertFalse(txn.reconciled);
+                assertTrue(txn.reconciledTxnRefID.isBlank());
+                assertFalse(txn.transactionChannel.isBlank());
+            }
+
+        }
+
+    }
+
+    @Test
     public void expect_able_to_tell_which_records_on_array1_unable_to_reconcile(){
 
         reconKit.runRecon();
@@ -348,14 +438,31 @@ public class TestReconciliationTool {
         reconKit.reconTransaction_forLumpsumCharges(statement.getChargesSumByDate("GIRO CHARGES"),"GIRO CHARGES");
         reconKit.reconTransaction_forLumpsumCharges(statement.getChargesSumByDate("CASH REBATE"), "CASH REBATE");
 
+        List<Transaction> pendingArr1 = reconKit.array1.stream()
+                .filter(t -> !t.reconciled)
+                .sorted(Comparator.comparing(Transaction::getTransactionChannel))
+                .collect(Collectors.toList());
+        assertEquals(pendingArr1.size(), reconKit.arr1_pendingReconRecords.size(),"Pending lists should match for bank statement");
+
+        List<Transaction> pendingArr2 = reconKit.array2.stream()
+                .filter(t -> !t.reconciled)
+                .sorted(Comparator.comparing(Transaction::getTransactionChannel))
+                .collect(Collectors.toList());
+        assertEquals(pendingArr2.size(), reconKit.arr2_pendingReconRecords.size(),"Pending lists should match for COY statement");
+
         reconKit.printRecordsSummary(reconKit.arr1_pendingReconRecords, reconKit.array1,"Bank Statement Pending Recon");
-        reconKit.printRecords(reconKit.arr1_pendingReconRecords, "BANK STATEMENT records not found in COMPANY BOOKS");
-        //reconKit.printRecords(reconKit.array1,"BANK RECORDS");
-
-
         reconKit.printRecordsSummary(reconKit.arr2_pendingReconRecords, reconKit.array2,"Company unrecorded pending ");
-        reconKit.printRecords(reconKit.arr2_pendingReconRecords,"COMPANY BOOKS records not found in BANK STATEMENT");
-        //reconKit.printRecords(reconKit.array2,"COMPANY BOOKS");
+
+        reconKit.printRecordsSummary(reconKit.arr1_pendingReconRecords, reconKit.array1,"Bank Statement Pending Recon");
+        reconKit.printRecords(pendingArr1, "BANK STATEMENT records not found in COMPANY BOOKS");
+        reconKit.printRecords(reconKit.array1,"\u001B[35m BANK RECORDS");
+
+
+        reconKit.printRecordsSummary(reconKit.arr2_pendingReconRecords, reconKit.array2,"\u001B[34m Company unrecorded pending ");
+        reconKit.printRecords(pendingArr2,"\u001B[34m COMPANY BOOKS records not found in BANK STATEMENT");
+        reconKit.printRecords(reconKit.array2,"\u001B[32m COMPANY BOOKS");
+
+
 
     }
 

@@ -8,10 +8,17 @@ public class Print {
     static String ANSI_BG_CYAN   = "\u001B[46m";
     static String ANSI_RESET  = "\u001B[0m";
     static String ANSI_CYAN   = "\u001B[36m";
+    public static final String ANSI_BLACK = "\u001B[30m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_WHITE = "\u001B[37m";
 
     static void theseRecords(ArrayList<Transaction> records, String listname){
 
-        System.out.println(ANSI_CYAN + " ||||||||| PRINTING RECORDS ||||||||| :::"+listname+
+        System.out.println(ANSI_CYAN + listname+ " ||||||||| PRINTING RECORDS ||||||||| :::"+
                 " Record Count: ("+records.size()+")");
         System.out.println(" | CHANNEL | Record Ref ID | Transaction Amount | Transaction Date | "+
                 "Reconciled? | Reconciled with Txn Ref ID | Transaction Description |" );
@@ -27,7 +34,7 @@ public class Print {
 
     static void theseRecords(List<Transaction> records, String listname){
 
-        System.out.println(ANSI_CYAN + " ||||||||| PRINTING RECORDS ||||||||| :::"+listname+
+        System.out.println(ANSI_CYAN +listname+ " ||||||||| PRINTING RECORDS ||||||||| :::"+
                 " Record Count: ("+records.size()+")");
         System.out.println(" | CHANNEL | Record Ref ID | Transaction Amount | Transaction Date | "+
                 "Reconciled? | Reconciled with Txn Ref ID | Transaction Description |" );
@@ -43,7 +50,7 @@ public class Print {
 
     static void thisRecord(Transaction record, String listname){
 
-        System.out.println(ANSI_CYAN + " ||||||||| PRINTING RECORDS ||||||||| :::"+listname);
+        System.out.println(ANSI_CYAN +listname+ " ||||||||| PRINTING RECORDS ||||||||| :::");
         System.out.println(" | Record Ref ID | Transaction Amount | Transaction Date | "+
                 "Reconciled? | Reconciled with Txn Ref ID | Transaction Description | CHEQUE NO | CHANNEL |" );
 
@@ -62,7 +69,7 @@ public class Print {
             double basecount = baseRecords.size();
             percentDone = (int) ((basecount-records.size())/basecount*100);
             System.out.println();
-            System.out.print(ANSI_BG_CYAN + " ||||||||| SUMMARY OF RECORDS ||||||||| :::" +listname+
+            System.out.print(ANSI_BG_CYAN + listname + " ||||||||| SUMMARY OF RECORDS ||||||||| :::" +
                     " Count:"+records.size()+" of "+baseRecords.size() +
                     " | Reconciled: " + percentDone + "%");
             System.out.print(ANSI_RESET);
